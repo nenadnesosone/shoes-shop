@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    font-family: Forum, cursive;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../images/backgrounds/background14.jpg);
+    background-size: cover;
+    top: 0;
+    left: 0;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.navbar .nav-item {
+    font-size: 1.4rem;
+    font-family: Kelly Slab, serif;
+}
+
+.dropdown-menu {
+    background-color: #2c3440;
+}
+
+.dropdown-item:hover {
+    color: #fff;
+    background-color: #2c3440;
+}
+
+.row {
+    padding-top: 20px;
+}
+
+h6 {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+
+.page-footer {
+    width: 100%;
+    flex: 0 0 30px;
+}
+
+.page-footer a,
+.footer-copyright,
+.dropdown-item {
+    text-decoration: none !important;
+    color: #9ab;
+    margin: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+    .row {
+        width: 75%;
+        margin: auto;
+    }
+}

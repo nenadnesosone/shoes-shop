@@ -1,0 +1,156 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: Forum, cursive;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../images/backgrounds/background10.jpg);
+    background-size: cover;
+    top: 0;
+    left: 0;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+form {
+    text-align: center;
+}
+
+.navbar .nav-item {
+    font-size: 1.4rem;
+    font-family: Kelly Slab, cursive;
+}
+
+a {
+    text-decoration: none !important;
+    color: #5c5656;
+    display: inline-block;
+    margin-bottom: 7px;
+}
+
+.wrapper a:hover {
+    color: #456 !important;
+    transform: scale(1.05);
+    transition: transfrom 0.5s;
+}
+
+.wrapper {
+    width: 100%;
+    height: 77vh;
+    min-width: 375px;
+    background-size: cover;
+    margin: auto;
+}
+
+.login_box,
+.update_box {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: 35%;
+    background-color: #fff;
+    border-radius: 7px;
+    opacity: 0.67;
+}
+
+
+/* #802525, 693d3d */
+
+.login_header,
+.update_header {
+    width: 100%;
+    height: 20%;
+    background-color: #456;
+    color: #EDEDED;
+    text-align: center;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    font-family: Kelly Slab, cursive;
+}
+
+.login_header h2,
+.update_header h2 {
+    font-size: 1.7rem;
+    line-height: 50px;
+    color: #EDEDED;
+    overflow-wrap: break-word;
+}
+
+input[type="submit"] {
+    background-color: #456;
+    border-radius: 3px;
+    margin: 5px 0 15px 0;
+    padding: 5px 10px 5px 10px;
+    color: #EDEDED;
+    text-shadow: #5c5656 0.5px 0.5px 0;
+    border: none;
+    font-family: Kelly Slab, cursive;
+    font-size: 1.2rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    border: 1px solid #a29999;
+    border-radius: 3px;
+    margin-top: 10px;
+    width: 70%;
+    height: 35px;
+    padding-left: 5px;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover {
+    border-color: #3b3737;
+}
+
+#second {
+    display: none;
+}
+
+input[type="file"] {
+    padding-left: 30px;
+}
+
+p {
+    margin-bottom: 0px;
+}
+
+button {
+    background-color: #456 !important;
+    color: #bbccdd !important;
+    border: none !important;
+}
+
+button:hover {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.page-footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.page-footer a,
+.footer-copyright,
+.dropdown-item {
+    text-decoration: none !important;
+    padding: 10px;
+    color: #9ab;
+}
+
+@media only screen and (max-width: 767px) {
+    .login_box,
+    .update_box {
+        width: 270px;
+    }
+}
