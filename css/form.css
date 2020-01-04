@@ -46,22 +46,17 @@ a {
     margin: auto;
 }
 
-.login_box,
-.update_box {
+.form_box {
     position: relative;
     margin-right: auto;
     margin-left: auto;
-    width: 35%;
+    width: 40%;
     background-color: #fff;
     border-radius: 7px;
     opacity: 0.67;
 }
 
-
-/* #802525, 693d3d */
-
-.login_header,
-.update_header {
+.form_header {
     width: 100%;
     height: 20%;
     background-color: #456;
@@ -72,8 +67,7 @@ a {
     font-family: Kelly Slab, cursive;
 }
 
-.login_header h2,
-.update_header h2 {
+.form_header h2 {
     font-size: 1.7rem;
     line-height: 50px;
     color: #EDEDED;
@@ -94,7 +88,8 @@ input[type="submit"] {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
     border: 1px solid #a29999;
     border-radius: 3px;
     margin-top: 10px;
@@ -107,10 +102,6 @@ input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover {
     border-color: #3b3737;
-}
-
-#second {
-    display: none;
 }
 
 input[type="file"] {

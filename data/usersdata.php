@@ -82,7 +82,7 @@ class UsersData{
     }
 
     // funkcija za ubacivanje korisnika u bazu
-    public static function CreateUser($usersid, $fname, $lname, $email, $pass, $type, $cdate, $cid)
+    public static function CreateUser($fname, $lname, $email, $pass, $type, $cdate, $cid)
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();

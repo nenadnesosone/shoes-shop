@@ -34,8 +34,8 @@ require_once 'form/user/login_handler.php';
 
 
     <div class="wrapper">
-        <div class="login_box">
-            <div class="login_header">
+        <div class="form_box">
+            <div class="form_header">
                 <h2>Shoes Shop</h2>
                 <p>Login below!</p>
             </div>
@@ -49,7 +49,7 @@ require_once 'form/user/login_handler.php';
                     <input id="log_password" type="password" name="log_password" placeholder="Password">
                     <br>
                     <?php if (in_array("Email or password was incorrect!<br>", $error_array)) {
-                        echo "Email or password was incorrect!<br>";
+                        echo "<span style='color:#ff0000;'>Email or password was incorrect!</span><br>";
                     } ?>
                     <br>
                     <input id="login_button" type="submit" name="login_button" value="Login">
