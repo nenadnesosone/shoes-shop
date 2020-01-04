@@ -48,7 +48,7 @@ require_once 'form/user/login_handler.php';
                     <br>
                     <input id="log_password" type="password" name="log_password" placeholder="Password">
                     <br>
-                    <?php if (in_array("Email or password was incorrect!<br>", $error_array)) {
+                    <?php if (in_array("Email or password was incorrect!", $error_array)) {
                         echo "<span style='color:#ff0000;'>Email or password was incorrect!</span><br>";
                     } ?>
                     <br>

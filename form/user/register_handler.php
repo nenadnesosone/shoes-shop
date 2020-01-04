@@ -15,7 +15,7 @@ $cid = $_SESSION['usersid'];
 $error_array = array();
 
 if (isset($_POST['register_button'])) {
-    if ($_SESSION['type'] == 'admin'){
+    if ($_SESSION['type'] == 'admin') {
                 //Ime
             $fname = ucfirst(strtolower(UsersData::sanit($_POST['reg_fname'])));// uklanjamo html elemente i razmake, ostavlja samo prvo slovo veliko
             $_SESSION['reg_fname'] = $fname; //cuva se u sesiji ime
@@ -65,6 +65,12 @@ if (isset($_POST['register_button'])) {
             if (strlen($lname)>25 || strlen($lname)<2) {
                 array_push($error_array, "Your last name must be between 2 and 25 characters"); 
             }
+
+            // da li je admin ili worker
+            if ($type !== 'admin' AND $type !== 'worker') {
+                    array_push($error_array, "Please select Authorization type"); 
+            }
+
             //password i password2 moraju da budu isti
             if ($pass != $pass2) {
                 array_push($error_array, "Your passwords do not match");
@@ -81,12 +87,6 @@ if (isset($_POST['register_button'])) {
 
             if (empty($error_array)) {
                 $pass = md5($pass); //enkripcija lozinke
-
-            // da li je admin ili worker
-            if($type !== 'admin' || $type !== 'worker') {
-                array_push($error_array, "Please select Authorization type"); 
-            }
-
                 //unos podataka u bazu
                 UsersData::CreateUser($fname, $lname, $email, $pass, $type, $cdate, $cid);
             

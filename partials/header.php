@@ -41,7 +41,7 @@
                             '<a class="dropdown-item" href="register.php">Add user</a>
                             <a class="dropdown-item" href="#">Show all users</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Update/Delete Account</a>
+                            <a class="dropdown-item" href="user.php">Update/Delete user</a>
                             <a class="dropdown-item" href="signout.php">Sign Out</a>
                         </div>
                     </li>
@@ -52,7 +52,7 @@
                     } else {
                         echo
                         '<div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#.php">Update/Delete Account</a>
+                        <a class="dropdown-item" href="user.php">Update/Delete user</a>
                         <a class="dropdown-item" href="signout.php">Sign Out</a>
                         </div>
                     </li>

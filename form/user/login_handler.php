@@ -14,18 +14,18 @@ if (isset($_POST['login_button'])) {
     if (UsersData::CheckUser($email, $pass)) {
             
             $row = UsersData::GetUserRow($email, $pass);
-            $_SESSION['type'] = $row['type'];
             $_SESSION['usersid'] = $row['users_id'];
             $_SESSION['fname'] = $row['first_name'];
-    
+            $_SESSION['type'] = $row['type'];
+
             header("Location: main.php");
             
-            $_SESSION['log_email'] = "";
+            //$_SESSION['log_email'] = "";
     
             exit();
        
     }else {
-        array_push($error_array,"Email or password was incorrect!<br>");
+        array_push($error_array,"Email or password was incorrect!");
 
     }
 }
