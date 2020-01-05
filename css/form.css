@@ -104,6 +104,10 @@ input[type="password"]:hover {
     border-color: #3b3737;
 }
 
+#second {
+    display: none;
+}
+
 input[type="file"] {
     padding-left: 30px;
 }

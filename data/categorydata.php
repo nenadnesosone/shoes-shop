@@ -72,7 +72,7 @@ class CategoryData{
     }
 
     // funkcija za ubacivanje kategorije u bazu
-    public static function CreateCategory($catid, $catname, $cdate, $cid)
+    public static function CreateCategory($catname, $cdate, $cid)
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();
@@ -89,7 +89,7 @@ class CategoryData{
     }
 
     // funkcija za brisanje kategorije iz baze "soft delete'
-    public static function DeleteCategory($catid, $ddate, $did)
+    public static function DeleteCategory($catname, $ddate, $did)
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();
@@ -97,7 +97,7 @@ class CategoryData{
         // ovaj deo koda bi bio osetljiv na SQL Injection napade da korisnik moze da ukuca catid
 
         // brisanje kategorije iz baze 	 	 	 	 	 	 	 	 	 	 	
-        $query = "UPDATE category SET deleted_at = '$ddate', deleted_by = '$did', deleted = 1, WHERE category_id='$catid'";
+        $query = "UPDATE category SET deleted_at = '$ddate', deleted_by = '$did', deleted = 1 WHERE category_name='$catname'";
 
         $result = mysqli_query($db, $query);
         if ($result) {
@@ -116,7 +116,7 @@ class CategoryData{
         // ovaj deo koda bi bio osetljiv na SQL Injection napade da korisnik moze da ukuca catid
 
         //  update kategorije 	 	 	 	 	 	 	 	
-        $query = "UPDATE category SET category_name = '$catname', update_at = '$udate', updated_by = '$uid' WHERE category_id = '$catid'";
+        $query = "UPDATE category SET category_name = '$catname', updated_at = '$udate', updated_by = '$uid' WHERE category_id = '$catid'";
 
         $result = mysqli_query($db, $query);
         if ($result) {
@@ -169,5 +169,5 @@ class CategoryData{
         }
 
     }
-
+}
 ?>

@@ -38,7 +38,7 @@ if ((isset($_POST['update_button'])) or (isset($_POST['delete_button']))) {
         $udate = date("Y-m-d");
         $uid = $usersid;
         if(isset($_POST['delete_button'])){
-            //brisemo podatke iz sesije i brisemo korisnika
+            //brisemo korisnika i brisemo podatke iz sesije
             $ddate = date("Y-m-d");
             $did = $usersid;
             UsersData::DeleteUser($usersid, $ddate, $did);
