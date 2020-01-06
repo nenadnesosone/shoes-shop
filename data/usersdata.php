@@ -253,6 +253,15 @@ class UsersData{
         return $y;
 
     }
+
+     // funkcija za sanitizaciju html elementata
+     public static function sanittrim($x){
+
+        $y = htmlspecialchars(strip_tags($x)); //uklanja HTML elemente
+        $y = trim($y); //uklanja razmake
+        return $y;
+
+    }
 }
 
 ?>

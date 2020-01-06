@@ -33,7 +33,7 @@
                         
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Shoe</a>
+                            <a class="dropdown-item" href="shoe.php">Shoe</a>
                             <a class="dropdown-item" href="category.php">Category</a>
                             <a class="dropdown-item" href="#">Discount</a>';
                             if(($_SESSION['type'] == 'admin')){

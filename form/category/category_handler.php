@@ -1,8 +1,8 @@
 <?php
 require_once 'data/usersdata.php';
 require_once 'data/categorydata.php';
-//Deklarisanje varijabli
 
+//Deklarisanje varijabli
 $catname = "";
 $newcatname = "";
 $cdate = date("Y-m-d");//uzima trenutni datum

@@ -40,12 +40,12 @@ class CategoryData{
 
         $result = mysqli_query($db, $query);
         if ($result) {
-            $userData = [];
+            $catData = [];
             while ($row = mysqli_fetch_assoc($result))
             {
-                $userData [] = $row;
+                $catData [] = $row;
             }
-            return $userData;
+            return $catData;
         } else {
             return [];
         }
@@ -169,5 +169,7 @@ class CategoryData{
         }
 
     }
+
+
 }
 ?>

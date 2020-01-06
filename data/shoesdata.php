@@ -51,27 +51,27 @@ class ShoesData{
 
         $result = mysqli_query($db, $query);
         if ($result) {
-            $userData = [];
+            $shoeData = [];
             while ($row = mysqli_fetch_assoc($result))
             {
-                $userData [] = $row;
+                $shoeData [] = $row;
             }
-            return $userData;
+            return $shoeData;
         } else {
             return [];
         }
     }
 
     // funcija koja ce prikupiti podatke o jednoj cipeli iz baze
-    public static function GetOneShoe($sname)
+    public static function GetOneShoe($code)
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();
 
-        // ovaj deo koda bi bio osetljiv na SQL Injection napade da korisnik moze da ukuca sname
+        // ovaj deo koda bi bio osetljiv na SQL Injection napade da korisnik moze da ukuca code
 
-        // odaberemo konkretnog ime cipele
-        $query = "SELECT * FROM shoes WHERE shoe_name = '$sname'";
+        // odaberemo konkretnog korisnika
+        $query = "SELECT * FROM shoes WHERE code = '$code'";
 
         $result = mysqli_query($db, $query);
         if ($result) {
@@ -89,7 +89,7 @@ class ShoesData{
         $db = Database::getInstance()->getConnection();
 
         $query = "INSERT INTO shoes (`shoe_id`,`code`,`shoe_name`,`description`,`price`,`size`,`image`,`category_id`, `created_at`,`updated_at`,`deleted_at`,`created_by`,`updated_by`,`deleted_by`, `deleted`) 
-        VALUES (DEFAULT,`$code`, '$sname', '$desc','$price','$size','$image',`$catid`,'$cdate', DEFAULT, DEFAULT, '$cid', DEFAULT, DEFAULT, DEFAULT)";
+        VALUES (DEFAULT,'$code', '$sname', '$desc','$price','$size','$image','$catid','$cdate', DEFAULT, DEFAULT, '$cid', DEFAULT, DEFAULT, DEFAULT)";
 
         $result = mysqli_query($db, $query);
         if ($result) {
@@ -100,7 +100,7 @@ class ShoesData{
     }
 
     // funkcija za brisanje cipele iz baze "soft delete'
-    public static function DeleteShoe($shoeid, $ddate, $did)
+    public static function DeleteShoe($code, $ddate, $did)
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();
@@ -108,7 +108,7 @@ class ShoesData{
         // ovaj deo koda bi bio osetljiv na SQL Injection napade da korisnik moze da ukuca usersid
 
         // brisanje korisnika iz baze 	 	 	 	 	 	 	 	 	 	 	
-        $query = "UPDATE shoes SET deleted_at = '$ddate', deleted_by = '$did', deleted = 1, WHERE shoe_id='$shoeid'";
+        $query = "UPDATE shoes SET deleted_at = '$ddate', deleted_by = '$did', deleted = 1 WHERE code = '$code'";
 
         $result = mysqli_query($db, $query);
         if ($result) {
@@ -119,7 +119,7 @@ class ShoesData{
     }
 
     // funkcija za update cipele
-    public static function UpdateShoe($shoeid, $code, $sname, $desc, $price, $size, $image, $catid, $udate, $uid)
+    public static function UpdateShoe($shoeid, $sname, $desc, $price, $size, $image, $catid, $udate, $uid)
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();
@@ -127,7 +127,7 @@ class ShoesData{
         // ovaj deo koda bi bio osetljiv na SQL Injection napade da korisnik moze da ukuca shoeid
 
         //  update korisnika u bazi	 	 	 	 	 	 	 	 	 	
-        $query = "UPDATE shoes SET code = '$code', shoe_name = '$sname', description = '$desc', price = '$price', size = '$size', image = '$image', category = '$catid', update_at = '$udate', updated_by = '$uid' WHERE shoe_id = '$shoeid'";
+        $query = "UPDATE shoes SET shoe_name = '$sname', description = '$desc', price = '$price', size = '$size', image = '$image', category_id = '$catid', updated_at = '$udate', updated_by = '$uid' WHERE shoe_id = '$shoeid'";
 
         $result = mysqli_query($db, $query);
         if ($result) {
@@ -179,6 +179,6 @@ class ShoesData{
         }
 
     }
-
+}
 
 ?>
