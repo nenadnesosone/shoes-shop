@@ -60,3 +60,7 @@ h6 {
         margin: auto;
     }
 }
+caption{
+    caption-side: top!important;
+    font-weight: bold;
+}

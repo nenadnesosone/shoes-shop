@@ -69,8 +69,7 @@ class DiscountData{
        $db = Database::getInstance()->getConnection();
        ///odaberemo sve koji nisu obrisani, posto se obrisani nece prikazivani na frontendu
        $query = "SELECT * FROM discount WHERE discount_id = '$discid'";
-
-       $result = mysqli_query($db, $query);
+       
        $result = mysqli_query($db, $query);
        if ($result) {
            $row = mysqli_fetch_assoc($result);

@@ -1,5 +1,6 @@
 <?php
-
+  require_once 'data/categorydata.php';
+  require_once 'data/usersdata.php';
 // klasa uz ciju pomoc cemo pristupati korisnickim podacima
 class ShoesData{
 
@@ -50,15 +51,52 @@ class ShoesData{
         $query = "SELECT * FROM shoes WHERE deleted = 0";
 
         $result = mysqli_query($db, $query);
-        if ($result) {
-            $shoeData = [];
-            while ($row = mysqli_fetch_assoc($result))
-            {
-                $shoeData [] = $row;
+        
+        $num_rows = mysqli_num_rows($result);
+        if ($num_rows > 0) {
+            
+            echo "<div class='table-responsive'>
+            <table class='table table-primary table-bordered table-striped table-hover text-center'>
+                <caption class='text-center'>All Shoes:</caption>
+                <tr>
+                    <th>Shoe Id</th><th>Code</th><th>Shoe Name</th><th>Description</th><th>Price in dinars</th><th>Size</th><th>Category</th><th>Image</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
+                </tr>";
+
+            while ($row = mysqli_fetch_assoc($result)){
+                $shoeid = $row['shoe_id'];
+                $code = $row['code'];
+                $sname = $row['shoe_name'];
+                $desc = $row['description'];
+                $price = $row['price'];
+                $size = $row['size'];
+                $image = $row['image'];
+                $catid = $row['category_id'];
+                $cid = $row['created_by'];
+                $cdate = $row['created_at'];
+                $uid = $row['updated_by'];
+                $udate = $row['updated_at'];
+
+                $catname = CategoryData::GetCategory($catid)['category_name'];
+                $cname = UsersData::GetOneUser($cid)['first_name'];
+                $uname = UsersData::GetOneUser($uid)['first_name'];
+                $cdate = date("d/m/Y", strtotime($cdate));
+                if ($udate !== NULL){
+                    $udate = date("d/m/Y", strtotime($udate));
+                }
+
+                echo "<tr>
+                        <td>$shoeid</td><td>$code</td><td>$sname</td><td>$desc</td><td>$price,00</td><td>$size</td><td>$catname</td><td>
+                        <img alt='no_image' src='$image' width='100' height='100' />
+                        </td><td>$cname</td><td>$cdate</td><td>$uname</td><td>$udate</td>
+                    </tr>";
+                
             }
-            return $shoeData;
+
+            echo "</table>
+            </div>";
+
         } else {
-            return [];
+            echo "<p class='lead text-white'>We have sold out all shoes!</p>";
         }
     }
 

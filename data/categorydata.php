@@ -71,6 +71,26 @@ class CategoryData{
         }
     }
 
+    // funcija koja ce prikupljati podatke o jednoj kategoriji iz baze
+    public static function GetCategory($catid)
+    {
+        //povezujemo se s bazom
+        $db = Database::getInstance()->getConnection();
+
+        // ovaj deo koda bi bio osetljiv na SQL Injection napade da korisnik moze da ukuca catname
+
+        // odaberemo konkretnog korisnika
+        $query = "SELECT * FROM category WHERE category_id = '$catid'";
+
+        $result = mysqli_query($db, $query);
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            return $row;
+        } else {
+            return [];
+        }
+    }
+
     // funkcija za ubacivanje kategorije u bazu
     public static function CreateCategory($catname, $cdate, $cid)
     {

@@ -1,5 +1,6 @@
 <?php
     require_once 'config/config.php';
+    require_once 'data/shoesdata.php';
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +34,10 @@
 
     <div class="container m-auto">
         <div class="row">
+        <div class="table-responsive">
+                <?php
+                    ShoesData::GetAllShoes();
+                ?>
         </div>
     </div>
 
