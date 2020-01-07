@@ -37,7 +37,7 @@
                 $pass = UsersData::sanit($_POST['reg_password']); // uklanjamo html elemente i razmake
                 $pass2 = UsersData::sanit($_POST['reg_password2']); // uklanjamo html elemente i razmake
 
-                $type = $_POST['reg_type']; 
+                $type = UsersData::sanit($_POST['reg_type']);; 
 
                 $cdate = date("Y-m-d"); //uzima trenutni datum
 
@@ -67,7 +67,7 @@
                 }
 
                 // da li je admin ili worker
-                if ($type !== 'admin' AND $type !== 'worker') {
+                if ($type !== 'admin' and $type !== 'worker') {
                         array_push($error_array, "Please select Authorization type"); 
                 }
 

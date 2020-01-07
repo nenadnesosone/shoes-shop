@@ -40,14 +40,14 @@
             <div>
 
                 <form action="register.php" method="POST" id="register">
-                    <input id="reg_fname" type="text" name="reg_fname" placeholder="First name" value="<?php
+                    <input id="reg_fname" type="text" name="reg_fname" placeholder="First Name" value="<?php
                     if (isset($_SESSION['reg_fname'])) {
                      echo $_SESSION['reg_fname'];
                     } ?>" required>
                     <br>
                     <?php if (in_array("Your first name must be between 2 and 25 characters", $error_array)) echo "<span style='color:#ff0000;'>Your first name must be between 2 and 25 characters</span><br>"; ?>
 
-                    <input id="reg_lname" type="text" name="reg_lname" placeholder="Last name" value="<?php
+                    <input id="reg_lname" type="text" name="reg_lname" placeholder="Last Name" value="<?php
                     if (isset($_SESSION['reg_lname'])) {
                        echo $_SESSION['reg_lname'];
                     } ?>" required>
@@ -60,7 +60,7 @@
                     } ?>" required>
                     <br>
 
-                    <input id="reg_email2" type="email" name="reg_email2" placeholder="Confirm email" value="<?php
+                    <input id="reg_email2" type="email" name="reg_email2" placeholder="Confirm Email" value="<?php
                     if (isset($_SESSION['reg_email2'])) {
                      echo $_SESSION['reg_email2'];
                     } ?>" required>
@@ -70,7 +70,7 @@
                     else if (in_array("Emails don't match", $error_array)) echo  "<span style='color:#ff0000;'>Emails don't match</span><br>"; ?>
 
                     <select id="reg_type" name="reg_type" required>
-                        <option value="worker">worker</option>
+                        <option value="worker" selected>worker</option>
                         <option value="admin">admin</option>
                     </select>
                     <br>
@@ -79,7 +79,7 @@
 
                     <input id="reg_password" type="password" name="reg_password" placeholder="Password" required>
                     <br>
-                    <input id="reg_password2" type="password" name="reg_password2" placeholder="Confirm password" required>
+                    <input id="reg_password2" type="password" name="reg_password2" placeholder="Confirm Password" required>
                     <br>
                 
                     <?php if (in_array("Your password do not match", $error_array)) echo "<span style='color:#ff0000;'>Your password do not match</span><br>";

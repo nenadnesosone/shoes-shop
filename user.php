@@ -51,6 +51,7 @@
                         echo "<span style='color:#ff0000;'>Password was incorrect!</span><br";
                     } ?>
                     <br>
+                    
                     <input id="update_fname" type="text" name="update_fname" placeholder="New First Name" value="<?php
                         if (isset($_SESSION['update_fname'])) {
                             echo $_SESSION['update_fname'];
@@ -64,6 +65,12 @@
                         } ?>">
                     <br>
                     <?php if (in_array("Your last name must be between 2 and 25 characters", $error_array)) echo  "<span style='color:#ff0000;'>Your last name must be between 2 and 25 characters</span><br>"; ?>
+
+                    <select id="reg_type" name="update_type" required>
+                        <option value="worker" selected>worker</option>
+                        <option value="admin">admin</option>
+                    </select>
+                    <br>
 
                     <input id="new_password" type="password" name="new_password" placeholder="New Password">
                     <br>
@@ -80,7 +87,8 @@
                     <input id="delete_button" type="submit" name="delete_button" value="Delete"><br>
                     <?php if (in_array("You have updated your First Name!", $error_array)) echo "<span style='color:#14C800;'>You have updated your First Name!</span><br>"; ?>
                     <?php if (in_array("You have updated your Last Name!", $error_array)) echo "<span style='color:#14C800;'>You have updated your Last Name!</span><br>"; ?>
-                    <?php if (in_array("You have updated your Password!", $error_array)) echo "<span style='color:#14C800;'>You have updated your Password!</span><br>"; ?>
+                    <?php if (in_array("You have updated your Last Name!", $error_array)) echo "<span style='color:#14C800;'>You have updated your Last Name!</span><br>"; ?>
+                    <?php if (in_array("You have updated your Authorization type!", $error_array)) echo "<span style='color:#14C800;'>You have updated your Authorization type!</span><br>"; ?>
           
 
                 </form>
