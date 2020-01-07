@@ -180,28 +180,6 @@ class UsersData{
 
     }
 
-    // proverava da li postoji korisnik u bazi
-    // public static function Confirm($usersid, $pass)
-    // {
-    //     //povezujemo se s bazom
-    //     $db = Database::getInstance()->getConnection();
-
-    //     // ovaj deo koda bi bio osetljiv na SQL Injection napade da korisnik moze da ukuca $usersid, $pass
-
-    //     // odaberemo konkretan email
-    //     $query = "SELECT * FROM users WHERE users_id = '$usersid' AND Password = '$pass' AND deleted = 0";
-
-    //     $result = mysqli_query($db, $query);
-    //     $num_rows = mysqli_num_rows($result);
-    //     //ako ima vise redova od 0 postoji u bazi
-    //     if ($num_rows > 0) {
-    //         return true;
-    //     } else{
-    //         return false;
-    //     }
-
-    // }
-
     // funcija koja ce prikupljati podatke o korisnicima iz baze koje cemo koristiti
     public static function GetUserRow($email, $pass)
     {
@@ -221,29 +199,6 @@ class UsersData{
             return [];
         }
     }
-
-    //provera da li je soft-deleted 
-    // public static function CheckDeleted($usersid)
-    // {
-    //     //povezujemo se s bazom
-    //     $db = Database::getInstance()->getConnection();
-
-    //     // ovaj deo koda je osetljiv na SQL Injection napade posto korisnik moze da ukuca usersid, ali smo ga prethodno ocistili
-
-    //     // odaberemo konkretan usersid
-    //     $query = "SELECT * FROM users WHERE users_id = '$usersid' AND deleted = 0";
-
-    //     $result = mysqli_query($db, $query);
-    //     $num_rows = mysqli_num_rows($result);
-    //     //ako ima vise redova od 0 postoji u bazi
-    //     if ($num_rows > 0) {
-    //         return true;
-    //     } else{
-    //         return false;
-    //     }
-
-    // }
-
 
     // funkcija za sanitizaciju
     public static function sanit($x){

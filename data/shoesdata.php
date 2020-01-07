@@ -42,22 +42,6 @@ class ShoesData{
 
     }
 
-    // za prikazivanje tabele
-    public static function uptable(){
-        echo "<div class='table-responsive'>
-                <table class='table table-primary table-bordered table-striped table-hover text-center'>
-                    <caption class='text-center'>All Shoes ";
-    }
-    // za prikazivanje tabele
-    public static function downtable(){
-        echo "                          :</caption>
-                    <tr>
-                        <th>Shoe Id</th><th>Code</th><th>Shoe Name</th><th>Description</th><th>Price in dinars</th><th>Size</th><th>Category</th><th>Image</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
-                    </tr>";
-    }
-
-
-
     // funcija koja ce prikupljati podatke o svim cipelama iz baze
     public static function GetAllShoes()
     {
@@ -71,8 +55,8 @@ class ShoesData{
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {
             
-            ShoesData::uptable();
-            ShoesData::downtable();
+            uptable();
+            downtable();
 
             while ($row = mysqli_fetch_assoc($result)){
                 $shoeid = $row['shoe_id'];
@@ -125,9 +109,9 @@ class ShoesData{
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {
             
-            ShoesData::uptable();
+            uptable();
             echo "Sorted By Category";
-            ShoesData::downtable();
+            downtable();
 
             while ($row = mysqli_fetch_assoc($result)){
                 $shoeid = $row['shoe_id'];
@@ -180,9 +164,9 @@ class ShoesData{
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {
             
-            ShoesData::uptable();
+            uptable();
             echo "Sorted By Name";
-            ShoesData::downtable();
+            downtable();
 
             while ($row = mysqli_fetch_assoc($result)){
                 $shoeid = $row['shoe_id'];
@@ -235,9 +219,9 @@ class ShoesData{
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {
             
-            ShoesData::uptable();
+            uptable();
             echo "Sorted by Price";
-            ShoesData::downtable();
+            downtable();
 
             while ($row = mysqli_fetch_assoc($result)){
                 $shoeid = $row['shoe_id'];
@@ -297,6 +281,25 @@ class ShoesData{
         }
     }
 
+    // funcija koja ce prikupiti podatke o jednoj cipeli iz baze
+    public static function GetShoe($shoeid)
+    {
+        //povezujemo se s bazom
+        $db = Database::getInstance()->getConnection();
+
+        // ovaj deo koda bi bio osetljiv na SQL Injection napade da korisnik moze da ukuca code
+
+        // odaberemo konkretnog korisnika
+        $query = "SELECT * FROM shoes WHERE shoe_id = '$shoeid'";
+
+        $result = mysqli_query($db, $query);
+        if ($result) {
+            $row = mysqli_fetch_assoc($result);
+            return $row;
+        } else {
+            return [];
+        }
+    }
     // funkcija za ubacivanje cipela u bazu
     public static function CreateShoe($code, $sname, $desc, $price, $size, $image, $catid, $cdate, $cid)
     {
@@ -395,5 +398,21 @@ class ShoesData{
 
     }
 }
+
+
+    // za prikazivanje tabele
+    function uptable(){
+        echo "<div class='table-responsive'>
+                <table class='table table-primary table-bordered table-striped table-hover text-center'>
+                    <caption class='text-center'>All Shoes ";
+    }
+    // za prikazivanje tabele
+    function downtable(){
+        echo "                          :</caption>
+                    <tr>
+                        <th>Shoe Id</th><th>Code</th><th>Shoe Name</th><th>Description</th><th>Price In Dinars</th><th>Size</th><th>Category</th><th>Image</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
+                    </tr>";
+    }
+
 
 ?>

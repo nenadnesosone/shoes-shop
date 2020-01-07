@@ -1,5 +1,5 @@
 <?php
-
+  require_once 'data/usersdata.php';
 // klasa uz ciju pomoc cemo pristupati podacima o popustima
 class DiscountData{
 
@@ -42,7 +42,7 @@ class DiscountData{
     }
 
    // funcija koja ce prikupljati podatke o svim rasprodajama iz baze
-   public static function GetAllDiscount()
+   public static function GetAllDiscounts()
    {
        //povezujemo se s bazom
        $db = Database::getInstance()->getConnection();
@@ -50,16 +50,55 @@ class DiscountData{
        $query = "SELECT * FROM discount WHERE deleted = 0";
 
        $result = mysqli_query($db, $query);
-       if ($result) {
-           $userData = [];
-           while ($row = mysqli_fetch_assoc($result))
-           {
-               $userData [] = $row;
-           }
-           return $userData;
-       } else {
-           return [];
-       }
+       $num_rows = mysqli_num_rows($result);
+       if ($num_rows > 0) {
+            
+        updisc();
+        downdisc();
+
+        while ($row = mysqli_fetch_assoc($result)){
+
+
+            $discid = $row['discount_id'];
+            $dname = $row['discount_name'];
+            $sdate = $row['start_date'];
+            $edate = $row['end_date'];
+            $shoe1 = $row['shoe_1'];
+            $shoe2 = $row['shoe_2'];
+            $dprice = $row['price'];
+            $cdate = $row['created_at'];
+            $udate = $row['updated_at'];
+            $cid = $row['created_by'];
+            $uid = $row['updated_by'];
+        
+            $sdate = date("d/m/Y", strtotime($sdate));
+            $edate = date("d/m/Y", strtotime($edate));
+            $sname1 = ShoesData::GetShoe($shoe1)['shoe_name'];
+            $sname2 = ShoesData::GetShoe($shoe2)['shoe_name'];
+            $simage1 = ShoesData::GetShoe($shoe1)['image'];
+            $simage2 = ShoesData::GetShoe($shoe2)['image'];
+            $cname = UsersData::GetOneUser($cid)['first_name'];
+            $uname = UsersData::GetOneUser($uid)['first_name'];
+            $cdate = date("d/m/Y", strtotime($cdate));
+            if ($udate !== NULL){
+                $udate = date("d/m/Y", strtotime($udate));
+            }
+
+            echo "<tr>
+                    <td>$discid</td><td>$dname</td><td>$sdate</td><td>$edate</td>
+                    <td>$sname1</td><td><img alt='no_image' src='$simage1' width='100' height='100'/></td>
+                    <td>$sname2</td><td><img alt='no_image' src='$simage2' width='100' height='100'/></td>
+                    <td>$dprice,00</td><td>$cname</td><td>$cdate</td><td>$uname</td><td>$udate</td>
+                </tr>";
+            
+        }
+
+        echo "</table>
+        </div>";
+
+    } else {
+        echo "<p class='lead text-white'>We have sold out all shoes on discount!</p>";
+    }
    }
 
    // funcija koja ce prikupljati podatke o svim rasprodajama iz baze
@@ -141,4 +180,19 @@ class DiscountData{
 
 
 }
+
+    // za prikazivanje tabele
+    function updisc(){
+        echo "<div class='table-responsive'>
+                <table class='table table-primary table-bordered table-striped table-hover text-center'>
+                    <caption class='text-center'>All Discounts ";
+    }
+    // za prikazivanje tabele
+    function downdisc(){
+        echo "                          :</caption>
+                    <tr>
+                        <th>Discount Id</th><th>Discount Name</th><th>Start Date Of Discount</th><th>Start Date Of Discount</th><th>Discounted Shoe 1</th><th>Discounted Shoe 1 Image</th><th>Discounted Shoe 2</th><th>Discounted Shoe 2 Image</th><th>Price In Dinars</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
+                    </tr>";
+    }
+
 ?>

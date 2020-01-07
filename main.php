@@ -1,6 +1,7 @@
 <?php
     require_once 'config/config.php';
     require_once 'data/shoesdata.php';
+    require_once 'data/discountdata.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +35,8 @@
             <input id="cat_button" type="button" name="cat_button" value="Sort By Category">
             <input id="name_button" type="button" name="name_button" value="Sort By Name">
             <input id="price_button" type="button" name="price_button" value="Sort By Price">
-            <input id="all_button" type="button" name="all_button" value="Show All Shoes">
+            <input id="all_button" type="button" name="all_button" value="All Shoes">
+            <input id="disc_button" type="button" name="disc_button" value="Discounts">
         </div>
     </div>
 
@@ -66,6 +68,14 @@
         <div class="row">
                 <?php
                     ShoesData::GetAllShoes();
+                ?>
+        </div>
+    </div>
+
+    <div class="container m-auto" id="disc">
+        <div class="row">
+                <?php
+                    DiscountData::GetAllDiscounts();
                 ?>
         </div>
     </div>
