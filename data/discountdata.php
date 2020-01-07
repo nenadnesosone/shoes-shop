@@ -198,6 +198,7 @@ class DiscountData{
             if ($num_rows > 0) {
 
                 updisc();
+                echo "Matching Your Search";
                 downdisc();
                 while ($row = mysqli_fetch_assoc($result)){
 
@@ -242,10 +243,6 @@ class DiscountData{
             }
         }
     }
-
-
-
-
 
 }
 

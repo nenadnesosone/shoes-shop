@@ -45,7 +45,7 @@
                             if(($_SESSION['type'] == 'admin')){
                                 echo   
                             '<a class="dropdown-item" href="register.php">Add user</a>
-                            <a class="dropdown-item" href="#">Show all users</a>
+                            <a class="dropdown-item" href="allusers.php">Show all users</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="user.php">Update/Delete user</a>
                             <a class="dropdown-item" href="signout.php">Sign Out</a>

@@ -49,15 +49,43 @@ class UsersData{
         $query = "SELECT * FROM users WHERE deleted = 0";
 
         $result = mysqli_query($db, $query);
-        if ($result) {
-            $userData = [];
-            while ($row = mysqli_fetch_assoc($result))
-            {
-                $userData [] = $row;
+        $num_rows = mysqli_num_rows($result);
+        if ($num_rows > 0) {
+            
+            upuser();
+            downuser();
+
+            while ($row = mysqli_fetch_assoc($result)){
+
+                $usersid = $row['users_id'];
+                $fname = $row['first_name'];
+                $lname = $row['last_name'];
+                $email = $row['email'];
+                $pass = $row['password'];
+                $type = $row['type'];
+                $cdate = $row['created_at'];
+                $udate = $row['updated_at'];
+                $cid = $row['created_by'];
+                $uid = $row['updated_by'];
+   
+                // formatiranje datuma
+                $cdate = date("d/m/Y", strtotime($cdate));
+                if ($udate !== NULL){
+                    $udate = date("d/m/Y", strtotime($udate));
+                }
+
+                echo "<tr>
+                        <td>$usersid</td><td>$fname</td><td>$lname</td><td>$email</td><td>$pass</td><td>$type</td><td>$cid</td>
+                        <td>$cdate</td><td>$uid</td><td>$udate</td>
+                    </tr>";
+                
             }
-            return $userData;
+
+            echo "</table>
+            </div>";
+
         } else {
-            return [];
+            echo "<p class='lead text-white'>All Users Have Been Deleted!</p>";
         }
     }
 
@@ -217,6 +245,22 @@ class UsersData{
         return $y;
 
     }
+}
+
+// za prikazivanje tabele
+function upuser()
+{
+    echo "<div class='table-responsive'>
+            <table class='table table-primary table-bordered table-striped table-hover text-center'>
+                <caption class='text-center'>All Users ";
+}
+// za prikazivanje tabele
+function downuser()
+{
+    echo "                          :</caption>
+                <tr>
+                    <th>User Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Password Hash</th><th>Type</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
+                </tr>";
 }
 
 ?>
