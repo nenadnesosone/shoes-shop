@@ -1,6 +1,6 @@
 <?php
-require_once 'config/config.php';
-require_once 'form/user/user_handler.php';
+    require_once 'config/config.php';
+    require_once 'form/user/user_handler.php';
 
 ?>
 
@@ -26,11 +26,11 @@ require_once 'form/user/user_handler.php';
 <body>
     <?php
 
-    if (isset($_POST['delete_button'])) {
-        header('Location: main.php');
-    }
+        if (isset($_POST['delete_button'])) {
+            header('Location: main.php');
+        }
 
-    require_once 'partials/header.php';
+        require_once 'partials/header.php';
     ?>
 
 
@@ -92,7 +92,7 @@ require_once 'form/user/user_handler.php';
     <script src="js/user.js"></script>
 
     <?php
-    require_once 'partials/footer.php';
+        require_once 'partials/footer.php';
     ?>
 </body>
 

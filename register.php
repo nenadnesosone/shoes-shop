@@ -1,6 +1,6 @@
 <?php
-require_once 'config/config.php';
-require_once 'form/user/register_handler.php';
+    require_once 'config/config.php';
+    require_once 'form/user/register_handler.php';
 
 
 ?>
@@ -104,7 +104,7 @@ require_once 'form/user/register_handler.php';
 
 
     <?php
-        include 'partials/footer.php';
+        require_once 'partials/footer.php';
     ?>  
 </body>
 

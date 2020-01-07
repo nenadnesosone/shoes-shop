@@ -35,7 +35,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="shoe.php">Shoe</a>
                             <a class="dropdown-item" href="category.php">Category</a>
-                            <a class="dropdown-item" href="#">Discount</a>';
+                            <a class="dropdown-item" href="discount.php">Discount</a>';
                             if(($_SESSION['type'] == 'admin')){
                                 echo   
                             '<a class="dropdown-item" href="register.php">Add user</a>

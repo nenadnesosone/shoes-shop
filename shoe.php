@@ -1,6 +1,6 @@
 <?php
-require_once 'config/config.php';
-require_once 'form/shoe/shoe_handler.php';
+    require_once 'config/config.php';
+    require_once 'form/shoe/shoe_handler.php';
 
 ?>
 
@@ -25,7 +25,7 @@ require_once 'form/shoe/shoe_handler.php';
     
     <?php
 
-    require 'partials/header.php';
+        require_once 'partials/header.php';
 
     ?>
 
@@ -38,7 +38,7 @@ require_once 'form/shoe/shoe_handler.php';
             </div>
             <div id="first">
                 <form action="shoe.php" method="POST" id="add_shoe" enctype="multipart/form-data">
-                <input id="code_adding" type="text" name="code_adding" placeholder="Add Shoe Code" maxlength="10" value="<?php
+                    <input id="code_adding" type="text" name="code_adding" placeholder="Add Shoe Code" maxlength="10" value="<?php
                     if (isset($_SESSION['code_adding'])) {
                      echo $_SESSION['code_adding'];
                     } ?>" required>
@@ -105,7 +105,7 @@ require_once 'form/shoe/shoe_handler.php';
             <div id="second">
 
                 <form action="shoe.php" method="POST" id="change_shoe" enctype="multipart/form-data">
-                <input id="code_change" type="text" name="code_change" placeholder="Shoe Code" maxlength="10" value="<?php
+                    <input id="code_change" type="text" name="code_change" placeholder="Shoe Code" maxlength="10" value="<?php
                     if (isset($_SESSION['code_change'])) {
                      echo $_SESSION['code_change'];
                     } ?>" required>
@@ -180,7 +180,7 @@ require_once 'form/shoe/shoe_handler.php';
         <!--ubaciti proveru u js -->
     <script src="js/shoe.js"></script>
 
-     <?php
-    include 'partials/footer.php';
+    <?php
+        require_once 'partials/footer.php';
     ?>   
 </body>

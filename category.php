@@ -1,8 +1,6 @@
 <?php
-require_once 'config/config.php';
-require_once 'form/category/category_handler.php';
-
-
+    require_once 'config/config.php';
+    require_once 'form/category/category_handler.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,9 +23,7 @@ require_once 'form/category/category_handler.php';
 <body>
     
     <?php
-
-    require 'partials/header.php';
-
+        require_once 'partials/header.php';
     ?>
 
 
@@ -88,8 +84,8 @@ require_once 'form/category/category_handler.php';
     <script src="js/category.js"></script>
 
 
-     <?php
-    include 'partials/footer.php';
+    <?php
+        require_once 'partials/footer.php';
     ?>   
 </body>
 

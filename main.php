@@ -1,6 +1,5 @@
 <?php
-require_once 'config/config.php';
-
+    require_once 'config/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +25,7 @@ require_once 'config/config.php';
 <body>
     <!-- NAV -->
     <?php
-    require_once 'partials/header.php';
-
+        require_once 'partials/header.php';
     ?>
 
     <!-- GALERIJA -->
@@ -47,8 +45,7 @@ require_once 'config/config.php';
     <script src="js/main.js" type="text/javascript"></script>
 
     <?php
-    require_once 'partials/footer.php';
-
+        require_once 'partials/footer.php';
     ?>
 </body>
 </html>

@@ -11,7 +11,7 @@ class DiscountData{
     public $edate;
     public $shoe1;
     public $shoe2;
-    public $price;
+    public $dprice;
     public $cdate;
     public $udate;
     public $ddate;
@@ -22,7 +22,7 @@ class DiscountData{
 
 
     // funkcija konstruktor
-    public function __construct($discid, $dname, $sdate, $edate, $shoe1, $shoe2, $price, $cdate,$udate, $ddate, $cid, $uid, $did, $deleted)
+    public function __construct($discid, $dname, $sdate, $edate, $shoe1, $shoe2, $dprice, $cdate,$udate, $ddate, $cid, $uid, $did, $deleted)
     {
         $this->discid = $discid; 
         $this->dname = $dname;
@@ -30,7 +30,7 @@ class DiscountData{
         $this->edate = $edate;
         $this->shoe1 = $shoe1;
         $this->shoe2 = $shoe2;
-        $this->price = $price;
+        $this->dprice = $dprice;
         $this->cdate = $cdate;
         $this->udate = $udate;
         $this->ddate = $ddate;
@@ -62,14 +62,32 @@ class DiscountData{
        }
    }
 
+   // funcija koja ce prikupljati podatke o svim rasprodajama iz baze
+   public static function GetOneDiscount($discid)
+   {
+       //povezujemo se s bazom
+       $db = Database::getInstance()->getConnection();
+       ///odaberemo sve koji nisu obrisani, posto se obrisani nece prikazivani na frontendu
+       $query = "SELECT * FROM discount WHERE discount_id = '$discid'";
+
+       $result = mysqli_query($db, $query);
+       $result = mysqli_query($db, $query);
+       if ($result) {
+           $row = mysqli_fetch_assoc($result);
+           return $row;
+       } else {
+           return [];
+       }
+   }
+
    // funkcija za ubacivanje korisnika u bazu
-   public static function CreateDiscount($dname, $sdate, $edate, $shoe1, $shoe2, $price, $cdate, $cid)
+   public static function CreateDiscount($dname, $sdate, $edate, $shoe1, $shoe2, $dprice, $cdate, $cid)
    {
        //povezujemo se s bazom
        $db = Database::getInstance()->getConnection();
 
        $query = "INSERT INTO discount (`discount_id`,`discount_name`,`start_date`,`end_date`,`shoe_1`,`shoe_2`,`price`,`created_at`,`updated_at`,`deleted_at`,`created_by`,`updated_by`,`deleted_by`, `deleted`) 
-       VALUES (DEFAULT, '$dname', '$sdate','$edate','$shoe1','$shoe2',`$price`,'$cdate', DEFAULT, DEFAULT, '$cid', DEFAULT, DEFAULT, DEFAULT)";
+       VALUES (DEFAULT, '$dname', '$sdate','$edate','$shoe1','$shoe2','$dprice','$cdate', DEFAULT, DEFAULT, '$cid', DEFAULT, DEFAULT, DEFAULT)";
 
        $result = mysqli_query($db, $query);
        if ($result) {
@@ -80,7 +98,7 @@ class DiscountData{
    }
 
     // funkcija za brisanje rasprodaje iz baze "soft delete'
-    public static function DeleteOneDiscount($discid, $ddate, $did)
+    public static function DeleteDiscount($discid, $ddate, $did)
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();
@@ -88,7 +106,7 @@ class DiscountData{
         // ovaj deo koda bi bio osetljiv na SQL Injection napade
 
         // brisanje rasprodaje iz baze 	 	 	 	 	 	 	 	 	 	 	
-        $query = "UPDATE discount SET deleted_at = '$ddate', deleted_by = '$did', deleted = 1, WHERE discount_id = '$discid'";
+        $query = "UPDATE discount SET deleted_at = '$ddate', deleted_by = '$did', deleted = 1 WHERE discount_id = '$discid'";
 
         $result = mysqli_query($db, $query);
         if ($result) {
@@ -99,7 +117,7 @@ class DiscountData{
     }
 
     // funkcija za update rasprodaje
-    public static function UpdateDiscount($discid, $dname, $sdate, $edate, $shoe1, $shoe2, $price, $udate, $uid)
+    public static function UpdateDiscount($discid, $dname, $sdate, $edate, $shoe1, $shoe2, $dprice, $udate, $uid)
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();
@@ -107,7 +125,7 @@ class DiscountData{
         // ovaj deo koda bi bio osetljiv na SQL Injection napade
 
         //  update rasprodaje u bazi	 	 	 	 	 	 	 	 	 	
-        $query = "UPDATE discount SET discount_name = '$dname', start_date = '$sdate', end_date = '$edate', shoe_1 = '$shoe1', shoe_2 = '$shoe2', price = $price, update_at = '$udate', updated_by = '$uid' WHERE discount_id = '$discid'";
+        $query = "UPDATE discount SET discount_name = '$dname', start_date = '$sdate', end_date = '$edate', shoe_1 = '$shoe1', shoe_2 = '$shoe2', price = $dprice, updated_at = '$udate', updated_by = '$uid' WHERE discount_id = '$discid'";
 
         $result = mysqli_query($db, $query);
         if ($result) {
@@ -117,5 +135,11 @@ class DiscountData{
         }
     }
 
+    public static function ValDate($date, $format = 'Y-m-d'){
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) === $date;
+    }
 
+
+}
 ?>

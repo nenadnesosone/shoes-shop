@@ -1,7 +1,6 @@
 <?php
-
-require_once 'config/config.php';
-require_once 'form/user/login_handler.php';
+    require_once 'config/config.php';
+    require_once 'form/user/login_handler.php';
 
 
 
@@ -27,9 +26,7 @@ require_once 'form/user/login_handler.php';
 <body>
     
     <?php
-
-    require_once 'partials/header.php';
-
+        require_once 'partials/header.php';
     ?>
 
 
