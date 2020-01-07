@@ -22,8 +22,8 @@
     if ((isset($_POST['update_button'])) or (isset($_POST['delete_button']))) {
         
 
-        $pass = md5(UsersData::sanit($_POST['profile_password']));   //uklanja HTML elemente,  razmake  i enkripcija lozinke
-
+        //uklanja HTML elemente,  razmake  i enkripcija lozinke
+        $pass = hash('sha256', UsersData::sanit($_POST['profile_password']));
         //provera da li postoji korisnik
         if (!UsersData::CheckUser($email, $pass)) {
             array_push($error_array,"Password was incorrect!<br>");
@@ -63,7 +63,6 @@
                 }
                 if(!empty($_POST['update_lname'])){
 
-                
                     $newlname = ucfirst(strtolower(UsersData::sanit($_POST['update_lname']))); ///uklanja HTML elemente, razmake i ostavlja samo prvo slovo veliko
 
                     //provera duzine prezimena
@@ -95,9 +94,9 @@
                         //neodgovarajuca duzina lozinke
                         array_push($error_array, "Your password must be between 5 and 30 characters"); 
                     } else {
-                        $newpass= md5($newpass);    //enkripcija lozinke
-                        
-                        $pass = $newpass;// tek kad smo sve proverili menjamo lozinku
+
+                        //enkripcija lozinke, tek kad smo sve proverili menjamo lozinku
+                        $pass = hash('sha256', $newpass);
 
                         // menjamo podatke u bazi
                         UsersData::UpdateUser($usersid, $fname, $lname, $pass, $type, $udate, $uid);

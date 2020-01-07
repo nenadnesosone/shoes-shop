@@ -86,7 +86,8 @@
                 }
 
                 if (empty($error_array)) {
-                    $pass = md5($pass); //enkripcija lozinke
+                    
+                    $pass = hash('sha256', $pass);
                     //unos podataka u bazu
                     UsersData::CreateUser($fname, $lname, $email, $pass, $type, $cdate, $cid);
                 

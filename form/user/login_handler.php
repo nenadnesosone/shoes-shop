@@ -8,8 +8,8 @@
         $email = filter_var(UsersData::sanit($_POST['log_email'], FILTER_SANITIZE_EMAIL));
         $_SESSION['log_email'] = $email; //cuva u sesiji email
 
-        $pass = md5(UsersData::sanit($_POST['log_password']));  //enkripcija lozinke md5 je prevazidjen u praksi bi se koristio sha256!!!
-
+        //enkripcija lozinke
+        $pass = hash('sha256', UsersData::sanit($_POST['log_password']));
         //provera da li se uneti podaci slazu sa podacima u bazi
         if (UsersData::CheckUser($email, $pass)) {
                 
