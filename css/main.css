@@ -64,3 +64,15 @@ caption{
     caption-side: top!important;
     font-weight: bold;
 }
+
+input[type="button"] {
+    background-color: #456;
+    border-radius: 3px;
+    margin: 5px 15px 15px 0;
+    padding: 5px 10px 5px 10px;
+    color: #EDEDED;
+    text-shadow: #5c5656 0.5px 0.5px 0;
+    border: none;
+    font-family: Kelly Slab, cursive;
+    font-size: 1.2rem;
+}

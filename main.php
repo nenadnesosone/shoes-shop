@@ -29,23 +29,46 @@
         require_once 'partials/header.php';
     ?>
 
-    <!-- GALERIJA -->
+    <div class="container m-auto col-md-6" id="click">
+        <div class="row ">
+            <input id="cat_button" type="button" name="cat_button" value="Sort By Category">
+            <input id="name_button" type="button" name="name_button" value="Sort By Name">
+            <input id="price_button" type="button" name="price_button" value="Sort By Price">
+            <input id="all_button" type="button" name="all_button" value="Show All Shoes">
+        </div>
+    </div>
 
-
-    <div class="container m-auto">
+    <div class="container m-auto" id="category">
         <div class="row">
-        <div class="table-responsive">
+                <?php
+                    ShoesData::SortShoesCategory();
+                ?>
+        </div>
+    </div>
+
+    <div class="container m-auto" id="shoes_name">
+        <div class="row">
+                <?php
+                    ShoesData::SortShoesName();
+                ?>
+        </div>
+    </div>
+
+    <div class="container m-auto" id="shoes_price">
+        <div class="row">
+                <?php
+                    ShoesData::SortShoesPrice();
+                ?>
+        </div>
+    </div>
+
+    <div class="container m-auto" id="all">
+        <div class="row">
                 <?php
                     ShoesData::GetAllShoes();
                 ?>
         </div>
     </div>
-
-
-
-
-    
-
 
     <script src="js/main.js" type="text/javascript"></script>
 
