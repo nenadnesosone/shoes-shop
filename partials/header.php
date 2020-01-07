@@ -11,6 +11,12 @@
             </button>
             <div class="collapse navbar-collapse" id="idcollapse">
                 <ul class="navbar-nav ml-auto">
+                    <li>
+                    <form action="search.php" method="POST">
+                        <input type="text" name="search" placeholder="Discounts Name" required class="form-control" style="display:inline-block; width:70%;height:35px;margin: 2px -3px 2px 2px;">
+                        <button type="submit" name="submit_search" class="btn btn-primary" style="margin-top:-2px;"><i class="fas fa-search"></i></button>
+                    </form>
+                    </li>
                     <li class="nav-item">
                         <a href="main.php" class="nav-link">Home</a>
                     </li>';

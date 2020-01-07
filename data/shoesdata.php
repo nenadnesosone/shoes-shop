@@ -400,19 +400,21 @@ class ShoesData{
 }
 
 
-    // za prikazivanje tabele
-    function uptable(){
-        echo "<div class='table-responsive'>
-                <table class='table table-primary table-bordered table-striped table-hover text-center'>
-                    <caption class='text-center'>All Shoes ";
-    }
-    // za prikazivanje tabele
-    function downtable(){
-        echo "                          :</caption>
-                    <tr>
-                        <th>Shoe Id</th><th>Code</th><th>Shoe Name</th><th>Description</th><th>Price In Dinars</th><th>Size</th><th>Category</th><th>Image</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
-                    </tr>";
-    }
+// za prikazivanje tabele
+function uptable()
+{
+    echo "<div class='table-responsive'>
+            <table class='table table-primary table-bordered table-striped table-hover text-center'>
+                <caption class='text-center'>All Shoes ";
+}
+// za prikazivanje tabele
+function downtable()
+{
+    echo "                          :</caption>
+                <tr>
+                    <th>Shoe Id</th><th>Code</th><th>Shoe Name</th><th>Description</th><th>Price In Dinars</th><th>Size</th><th>Category</th><th>Image</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
+                </tr>";
+}
 
 
 ?>
