@@ -37,8 +37,6 @@
         </div>
     </div>
 
-    <script src="js/main.js" type="text/javascript"></script>
-
     <?php
         require_once 'partials/footer.php';
     ?>

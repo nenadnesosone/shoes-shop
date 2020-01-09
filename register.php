@@ -100,7 +100,7 @@
         </div>
     </div>
     <!-- ubaciti skriptu -->
-    <script src="js/register.js"></script>
+    <script src="js/form.js"></script>
 
 
     <?php

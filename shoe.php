@@ -75,10 +75,9 @@
                     } ?>" required>
                     <br>
                     <?php if (in_array("Size can only contain numbers", $error_array)) echo "<span style='color:#ff0000;'>Size can only contain numbers</span><br>"; ?>
-                    <?php if (in_array("Code can only contain english characters and numbers", $error_array)) echo "<span style='color:#ff0000;'>Code can only contain english characters and numbers</span><br>"; ?>
                     <?php if (in_array("Size must be between 1 and 99", $error_array)) echo "<span style='color:#ff0000;'>Size must be between 1 and 99</span><br>"; ?>
 
-                    <input id="cat_adding" type="text" name="cat_adding" placeholder="Category" maxlength="50" value="<?php
+                    <input id="cat_adding" type="text" name="cat_adding" placeholder="Category Name" maxlength="50" value="<?php
                     if (isset($_SESSION['cat_adding'])) {
                      echo $_SESSION['cat_adding'];
                     } ?>" required>
@@ -87,7 +86,7 @@
                     <?php if (in_array("Category name doesn't exist in the database", $error_array)) echo "<span style='color:#ff0000;'>Category name doesn't exist in the database</span><br>"; ?>
                    
 
-                    <p>Add shoe image!</p>
+                    <p>Add Shoe Image!</p>
                     <input id="shoe_image" type="file" name="shoe_image" required>
                     <br><br>
 
@@ -95,10 +94,12 @@
                         else if (in_array("Extention must be JPEG, PNG or JPG!", $error_array)) echo "<span style='color:#ff0000;'>Extention must be JPEG, PNG or JPG!</span><br>";
                     ?>
 
+                    <div style="color:red" class="errorMessageAdd" id="errorMessageAdd"> </div>
+
                     <input id="add_shoe" type="submit" name="add_shoe" value="Add">
                     <br>
                     <?php if (in_array("You have added new shoe!", $error_array)) echo "<span style='color:#14C800;'>You have added new shoe!</span><br>"; ?>
-                    <a href="#" id="shoe_update" class="shoe_update">You want to update or delete shoe?</a>
+                    <a href="#" id="update" class="update">You want to update or delete shoe?</a>
 
                 </form>
             </div>
@@ -127,21 +128,23 @@
                     <br>
                     <?php if (in_array("Shoe description must be between 2 and 200 characters", $error_array)) echo "<span style='color:#ff0000;'>Shoe description must be between 2 and 50 characters</span><br>"; ?>
 
-                    <input id="price_new" type="number" name="price_new" placeholder="New Shoe Price" min="1" max="10000000000" value="<?php
+                    <input id="price_new" type="number" name="price_new" placeholder="New Shoe Price" min="1" max="100000" value="<?php
                     if (isset($_SESSION['price_new'])) {
                      echo $_SESSION['price_new'];
                     } ?>">
                     <br>
-                    <?php if (in_array("Shoe price must be between 1 and 10000000000", $error_array)) echo "<span style='color:#ff0000;'>Shoe price must be between 1 and 10000000000</span><br>"; ?>
+                    <?php if (in_array("Price can only contain numbers", $error_array)) echo "<span style='color:#ff0000;'>Price can only contain numbers</span><br>"; ?>
+                    <?php if (in_array("Shoe price must be between 1 and 100000", $error_array)) echo "<span style='color:#ff0000;'>Shoe price must be between 1 and 100000</span><br>"; ?>
 
                     <input id="size_new" type="number" name="size_new" placeholder="New Shoe Size" min="1" max="99" value="<?php
                     if (isset($_SESSION['size_new'])) {
                      echo $_SESSION['size_new'];
                     } ?>">
                     <br>
+                    <?php if (in_array("Size can only contain numbers", $error_array)) echo "<span style='color:#ff0000;'>Size can only contain numbers</span><br>"; ?>
                     <?php if (in_array("Shoe size must be between 1 and 99", $error_array)) echo "<span style='color:#ff0000;'>Shoe size must be between 1 and 99</span><br>"; ?>
 
-                    <input id="cat_new" type="text" name="cat_new" placeholder="New Category" maxlength="50" value="<?php
+                    <input id="cat_new" type="text" name="cat_new" placeholder="New Category Name" maxlength="50" value="<?php
                     if (isset($_SESSION['cat_new'])) {
                      echo $_SESSION['cat_new'];
                     } ?>">
@@ -149,7 +152,7 @@
                     <?php if (in_array("Category name must be between 2 and 50 characters", $error_array)) echo "<span style='color:#ff0000;'>Category name must be between 2 and 50 characters</span><br>"; ?>
                     <?php if (in_array("Category name doesn't exist in the database", $error_array)) echo "<span style='color:#ff0000;'>Category name doesn't exist in the database</span><br>"; ?>
 
-                    <p>Add new shoe image?</p>
+                    <p>Add New Shoe Image?</p>
                     <input id="image_new" type="file" name="image_new">
                     <br><br>
 
@@ -169,7 +172,7 @@
                     <?php if (in_array("You have updated shoe category!", $error_array)) echo "<span style='color:#14C800;'>You have updated shoe size!</span><br>"; ?>
                     <?php if (in_array("You have updated shoe image!", $error_array)) echo "<span style='color:#14C800;'>You have updated shoe image!</span><br>"; ?>
                     <?php if (in_array("You have deleted shoe!", $error_array)) echo "<span style='color:#14C800;'>You have deleted shoe!</span><br>"; ?>
-                    <a href="#" id="shoe_add" class="shoe_add">You want to add shoe?</a>
+                    <a href="#" id="add" class="add">You want to add shoe?</a>
                     <br>                     
 
                 </form>
@@ -178,7 +181,7 @@
     </div>
 
         <!--ubaciti proveru u js -->
-    <script src="js/shoe.js"></script>
+    <script src="js/form.js"></script>
 
     <?php
         require_once 'partials/footer.php';

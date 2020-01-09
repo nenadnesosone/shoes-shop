@@ -19,7 +19,6 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/form.css">
-    <script src="js/user.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
@@ -81,7 +80,7 @@
                     else if (in_array("Your password can only contain english characters and numbers", $error_array)) echo  "<span style='color:#ff0000;'>Your password can only contain english characters and numbers</span><br>";
                     else if (in_array("Your password must be between 5 and 30 characters", $error_array)) echo "<span style='color:#ff0000;'>Your password must be between 5 and 30 characters</span><br>"; ?>
 
-                    <div style="color:red" class="errorMessageUpdate" id="errorMessageUpdate"> </div>
+                    <div style="color:red" class="errorMessage" id="errorMessage"> </div>
 
                     <input id="update_button" type="submit" name="update_button" value="Update">
                     <input id="delete_button" type="submit" name="delete_button" value="Delete"><br>
@@ -97,7 +96,7 @@
         </div>
     </div>
     <!--ubaciti skriptu za proveru pre validacije-->
-    <script src="js/user.js"></script>
+    <script src="js/form.js"></script>
 
     <?php
         require_once 'partials/footer.php';

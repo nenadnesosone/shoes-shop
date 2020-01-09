@@ -19,6 +19,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="js/moment.js"></script>
+
 </head>
 
 <body>
@@ -35,7 +37,7 @@
                 <p>Add, Update or Delete Discount!</p>
             </div>
             <div id="first">
-                <form action="discount.php" method="POST" id="add_disc">
+                <form action="discount.php" method="POST" id="disc_add">
              
                     <input id="disc_adding" type="text" name="disc_adding" placeholder="Add Discount Name" maxlength="50" value="<?php
                     if (isset($_SESSION['disc_adding'])) {
@@ -90,11 +92,12 @@
                     <?php if (in_array("Price can only contain numbers", $error_array)) echo "<span style='color:#ff0000;'>Price can only contain numbers</span><br>"; ?>
                     <?php if (in_array("Price must be between 1 and 100000", $error_array)) echo "<span style='color:#ff0000;'>Price must be between 1 and 100000</span><br>"; ?>
 
+                    <div style="color:red" class="errorMessageAdd" id="errorMessageAdd"> </div>
 
                     <input id="add_disc" type="submit" name="add_disc" value="Add">
                     <br>
                     <?php if (in_array("You have added new discount!", $error_array)) echo "<span style='color:#14C800;'>You have added new discount!</span><br>"; ?>
-                    <a href="#" id="disc_update" class="disc_update">You want to update or delete discount?</a>
+                    <a href="#" id="update" class="update">You want to update or delete discount?</a>
 
                 </form>
             </div>
@@ -174,7 +177,7 @@
                     <?php if (in_array("You have updated shoe image!", $error_array)) echo "<span style='color:#14C800;'>You have updated shoe image!</span><br>"; ?>
                     <?php if (in_array("You have updated discount price!", $error_array)) echo "<span style='color:#14C800;'>You have updated discount price!</span><br>"; ?>
                     <?php if (in_array("You have deleted discount!", $error_array)) echo "<span style='color:#14C800;'>You have deleted discount!</span><br>"; ?>
-                    <a href="#" id="disc_add" class="disc_add">You want to add discount?</a>
+                    <a href="#" id="add" class="add">You want to add discount?</a>
                     <br>                     
 
                 </form>
@@ -183,7 +186,7 @@
     </div>
 
         <!--ubaciti proveru u js -->
-    <script src="js/discount.js"></script>
+    <script src="js/form.js"></script>
 
     <?php
         require_once 'partials/footer.php';

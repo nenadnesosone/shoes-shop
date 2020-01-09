@@ -19,7 +19,7 @@ require_once 'config/config.php';
 
     <div id="landingHeader">
       <h1>Welcome to Shoes Shop!</h1>
-      <a href="main.php" class="btn btn-lg btn-primary">View All Shoes</a>
+      <a href="main.php" class="btn btn-lg btn-primary">Enter Shoes Shop</a>
     </div>
 
     <ul class="slideshow">

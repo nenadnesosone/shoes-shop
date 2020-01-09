@@ -71,17 +71,12 @@
                         array_push($error_array, "Please select Authorization type"); 
                 }
 
-                //password i password2 moraju da budu isti
+                //password i password2 moraju da budu isti, moze da sadrzi samo slova i brojeve i da budu  odgovarajuce duzine
                 if ($pass != $pass2) {
                     array_push($error_array, "Your passwords do not match");
-                }else {
-                    //lozinka moze da sadrzi samo slova i brojeve
-                    if (preg_match('/[^A-Za-z0-9]/', $pass)) {
+                } else if (preg_match('/[^A-Za-z0-9]/', $pass)) {
                         array_push($error_array,  "Your password can only contain english characters and numbers");
-                    }
-                }
-                //odgovarajuca duzina lozinke
-                if (strlen($pass) >30 || strlen($pass) < 5) {
+                } else if (strlen($pass) >30 || strlen($pass) < 5) {
                     array_push($error_array, "Your password must be between 5 and 30 characters"); 
                 }
 

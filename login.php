@@ -34,7 +34,7 @@
         <div class="form_box">
             <div class="form_header">
                 <h2>Shoes Shop</h2>
-                <p>Login below!</p>
+                <p>Login Below!</p>
             </div>
             <div id="first">
                 <form action="login.php" method="POST">
@@ -51,7 +51,7 @@
                     <br>
                     <input id="login_button" type="submit" name="login_button" value="Login">
                     <br>
-
+                    <div style="color:red" class="errorMessage" id="errorMessage"> </div>
 
                 </form>
             </div>
@@ -60,8 +60,8 @@
     </div>
 
     <!---ubaciti skriptu koja proverava da li je sve ok pre slanja na server--->
-    <script src="js/login.js"></script>
 
+    <script src="js/form.js"></script>
     <?php
     require_once 'partials/footer.php';
     ?>  

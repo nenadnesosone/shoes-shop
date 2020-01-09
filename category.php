@@ -43,10 +43,12 @@
                     <?php if (in_array("Category name must be between 2 and 50 characters", $error_array)) echo "<span style='color:#ff0000;'>Category name must be between 2 and 50 characters</span><br>"; ?>
                     <?php if (in_array("Category name exist in the database", $error_array)) echo "<span style='color:#ff0000;'>Category name exist in the database</span><br>"; ?>
 
+                    <div style="color:red" class="errorMessageAdd" id="errorMessageAdd"> </div>
+
                     <input id="add_category" type="submit" name="add_category" value="Add">
                     <br>
                     <?php if (in_array("You have added new category!", $error_array)) echo "<span style='color:#14C800;'>You have added new category!</span><br>"; ?>
-                    <a href="#" id="cat_update" class="cat_update">You want to update or delete category?</a>
+                    <a href="#" id="update" class="pdate">You want to update or delete category?</a>
 
                 </form>
             </div>
@@ -66,6 +68,7 @@
                     <?php if (in_array("Category name doesn't exist in the database", $error_array)) echo "<span style='color:#ff0000;'>Category name doesn't exist in the database</span><br>"; ?>
                     <?php if (in_array("Category name must be between 2 and 50 characters", $error_array)) echo "<span style='color:#ff0000;'>Category name must be between 2 and 50 characters</span><br>"; ?>
                     <?php if (in_array("Present and new category name must be different", $error_array)) echo "<span style='color:#ff0000;'>Present and new category name must be different</span><br>"; ?>
+
                     <div style="color:red" class="errorMessage" id="errorMessage"> </div>
                                    
                     <input id="update_category" type="submit" name="update_category" value="Update">
@@ -73,7 +76,7 @@
                     <br>
                     <?php if (in_array("You have updated category!", $error_array)) echo "<span style='color:#14C800;'>You have updated category!</span><br>"; ?>
                     <?php if (in_array("You have deleted category!", $error_array)) echo "<span style='color:#14C800;'>You have deleted category!</span><br>"; ?>
-                    <a href="#" id="cat_add" class="cat_add">You want to add category?</a>
+                    <a href="#" id="add" class="add">You want to add category?</a>
                     <br>                     
 
                 </form>
@@ -81,7 +84,7 @@
         </div>
     </div>
         <!--ubaciti proveru u js -->
-    <script src="js/category.js"></script>
+    <script src="js/form.js"></script>
 
 
     <?php
