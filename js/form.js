@@ -29,8 +29,9 @@ $(document).ready(function() {
     let image;
     let ext;
     let imageText = "Extention must be JPEG, PNG or JPG!";
-    let dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
     let dateText = "Invalid date";
+    let type;
+    let typeText = "Please select Authorization type";
 
     // slide up and down
     $("#update").click(function() {
@@ -338,6 +339,25 @@ $(document).ready(function() {
         CheckDate();
     });
 
+    // provera tipa
+    $('#reg_type').change(function() {
+
+        type = $('#reg_type').val();
+        errorMessage = document.querySelector('#errorMessage');
+        CheckType();
+        
+    });
+
+    $('#update_type').change(function() {
+
+        type = $('#update_type').val();
+        errorMessage = document.querySelector('#errorMessage');
+        CheckType();
+        
+    });
+
+
+
 
 
 function CheckEmail(){
@@ -446,7 +466,7 @@ function CheckImage() {
 }
 
 function CheckDate(){
-    var parsedIsoDate = moment(date, ['YYYY-MM-DD'], true).format('YYYY-MM-DD');
+    let parsedIsoDate = moment(date, ['YYYY-MM-DD'], true).format('YYYY-MM-DD');
     if (parsedIsoDate !== date){
         errorMessage.textContent = dateText;
         return false;
@@ -455,8 +475,14 @@ function CheckDate(){
     }
 }
 
-
-
-
+function CheckType(){
+    if (type !== "worker" && type !== "admin") {
+        errorMessage.textContent = typeText;    
+        return false;   
+    }
+    else {
+        errorMessage.textContent = "";
+    }
+}
 });
 

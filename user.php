@@ -65,11 +65,13 @@
                     <br>
                     <?php if (in_array("Your last name must be between 2 and 25 characters", $error_array)) echo  "<span style='color:#ff0000;'>Your last name must be between 2 and 25 characters</span><br>"; ?>
 
-                    <select id="reg_type" name="update_type" required>
+                    <select id="update_type" name="update_type">
                         <option value="worker" selected>worker</option>
                         <option value="admin">admin</option>
                     </select>
                     <br>
+                    
+                    <?php if (in_array("Please select Authorization type", $error_array)) echo "<span style='color:#ff0000;'>Please select Authorization type</span><br>"; ?>
 
                     <input id="new_password" type="password" name="new_password" placeholder="New Password">
                     <br>
