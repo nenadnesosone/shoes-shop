@@ -68,7 +68,7 @@
 
                 // da li je admin ili worker
                 if ($type !== 'admin' and $type !== 'worker') {
-                        array_push($error_array, "Please select Authorization type"); 
+                        array_push($error_array, "Please select authorization type"); 
                 }
 
                 //password i password2 moraju da budu isti, moze da sadrzi samo slova i brojeve i da budu  odgovarajuce duzine

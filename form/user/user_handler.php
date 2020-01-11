@@ -86,14 +86,14 @@
 
                     // da li je admin ili worker
                     if ($type !== 'admin' and $type !== 'worker') {
-                        array_push($error_array, "Please select Authorization type"); 
+                        array_push($error_array, "Please select authorization type"); 
                     } else if (!UsersData::GetOneUser($usersid)['type'] !== "admin"){
                         $type = "worker";
                     }
 
                         // menjamo podatke u bazi
                         UsersData::UpdateUser($usersid, $fname, $lname, $pass, $type, $udate, $uid);
-                        array_push($error_array, "You have updated your Authorization type!");
+                        array_push($error_array, "You have updated your authorization type!");
                     
                     
                 }
@@ -123,7 +123,7 @@
                         array_push($error_array, "You have updated your Password!");
                     }
                 } 
-            // dodati funkcionalnost da samo admin moze promeniti type drugog radnika
+
             }
 
         } 

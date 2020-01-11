@@ -75,7 +75,7 @@
                     </select>
                     <br>
 
-                    <?php if (in_array("Please select Authorization type", $error_array)) echo "<span style='color:#ff0000;'>Please select Authorization type</span><br>"; ?>
+                    <?php if (in_array("Please select authorization type", $error_array)) echo "<span style='color:#ff0000;'>Please select authorization type</span><br>"; ?>
 
                     <input id="reg_password" type="password" name="reg_password" placeholder="Password" required>
                     <br>

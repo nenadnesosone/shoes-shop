@@ -77,9 +77,9 @@
                     <?php if (in_array("Size can only contain numbers", $error_array)) echo "<span style='color:#ff0000;'>Size can only contain numbers</span><br>"; ?>
                     <?php if (in_array("Size must be between 1 and 99", $error_array)) echo "<span style='color:#ff0000;'>Size must be between 1 and 99</span><br>"; ?>
 
-                    <input id="cat_adding" type="text" name="cat_adding" placeholder="Category Name" maxlength="50" value="<?php
-                    if (isset($_SESSION['cat_adding'])) {
-                     echo $_SESSION['cat_adding'];
+                    <input id="cat_shoe_adding" type="text" name="cat_shoe_adding" placeholder="Category Name" maxlength="50" value="<?php
+                    if (isset($_SESSION['cat_shoe_adding'])) {
+                     echo $_SESSION['cat_shoe_adding'];
                     } ?>" required>
                     <br>
                     <?php if (in_array("Category name must be between 2 and 50 characters", $error_array)) echo "<span style='color:#ff0000;'>Category name must be between 2 and 50 characters</span><br>"; ?>
@@ -144,9 +144,9 @@
                     <?php if (in_array("Size can only contain numbers", $error_array)) echo "<span style='color:#ff0000;'>Size can only contain numbers</span><br>"; ?>
                     <?php if (in_array("Shoe size must be between 1 and 99", $error_array)) echo "<span style='color:#ff0000;'>Shoe size must be between 1 and 99</span><br>"; ?>
 
-                    <input id="cat_new" type="text" name="cat_new" placeholder="New Category Name" maxlength="50" value="<?php
-                    if (isset($_SESSION['cat_new'])) {
-                     echo $_SESSION['cat_new'];
+                    <input id="cat_shoe_new" type="text" name="cat_shoe_new" placeholder="New Category Name" maxlength="50" value="<?php
+                    if (isset($_SESSION['cat_shoe_new'])) {
+                     echo $_SESSION['cat_shoe_new'];
                     } ?>">
                     <br>
                     <?php if (in_array("Category name must be between 2 and 50 characters", $error_array)) echo "<span style='color:#ff0000;'>Category name must be between 2 and 50 characters</span><br>"; ?>

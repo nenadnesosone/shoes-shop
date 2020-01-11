@@ -71,7 +71,7 @@
                     </select>
                     <br>
                     
-                    <?php if (in_array("Please select Authorization type", $error_array)) echo "<span style='color:#ff0000;'>Please select Authorization type</span><br>"; ?>
+                    <?php if (in_array("Please select authorization type", $error_array)) echo "<span style='color:#ff0000;'>Please select authorization type</span><br>"; ?>
 
                     <input id="new_password" type="password" name="new_password" placeholder="New Password">
                     <br>
@@ -89,7 +89,7 @@
                     <?php if (in_array("You have updated your First Name!", $error_array)) echo "<span style='color:#14C800;'>You have updated your First Name!</span><br>"; ?>
                     <?php if (in_array("You have updated your Last Name!", $error_array)) echo "<span style='color:#14C800;'>You have updated your Last Name!</span><br>"; ?>
                     <?php if (in_array("You have updated your Last Name!", $error_array)) echo "<span style='color:#14C800;'>You have updated your Last Name!</span><br>"; ?>
-                    <?php if (in_array("You have updated your Authorization type!", $error_array)) echo "<span style='color:#14C800;'>You have updated your Authorization type!</span><br>"; ?>
+                    <?php if (in_array("You have updated your authorization type!", $error_array)) echo "<span style='color:#14C800;'>You have updated your authorization type!</span><br>"; ?>
           
 
                 </form>

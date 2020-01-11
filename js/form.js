@@ -10,28 +10,20 @@ $(document).ready(function() {
     let lnameText = "Your last name must be between 2 and 25 characters!";
     let code;
     let codeTrim;
-    let codeText = "Code must have 10 characters";
     let sname;
     let snameTrim;
     let snameText = "Your shoe name must be between 2 and 50 characters!";
     let desc;
     let descTrim;
-    let descText = "Your shoe description must be between 2 and 200 characters!";
     let cat;
     let catTrim;
-    let catText = "Your category name must be between 2 and 50 characters!";
     let discText = "Discount name must be between 2 and 50 characters";
     let numberRegex = /^[0-9]+$/;
     let priceTrim;
-    let priceText = "Price can only contain numbers";
     let sizeText = "Size can only contain numbers";
-    let discIdText = "Discount id can only contain numbers";
     let image;
     let ext;
-    let imageText = "Extention must be JPEG, PNG or JPG!";
-    let dateText = "Invalid date";
     let type;
-    let typeText = "Please select Authorization type";
 
     // slide up and down
     $("#update").click(function() {
@@ -50,6 +42,7 @@ $(document).ready(function() {
     $('#log_email').keyup(function() {
         email = $("#log_email").val().trim();
         CheckEmail();
+           
     });
 
     $('#reg_email').keyup(function() {
@@ -64,31 +57,37 @@ $(document).ready(function() {
 
     // provera duzine sifre
     $('#log_password').keyup(function() {
+        $('#log_password').val( $('#log_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#log_password").val().trim();
         CheckPass();
     });
 
     $('#reg_password').keyup(function() {
+        $('#reg_password').val( $('#reg_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#reg_password").val().trim();
         CheckPass();
     });
 
     $('#reg_password2').keyup(function() {
+        $('#reg_password2').val( $('#reg_password2').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#reg_password2").val().trim();
         CheckPass();
     });
 
     $('#profile_password').keyup(function() {
+        $('#profile_password').val( $('#profile_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#profile_password").val().trim();
         CheckPass();
     });
 
     $('#new_password').keyup(function() {
+        $('#new_password').val( $('#new_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#new_password").val().trim();
         CheckPass();
     });
 
     $('#new_password2').keyup(function() {
+        $('#new_password2').val( $('#new_password2').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#new_password2").val().trim();
         CheckPass();
     });
@@ -220,6 +219,20 @@ $(document).ready(function() {
         CheckCategory();
     });
 
+    $('#cat_shoe_adding').keyup(function() {
+        cat = $('#cat_shoe_adding');
+        catTrim = $('#cat_shoe_adding').val().trim();
+        errorMessage = document.querySelector('#errorMessageAdd');
+        CheckCategory();
+    });
+
+    $('#cat_shoe_new').keyup(function() {
+        cat = $('#cat_shoe_new');
+        catTrim = $('#cat_shoe_new').val().trim();
+        errorMessage = document.querySelector('#errorMessage');
+        CheckCategory();
+    });
+
     // provera imena rasprodaje
     $('#disc_adding').keyup(function() {
         sname = $('#disc_adding');
@@ -240,28 +253,24 @@ $(document).ready(function() {
     // provera cene
     $('#price_adding').keyup(function() {
         priceTrim = $('#price_adding').val().trim();
-        priceText = priceText;
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckPrice();
     });
 
     $('#price_new').keyup(function() {
         priceTrim = $('#price_new').val().trim();
-        priceText = priceText;
         errorMessage = document.querySelector('#errorMessage');
         CheckPrice();
     });
 
     $('#disc_price_adding').keyup(function() {
         priceTrim = $('#disc_price_adding').val().trim();
-        priceText = priceText;
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckPrice();
     });
 
     $('#disc_price_new').keyup(function() {
         priceTrim = $('#disc_price_new').val().trim();
-        priceText = priceText;
         errorMessage = document.querySelector('#errorMessage');
         CheckPrice();
     });
@@ -288,7 +297,7 @@ $(document).ready(function() {
     // provera id rasprodaje
     $('#disc_id_new').keyup(function() {
         sizeTrim = $('#disc_id_new').val().trim();
-        sizeText = discIdText;
+        sizeText = "Discount id can only contain numbers";
         errorMessage = document.querySelector('#errorMessage');
         CheckSize();
     });
@@ -363,10 +372,11 @@ $(document).ready(function() {
 function CheckEmail(){
 
     if (email.lastIndexOf(".") < email.indexOf("@") || email.indexOf("@") ===-1 || email.lastIndexOf(".") ===-1 ) {
-       errorMessage.textContent = "Invalid email adress!"
+       errorMessage.textContent = "Invalid email adress!";
        return false; 
     } else {
         errorMessage.textContent = "";
+        return true;
     }
 }
 
@@ -377,6 +387,7 @@ function CheckPass(){
        return false; 
     } else {
         errorMessage.textContent = "";
+        return true;
     }
 }
 
@@ -388,6 +399,7 @@ function CheckName(){
         return false;
     } else {
         errorMessage.textContent = "";
+        return true;
     }  
 }
 
@@ -395,10 +407,11 @@ function CheckCode(){
 
     code.val(codeTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
     if (codeTrim.length !== 10) {
-        errorMessage.textContent = codeText;
+        errorMessage.textContent = "Code must have 10 characters";
         return false;
     } else {
         errorMessage.textContent = "";
+        return true;
     }   
 }
 
@@ -410,6 +423,7 @@ function CheckShoeName(){
         return false;
     } else {
         errorMessage.textContent = "";
+        return true;
     }
 }
 
@@ -417,10 +431,11 @@ function CheckShoeDesc(){
 
     desc.val(descTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
     if (descTrim.length > 200 || descTrim.length < 2) {
-        errorMessage.textContent = descText;
+        errorMessage.textContent = "Your shoe description must be between 2 and 200 characters!";
         return false;
     } else {
         errorMessage.textContent = "";
+        return true;
     }     
 }
 
@@ -428,20 +443,22 @@ function CheckCategory(){
 
     cat.val(catTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
     if (catTrim.length > 50 || catTrim.length < 2) {
-        errorMessage.textContent = catText;
+        errorMessage.textContent = "Your category name must be between 2 and 50 characters!";
         return false;
     } else {
         errorMessage.textContent = "";
+        return true;
     }
 }
 
 function CheckPrice(){
 
     if (!priceTrim.match(numberRegex) || !Math.floor(priceTrim) === priceTrim){
-        errorMessage.textContent = priceText;
+        errorMessage.textContent = "Price can only contain numbers";
         return false;
     } else {
         errorMessage.textContent = "";
+        return true;
     }
 }
 
@@ -451,37 +468,41 @@ function CheckSize(){
         errorMessage.textContent = sizeText;
         return false;
     } else {
-
+        errorMessage.textContent = "";
+        return true;
     }
 }
 
 function CheckImage() {
 
     if (image.get(0).files.length !== 0 && (ext !== "png" && ext !== "jpeg" && ext !== "jpg")){
-        errorMessage.textContent = imageText;
+        errorMessage.textContent = "Extention must be JPEG, PNG or JPG!";
         return false;
     } else {
         errorMessage.textContent = "";
+        return true;
     }  
 }
 
 function CheckDate(){
     let parsedIsoDate = moment(date, ['YYYY-MM-DD'], true).format('YYYY-MM-DD');
     if (parsedIsoDate !== date){
-        errorMessage.textContent = dateText;
+        errorMessage.textContent = "Invalid date";
         return false;
     } else {
         errorMessage.textContent = "";
+        return true;
     }
 }
 
 function CheckType(){
     if (type !== "worker" && type !== "admin") {
-        errorMessage.textContent = typeText;    
+        errorMessage.textContent = "Please select authorization type";    
         return false;   
     }
     else {
         errorMessage.textContent = "";
+        return true;
     }
 }
 });

@@ -49,8 +49,8 @@
             $size = number_format(UsersData::sanit($_POST['size_adding']), 2);// uklanjamo html elemente i razmake, pretvara u number format
             $_SESSION['size_adding'] = $size;
 
-            $catname = ucfirst(strtolower(UsersData::sanit($_POST['cat_adding'])));// uklanjamo html elemente i razmake, ostavlja samo prvo slovo veliko
-            $_SESSION['cat_adding'] = $catname;
+            $catname = ucfirst(strtolower(UsersData::sanit($_POST['cat_shoe_adding'])));// uklanjamo html elemente i razmake, ostavlja samo prvo slovo veliko
+            $_SESSION['cat_shoe_adding'] = $catname;
 
 
             //code moze da sadrzi samo slova i brojeve i mora da ima tacno 10 karaktera
@@ -155,7 +155,7 @@
                 unset($_SESSION['price_adding']);
                 unset($_SESSION['size_adding']);
                 unset($_SESSION['image_adding']);
-                unset($_SESSION['cat_adding']);
+                unset($_SESSION['cat_shoe_adding']);
             }
         
     }
@@ -274,11 +274,11 @@
                         unset($_SESSION['size_new']);
                 }
 
-                if(!empty($_POST['cat_new'])){
+                if(!empty($_POST['cat_shoe_new'])){
 
                     // kategorija
-                    $catname = ucfirst(strtolower(UsersData::sanit($_POST['cat_new'])));
-                    $_SESSION['cat_new'] = $catname;
+                    $catname = ucfirst(strtolower(UsersData::sanit($_POST['cat_shoe_new'])));
+                    $_SESSION['cat_shoe_new'] = $catname;
 
                     // kategorija mora da ima odgovarajucu duzinu i da postoji u bazi
                     if (strlen($catname)>50 || strlen($catname)<2) {
@@ -292,7 +292,7 @@
                     // menjamo podatke u bazi i brisemo podatke iz sesije
                     ShoesData::UpdateShoe($shoeid, $sname, $desc, $price, $size, $image, $catid, $udate, $uid);
                     array_push($error_array, "You have updated shoe category!");
-                    unset($_SESSION['cat_new']);
+                    unset($_SESSION['cat_shoe_new']);
                 }
 
                 if (isset($_FILES['image_new'])){
