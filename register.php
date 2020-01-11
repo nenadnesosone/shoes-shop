@@ -89,7 +89,7 @@
 
                     <div style="color:red" class="errorMessage" id="errorMessage"> </div>
                     <br>                      
-                    <input id="register_button" type="submit" name="register_button" value="Register">
+                    <input id="register_button" type="submit" name="register_button" value="Register" disabled>
                     <br>
                     <?php if (in_array("You're all set! Go ahead and login!", $error_array)) echo "<span style='color:#14C800;'>You're all set! Go ahead and login!</span><br>"; ?>
                     <?php if (in_array("You're not admin! New user not added!", $error_array)) echo "<span style='color:#ff0000;'>You're not admin! New user not added!</span><br>"; ?>

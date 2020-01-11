@@ -49,7 +49,7 @@
                         echo "<span style='color:#ff0000;'>Email or password was incorrect!</span><br>";
                     } ?>
                     <br>
-                    <input id="login_button" type="submit" name="login_button" value="Login">
+                    <input id="login_button" type="submit" name="login_button" value="Login" disabled>
                     <br>
                     <div style="color:red" class="errorMessage" id="errorMessage"> </div>
 

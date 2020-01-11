@@ -24,6 +24,9 @@ $(document).ready(function() {
     let image;
     let ext;
     let type;
+    let [OkLogEmail, OkLogPass] = [false, false];
+    let [OkRegFname, OkRegLname, OkRegEmail, OkRegEmail2, OkRegType, OkRegPass, OkRegPass2] = [false, false, false, false, false, false, false];
+
 
     // slide up and down
     $("#update").click(function() {
@@ -38,21 +41,76 @@ $(document).ready(function() {
         })
     });
 
-    // provera mejla
+
+    function ValLog() {
+        if (OkLogEmail && OkLogPass) {
+            OkLog();
+            return true;
+            
+        } else {
+            NoLog();
+            return false;
+        }
+    }
+
+    function OkLog() {
+        $("#login_button").prop("disabled", false);
+    }
+
+    function NoLog() {
+        $("#login_button").prop("disabled", true);
+    }
+
+    function ValReg() {
+        if (OkRegFname && OkRegLname && OkRegEmail && OkRegEmail2 && OkRegType && OkRegPass && OkRegPass2) {
+            OkReg();
+            
+        } else {
+            NoReg();
+        }
+    }
+
+    function OkReg(){
+        $("#register_button").prop("disabled", false);
+    }
+
+    function NoReg(){
+        $("#register_button").prop("disabled", true);
+    }
+
+
+    //provera mejla
     $('#log_email').keyup(function() {
         email = $("#log_email").val().trim();
         CheckEmail();
-           
+        if (CheckEmail()) {
+            OkLogEmail = true;
+        } else {
+            OkLogEmail = false;
+        }
+        ValLog();
     });
 
     $('#reg_email').keyup(function() {
         email = $("#reg_email").val().trim();
         CheckEmail();
+        if (CheckEmail()) {
+            OkRegEmail = true;
+        } else {
+            OkRegEmail = false;
+        }
+        ValReg();
     });
 
     $('#reg_email2').keyup(function() {
         email = $("#reg_email2").val().trim();
         CheckEmail();
+        if (CheckEmail()) {
+            OkRegEmail2 = true;
+        } else {
+            OkRegEmail2 = false;
+        }
+        ValReg();
     });
 
     // provera duzine sifre
@@ -60,18 +118,36 @@ $(document).ready(function() {
         $('#log_password').val( $('#log_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#log_password").val().trim();
         CheckPass();
+        if (CheckPass()) {
+            OkLogPass = true;
+        } else {
+            OkLogPass = false;
+        }
+        ValLog();
     });
 
     $('#reg_password').keyup(function() {
         $('#reg_password').val( $('#reg_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#reg_password").val().trim();
         CheckPass();
+        if (CheckPass()) {
+            OkRegPass = true;
+        } else {
+            OkRegPass = false;
+        }
+        ValReg();
     });
 
     $('#reg_password2').keyup(function() {
         $('#reg_password2').val( $('#reg_password2').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#reg_password2").val().trim();
         CheckPass();
+        if (CheckPass()) {
+            OkRegPass2 = true;
+        } else {
+            OkRegPass2 = false;
+        }
+        ValReg();
     });
 
     $('#profile_password').keyup(function() {
@@ -98,14 +174,24 @@ $(document).ready(function() {
         nameTrim = $('#reg_fname').val().trim();
         nameText = fnameText;
         CheckName();
+        if (CheckName()) {
+            OkRegFname = true;
+        } else {
+            OkRegFname = false;
+        }
+        ValReg();
     });
-
     $('#reg_lname').keyup(function() {
         name = $('#reg_lname');
         nameTrim = $('#reg_lname').val().trim();
         nameText = lnameText;
         CheckName();
-
+        if (CheckName()) {
+            OkRegLname = true;
+        } else {
+            OkRegLname = false;
+        }
+        ValReg();
     });
 
     $('#update_fname').keyup(function() {
@@ -354,7 +440,12 @@ $(document).ready(function() {
         type = $('#reg_type').val();
         errorMessage = document.querySelector('#errorMessage');
         CheckType();
-        
+        if (CheckType()) {
+            OkRegType = true;
+        } else {
+            OkRegType = false;
+        }
+        ValReg();
     });
 
     $('#update_type').change(function() {
@@ -369,9 +460,9 @@ $(document).ready(function() {
 
 
 
-function CheckEmail(){
+function CheckEmail() {
 
-    if (email.lastIndexOf(".") < email.indexOf("@") || email.indexOf("@") ===-1 || email.lastIndexOf(".") ===-1 ) {
+    if (!email.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/) ) {
        errorMessage.textContent = "Invalid email adress!";
        return false; 
     } else {
@@ -380,7 +471,7 @@ function CheckEmail(){
     }
 }
 
-function CheckPass(){
+function CheckPass() {
 
     if (pass.length <5 || pass.length >30 ) {
        errorMessage.textContent = "Your password must be between 5 and 30 characters!";
@@ -391,7 +482,7 @@ function CheckPass(){
     }
 }
 
-function CheckName(){
+function CheckName() {
 
     name.val(nameTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
     if (nameTrim.length > 25 || nameTrim.length < 2) {
@@ -403,7 +494,7 @@ function CheckName(){
     }  
 }
 
-function CheckCode(){
+function CheckCode() {
 
     code.val(codeTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
     if (codeTrim.length !== 10) {
@@ -415,7 +506,7 @@ function CheckCode(){
     }   
 }
 
-function CheckShoeName(){
+function CheckShoeName() {
 
     sname.val(snameTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
     if (snameTrim.length > 50 || snameTrim.length < 2) {
@@ -427,7 +518,7 @@ function CheckShoeName(){
     }
 }
 
-function CheckShoeDesc(){
+function CheckShoeDesc() {
 
     desc.val(descTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
     if (descTrim.length > 200 || descTrim.length < 2) {
@@ -439,7 +530,7 @@ function CheckShoeDesc(){
     }     
 }
 
-function CheckCategory(){
+function CheckCategory() {
 
     cat.val(catTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
     if (catTrim.length > 50 || catTrim.length < 2) {
@@ -451,7 +542,7 @@ function CheckCategory(){
     }
 }
 
-function CheckPrice(){
+function CheckPrice() {
 
     if (!priceTrim.match(numberRegex) || !Math.floor(priceTrim) === priceTrim){
         errorMessage.textContent = "Price can only contain numbers";
@@ -462,7 +553,7 @@ function CheckPrice(){
     }
 }
 
-function CheckSize(){
+function CheckSize() {
 
     if (!sizeTrim.match(numberRegex) || !Math.floor(sizeTrim) === sizeTrim){
         errorMessage.textContent = sizeText;
@@ -484,7 +575,7 @@ function CheckImage() {
     }  
 }
 
-function CheckDate(){
+function CheckDate() {
     let parsedIsoDate = moment(date, ['YYYY-MM-DD'], true).format('YYYY-MM-DD');
     if (parsedIsoDate !== date){
         errorMessage.textContent = "Invalid date";
@@ -495,7 +586,7 @@ function CheckDate(){
     }
 }
 
-function CheckType(){
+function CheckType() {
     if (type !== "worker" && type !== "admin") {
         errorMessage.textContent = "Please select authorization type";    
         return false;   
