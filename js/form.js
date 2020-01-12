@@ -1,7 +1,7 @@
 $(document).ready(function() {
     //
     let errorMessage = document.querySelector('#errorMessage');
-    let [email, pass, pass1, pass2, name, nameTrim, code, codeTrim, sname, snameTrim, desc, cat, catTrim, priceTrim, type, ext, image, start, newStart, newEnd, disc] = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
+    let [email, pass, passTrim, pass1, pass2, name, nameTrim, code, codeTrim, sname, snameTrim, desc, cat, catTrim, price, priceTrim, size, type, ext, image, start, newStart, newEnd, disc, parsedIsoDate] = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
     let fnameText = "Your first name must be between 2 and 25 characters!";
     let lnameText = "Your last name must be between 2 and 25 characters!";
     let snameText = "Your shoe name must be between 2 and 50 characters!";
@@ -9,6 +9,7 @@ $(document).ready(function() {
     let startText = "Start discount date can't start before today date";
     let endText = "End discount date can't be before start discount date";
     let numberRegex = /^[0-9]+$/;
+    let textRegex = /[^a-zA-Z0-9]/g;
     let sizeText = "Size can only contain numbers";
     let today = new Date().toJSON().split('T')[0];
     let [OkLogEmail, OkLogPass] = [false, false];
@@ -198,8 +199,8 @@ $(document).ready(function() {
 
     // provera duzine sifre
     $('#log_password').keyup(function() {
-        $('#log_password').val( $('#log_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        pass = $("#log_password").val().trim();
+        pass = $('#log_password');
+        passTrim = pass.val().trim();
         CheckPass();
         if (CheckPass()) {
             OkLogPass = true;
@@ -210,8 +211,8 @@ $(document).ready(function() {
     });
 
     $('#reg_password').keyup(function() {
-        $('#reg_password').val( $('#reg_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        pass = $("#reg_password").val().trim();
+        pass = $('#reg_password');
+        passTrim = pass.val().trim();
         CheckPass();
         if (CheckPass()) {
             pass1 = pass;
@@ -223,8 +224,8 @@ $(document).ready(function() {
     });
 
     $('#reg_password2').keyup(function() {
-        $('#reg_password2').val( $('#reg_password2').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        pass = $("#reg_password2").val().trim();
+        pass = $('#reg_password2');
+        passTrim = pass.val().trim();
         CheckPass();
         if (CheckPass()) {
             pass2 = pass;
@@ -242,11 +243,10 @@ $(document).ready(function() {
     });
 
     $('#profile_password').keyup(function() {
-        $('#profile_password').val( $('#profile_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        pass = $("#profile_password").val().trim();
+        pass =$('#profile_password');
+        passTrim = pass.val().trim();
         CheckPass();
         if(CheckPass()){
-       
             OkUpdatePass = true;
         } else {
             OkUpdatePass = false;
@@ -256,8 +256,8 @@ $(document).ready(function() {
     });
 
     $('#new_password').keyup(function() {
-        $('#new_password').val( $('#new_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        pass = $("#new_password").val().trim();
+        pass = $('#new_password');
+        passTrim = pass.val().trim();
         CheckPass();
         if(CheckPass()) {
             OkNewPass = true;
@@ -278,8 +278,8 @@ $(document).ready(function() {
     });
 
     $('#new_password2').keyup(function() {
-        $('#new_password2').val( $('#new_password2').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        pass = $("#new_password2").val().trim();
+        pass = $('#new_password2');
+        passTrim = pass.val().trim();
         CheckPass();
         if(CheckPass()) {
             pass2 = pass;
@@ -303,7 +303,7 @@ $(document).ready(function() {
     // provera duzine imena i prezimena
     $('#reg_fname').keyup(function() {
         name = $('#reg_fname');
-        nameTrim = $('#reg_fname').val().trim();
+        nameTrim = name.val().trim();
         nameText = fnameText;
         CheckName();
         if (CheckName()) {
@@ -315,7 +315,7 @@ $(document).ready(function() {
     });
     $('#reg_lname').keyup(function() {
         name = $('#reg_lname');
-        nameTrim = $('#reg_lname').val().trim();
+        nameTrim = name.val().trim();
         nameText = lnameText;
         CheckName();
         if (CheckName()) {
@@ -328,7 +328,7 @@ $(document).ready(function() {
 
     $('#update_fname').keyup(function() {
         name = $('#update_fname');
-        nameTrim = $('#update_fname').val().trim();
+        nameTrim = name.val().trim();
         nameText = fnameText;
         CheckName();
         if(CheckName()) {
@@ -346,7 +346,7 @@ $(document).ready(function() {
 
     $('#update_lname').keyup(function() {
         name = $('#update_lname');
-        nameTrim = $('#update_lname').val().trim();
+        nameTrim = name.val().trim();
         nameText = lnameText;
         CheckName();
         if(CheckName()) {
@@ -365,8 +365,7 @@ $(document).ready(function() {
     // provera duzine koda
     $('#code_adding').keyup(function() {
         code = $('#code_adding');
-        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        codeTrim = $('#code_adding').val().trim();
+        codeTrim = code.val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCode();
         if (CheckCode()) {
@@ -379,8 +378,7 @@ $(document).ready(function() {
 
     $('#code_change').keyup(function() {
         code = $('#code_change');
-        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        codeTrim = $('#code_change').val().trim();
+        codeTrim = code.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCode();
         if(CheckCode()){
@@ -394,8 +392,7 @@ $(document).ready(function() {
 
     $('#shoe_1_adding').keyup(function() {
         code = $('#shoe_1_adding');
-        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        codeTrim = $('#shoe_1_adding').val().trim();
+        codeTrim = code.val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCode();
         if (CheckCode()) {
@@ -408,8 +405,7 @@ $(document).ready(function() {
 
     $('#shoe_2_adding').keyup(function() {
         code = $('#shoe_2_adding');
-        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        codeTrim = $('#shoe_2_adding').val().trim();
+        codeTrim = code.val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCode();
         if (CheckCode()) {
@@ -422,14 +418,13 @@ $(document).ready(function() {
 
     $('#shoe_1_new').keyup(function() {
         code = $('#shoe_1_new');
-        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        codeTrim = $('#shoe_1_new').val().trim();
+        codeTrim = code.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCode();
         if (CheckCode()) {
             OkUpdateShoe1 = true;
         } else {
-        codeTrim = $('#shoe_1_new').val().trim();
+        codeTrim = code.val().trim();
             if (codeTrim.length == 0){
                 NewShoe1Empty = true;
             } else {
@@ -442,14 +437,13 @@ $(document).ready(function() {
 
     $('#shoe_2_new').keyup(function() {
         code = $('#shoe_2_new');
-        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-        codeTrim = $('#shoe_2_new').val().trim();
+        codeTrim = code.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCode();
         if (CheckCode()) {
             OkUpdateShoe2 = true;
         } else {
-        codeTrim = $('#shoe_1_new').val().trim();
+        codeTrim = code.val().trim();
             if (codeTrim.length == 0){
                 NewShoe2Empty = true;
             } else {
@@ -478,7 +472,7 @@ $(document).ready(function() {
 
     $('#shoe_new').keyup(function() {
         sname = $('#shoe_new');
-        snameTrim = $('#shoe_new').val().trim();
+        snameTrim = $sname.val().trim();
         snameText = snameText;
         errorMessage = document.querySelector('#errorMessage');
         CheckShoeName();
@@ -498,7 +492,7 @@ $(document).ready(function() {
     // provera opisa
     $('#desc_adding').keyup(function() {
         desc = $('#desc_adding');
-        descTrim = $('#desc_adding').val().trim();
+        descTrim = desc.val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckShoeDesc();
         if (CheckShoeDesc()) {
@@ -511,7 +505,7 @@ $(document).ready(function() {
 
     $('#desc_new').keyup(function() {
         desc = $('#desc_new');
-        descTrim = $('#desc_new').val().trim();
+        descTrim = desc.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckShoeDesc();
         if(CheckShoeDesc()) {
@@ -530,7 +524,7 @@ $(document).ready(function() {
     // provera kategorije
     $('#cat_adding').keyup(function() {
         cat = $('#cat_adding');
-        catTrim = $('#cat_adding').val().trim();
+        catTrim = cat.val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCategory();
         if (CheckCategory()) {
@@ -543,7 +537,7 @@ $(document).ready(function() {
 
     $('#cat_present').keyup(function() {
         cat = $('#cat_present');
-        catTrim = $('#cat_present').val().trim();
+        catTrim = cat.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCategory();
         if (CheckCategory()) {
@@ -557,7 +551,7 @@ $(document).ready(function() {
 
     $('#cat_new').keyup(function() {
         cat = $('#cat_new');
-        catTrim = $('#cat_new').val().trim();
+        catTrim = cat.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCategory();
         if (CheckCategory()) {
@@ -570,7 +564,7 @@ $(document).ready(function() {
 
     $('#cat_shoe_adding').keyup(function() {
         cat = $('#cat_shoe_adding');
-        catTrim = $('#cat_shoe_adding').val().trim();
+        catTrim = cat.val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCategory();
         if (CheckCategory()) {
@@ -583,7 +577,7 @@ $(document).ready(function() {
 
     $('#cat_shoe_new').keyup(function() {
         cat = $('#cat_shoe_new');
-        catTrim = $('#cat_shoe_new').val().trim();
+        catTrim = cat.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCategory();
         if(CheckCategory()) {
@@ -602,7 +596,7 @@ $(document).ready(function() {
     // provera imena rasprodaje
     $('#disc_adding').keyup(function() {
         sname = $('#disc_adding');
-        snameTrim = $('#disc_adding').val().trim();
+        snameTrim = sname.val().trim();
         snameText = discText;
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckShoeName();
@@ -616,7 +610,7 @@ $(document).ready(function() {
 
     $('#disc_new').keyup(function() {
         sname = $('#disc_new');
-        snameTrim = $('#disc_new').val().trim();
+        snameTrim = sname.val().trim();
         snameText = discText;
         errorMessage = document.querySelector('#errorMessage');
         CheckShoeName();
@@ -635,7 +629,8 @@ $(document).ready(function() {
 
     // provera cene
     $('#price_adding').keyup(function() {
-        priceTrim = $('#price_adding').val().trim();
+        price = $('#price_adding');
+        priceTrim = price.val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckPrice();
         if (CheckPrice()) {
@@ -647,7 +642,8 @@ $(document).ready(function() {
     });
 
     $('#price_new').keyup(function() {
-        priceTrim = $('#price_new').val().trim();
+        price = $('#price_new');
+        priceTrim = price.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckPrice();
         if (priceTrim.length !== 0){
@@ -664,7 +660,8 @@ $(document).ready(function() {
     });
 
     $('#disc_price_adding').keyup(function() {
-        priceTrim = $('#disc_price_adding').val().trim();
+        price = $('#disc_price_adding');
+        priceTrim = price.val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckPrice();
         if (CheckPrice()) {
@@ -676,7 +673,8 @@ $(document).ready(function() {
     });
 
     $('#disc_price_new').keyup(function() {
-        priceTrim = $('#disc_price_new').val().trim();
+        price = $('#disc_price_new');
+        priceTrim = price.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckPrice();
         if (priceTrim.length !== 0){
@@ -694,7 +692,8 @@ $(document).ready(function() {
 
     // provera velicine cipele
     $('#size_adding').keyup(function() {
-        sizeTrim = $('#size_adding').val().trim();
+        size = $('#size_adding');
+        sizeTrim = size.val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckSize();
         if (CheckSize()) {
@@ -706,7 +705,8 @@ $(document).ready(function() {
     });
 
     $('#size_new').keyup(function() {
-        sizeTrim = $('#size_new').val().trim();
+        size = $('#size_new');
+        sizeTrim = size.val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckSize();
         if (sizeTrim.length !== 0){
@@ -724,8 +724,8 @@ $(document).ready(function() {
 
     // provera id rasprodaje
     $('#disc_id_new').keyup(function() {
-        disc = $('#disc_id_new');
-        sizeTrim = disc.val().trim();
+        size = $('#disc_id_new');
+        sizeTrim = size.val().trim();
         sizeText = "Discount id can only contain numbers";
         errorMessage = document.querySelector('#errorMessage');
         CheckSize();
@@ -824,8 +824,6 @@ $(document).ready(function() {
             } else {
                 OkStartDateUpdate = true;
             }
-            
-            
         } else {
             if (date.length !== 0){
                 NewStartDateEmpty = true;
@@ -894,8 +892,8 @@ $(document).ready(function() {
     /// funkcije za proveru 
     function CheckEmail() {
         if (!email.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/) ) {
-        errorMessage.textContent = "Invalid email adress!";
-        return false; 
+            errorMessage.textContent = "Invalid email adress!";
+            return false; 
         } else {
             errorMessage.textContent = "";
             return true;
@@ -903,7 +901,8 @@ $(document).ready(function() {
     }
 
     function CheckPass() {
-        if (pass.length <5 || pass.length >30 ) {
+        pass.val(passTrim.replace(textRegex, function(){ return ''; }) );
+        if (passTrim.length < 5 || passTrim.length > 30 ) {
         errorMessage.textContent = "Your password must be between 5 and 30 characters!";
         return false; 
         } else {
@@ -913,7 +912,7 @@ $(document).ready(function() {
     }
 
     function CheckName() {
-        name.val(nameTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        name.val(nameTrim.replace(textRegex, function(){ return ''; }) );
         if (nameTrim.length > 25 || nameTrim.length < 2) {
             errorMessage.textContent = nameText;
             return false;
@@ -924,7 +923,7 @@ $(document).ready(function() {
     }
 
     function CheckCode() {
-        code.val(codeTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        code.val(codeTrim.replace(textRegex, function(){ return ''; }) );
         if (codeTrim.length !== 10) {
             errorMessage.textContent = "Code must have 10 characters";
             return false;
@@ -935,7 +934,7 @@ $(document).ready(function() {
     }
 
     function CheckShoeName() {
-        sname.val(snameTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        sname.val(snameTrim.replace(textRegex, function(){ return ''; }) );
         if (snameTrim.length > 50 || snameTrim.length < 2) {
             errorMessage.textContent = snameText;
             return false;
@@ -946,7 +945,7 @@ $(document).ready(function() {
     }
 
     function CheckShoeDesc() {
-        desc.val(descTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        desc.val(descTrim.replace(textRegex, function(){ return ''; }) );
         if (descTrim.length > 200 || descTrim.length < 2) {
             errorMessage.textContent = "Your shoe description must be between 2 and 200 characters!";
             return false;
@@ -957,7 +956,7 @@ $(document).ready(function() {
     }
 
     function CheckCategory() {
-        cat.val(catTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        cat.val(catTrim.replace(textRegex, function(){ return ''; }) );
         if (catTrim.length > 50 || catTrim.length < 2) {
             errorMessage.textContent = "Your category name must be between 2 and 50 characters!";
             return false;
@@ -969,6 +968,7 @@ $(document).ready(function() {
 
     function CheckPrice() {
         if (!priceTrim.match(numberRegex) || !Math.floor(priceTrim) === priceTrim){
+            price.val(priceTrim.replace(numberRegex, function(){ return ''; }) );
             errorMessage.textContent = "Price can only contain numbers";
             return false;
         } else if (priceTrim < 1 || priceTrim > 10000) {
@@ -982,6 +982,7 @@ $(document).ready(function() {
 
     function CheckSize() {
         if (!sizeTrim.match(numberRegex) || !Math.floor(sizeTrim) === sizeTrim){
+            size.val(sizeTrim.replace(numberRegex, function(){ return ''; }) );
             errorMessage.textContent = sizeText;
             return false;
         } else if (disc ===  undefined && (sizeTrim < 1 || sizeTrim > 99)) {
@@ -1004,7 +1005,7 @@ $(document).ready(function() {
     }
 
     function CheckDate() {
-        let parsedIsoDate = moment(date, ['YYYY-MM-DD'], true).format('YYYY-MM-DD');
+        parsedIsoDate = moment(date, ['YYYY-MM-DD'], true).format('YYYY-MM-DD');
         if (parsedIsoDate !== date){
             errorMessage.textContent = "Invalid date";
             return false;
