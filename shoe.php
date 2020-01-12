@@ -37,7 +37,7 @@
                 <p>Add, Update or Delete Shoe!</p>
             </div>
             <div id="first">
-                <form action="shoe.php" method="POST" id="add_shoe" enctype="multipart/form-data">
+                <form action="shoe.php" method="POST" id="add_shoes" enctype="multipart/form-data">
                     <input id="code_adding" type="text" name="code_adding" placeholder="Add Shoe Code" maxlength="10" value="<?php
                     if (isset($_SESSION['code_adding'])) {
                      echo $_SESSION['code_adding'];
@@ -96,7 +96,7 @@
 
                     <div style="color:red" class="errorMessageAdd" id="errorMessageAdd"> </div>
 
-                    <input id="add_shoe" type="submit" name="add_shoe" value="Add">
+                    <input id="add_shoe" type="submit" name="add_shoe" value="Add" disabled>
                     <br>
                     <?php if (in_array("You have added new shoe!", $error_array)) echo "<span style='color:#14C800;'>You have added new shoe!</span><br>"; ?>
                     <a href="#" id="update" class="update">You want to update or delete shoe?</a>
@@ -162,8 +162,8 @@
                    
                     <div style="color:red" class="errorMessage" id="errorMessage"> </div>
                                    
-                    <input id="update_shoe" type="submit" name="update_shoe" value="Update">
-                    <input id="delete_shoe" type="submit" name="delete_shoe" value="Delete">
+                    <input id="update_shoe" type="submit" name="update_shoe" value="Update" disabled>
+                    <input id="delete_shoe" type="submit" name="delete_shoe" value="Delete" disabled>
                     <br>
                     <?php if (in_array("You have updated shoe name!", $error_array)) echo "<span style='color:#14C800;'>You have updated shoe name!</span><br>"; ?>
                     <?php if (in_array("You have updated shoe description!", $error_array)) echo "<span style='color:#14C800;'>You have updated shoe description!</span><br>"; ?>

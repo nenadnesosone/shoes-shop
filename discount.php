@@ -94,7 +94,7 @@
 
                     <div style="color:red" class="errorMessageAdd" id="errorMessageAdd"> </div>
 
-                    <input id="add_disc" type="submit" name="add_disc" value="Add">
+                    <input id="add_disc" type="submit" name="add_disc" value="Add" disabled>
                     <br>
                     <?php if (in_array("You have added new discount!", $error_array)) echo "<span style='color:#14C800;'>You have added new discount!</span><br>"; ?>
                     <a href="#" id="update" class="update">You want to update or delete discount?</a>
@@ -166,8 +166,8 @@
                    
                     <div style="color:red" class="errorMessage" id="errorMessage"> </div>
                                    
-                    <input id="update_disc" type="submit" name="update_disc" value="Update">
-                    <input id="delete_disc" type="submit" name="delete_disc" value="Delete">
+                    <input id="update_disc" type="submit" name="update_disc" value="Update" disabled>
+                    <input id="delete_disc" type="submit" name="delete_disc" value="Delete" disabled>
                     <br>
                     <?php if (in_array("You have updated discount name!", $error_array)) echo "<span style='color:#14C800;'>You have updated discount name!</span><br>"; ?>
                     <?php if (in_array("You have updated discount start date!", $error_array)) echo "<span style='color:#14C800;'>You have updated discount start date!</span><br>"; ?>

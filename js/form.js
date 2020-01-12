@@ -26,7 +26,15 @@ $(document).ready(function() {
     let type;
     let [OkLogEmail, OkLogPass] = [false, false];
     let [OkRegFname, OkRegLname, OkRegEmail, OkRegEmail2, OkRegType, OkRegPass, OkRegPass2] = [false, false, false, false, false, false, false];
-
+    let [OkUpdatePass, OkNewFname, OkNewLname, OkNewType, OkNewPass, OkNewPass2] = [false, false, false, true, false, false];
+    let [NewFnameEmpty, NewLnameEmpty, NewPassEmpty, NewPassEmpty2] = [true, true, true, true];
+    let [OkAddCat, OkPresentCat, OkUpdateCat] = [false, false, false];
+    let [OkShoeAdd, OkShoeName, OkShoeDesc, OkShoePrice, OkShoeSize, OkShoeCat, OkShoeImage] = [false, false, false, false, false, false, ];
+    let [OkUpdateShoeCode, OkUpdateShoeName, OkUpdateShoeDesc, OkUpdateShoePrice, OkUpdateShoeSize, OkUpdateShoeCat, OkUpdateShoeImage] = [false, false, false, false, false, false, false];
+    let [NewSnameEmpty, NewDescEmpty, NewPriceEmpty, NewSizeEmpty, NewCatEmpty, NewImageEmpty] = [true, true, true, true, true, true];
+    let [OkDiscAdd, OkStartDate, OkEndDate, OkShoeCode1, OkShoeCode2, OkDiscPrice] = [false, false, false, false, false, false];
+    let [OkUpdateDiscId, OkUpdateDName, OkStartDateUpdate, OkEndDateUpdate, OkUpdateShoe1, OkUpdateShoe2, OkUpdateDiscPrice] = [false, false, false, false, false, false, false];
+    let [NewDnameEmpty, NewStartDateEmpty, NewEndDateEmpty, NewShoe1Empty, NewShoe2Empty, NewDiscPriceEmpty] = [true, true, true, true, true, true];
 
     // slide up and down
     $("#update").click(function() {
@@ -41,41 +49,120 @@ $(document).ready(function() {
         })
     });
 
-
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
     function ValLog() {
         if (OkLogEmail && OkLogPass) {
-            OkLog();
-            return true;
-            
+            $("#login_button").prop("disabled", false);
         } else {
-            NoLog();
-            return false;
+            $("#login_button").prop("disabled", true);
         }
     }
 
-    function OkLog() {
-        $("#login_button").prop("disabled", false);
-    }
-
-    function NoLog() {
-        $("#login_button").prop("disabled", true);
-    }
-
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
     function ValReg() {
         if (OkRegFname && OkRegLname && OkRegEmail && OkRegEmail2 && OkRegType && OkRegPass && OkRegPass2) {
-            OkReg();
-            
+            $("#register_button").prop("disabled", false);
         } else {
-            NoReg();
+            $("#register_button").prop("disabled", true);
         }
     }
 
-    function OkReg(){
-        $("#register_button").prop("disabled", false);
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
+    function ValUpdate() {
+        if (OkUpdatePass && (OkNewFname || NewFnameEmpty) && OkNewType && (OkNewLname || NewLnameEmpty) && ((OkNewPass || NewPassEmpty) && (OkNewPass2 || NewPassEmpty2)) ) {
+            $("#update_button").prop("disabled", false);
+        } else {
+            $("#update_button").prop("disabled", true);
+        }
     }
 
-    function NoReg(){
-        $("#register_button").prop("disabled", true);
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
+    function ValDelete() {
+        if (OkUpdatePass) {
+            $("#delete_button").prop("disabled", false);  
+        } else {
+            $("#delete_button").prop("disabled", true);
+        }
+    }
+
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
+    function ValAddCat() {
+        if (OkAddCat) {
+            $("#add_category").prop("disabled", false);
+        } else {
+            $("#add_category").prop("disabled", true);
+        }
+    }
+
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
+    function ValUpdateCat() {
+        if (OkPresentCat && OkUpdateCat) {
+            $("#update_category").prop("disabled", false);
+        } else {
+            $("#update_category").prop("disabled", true);
+        }
+    }
+
+    function ValDeleteCat() {
+        if (OkPresentCat) {
+            $("#delete_category").prop("disabled", false);
+        } else {
+            $("#delete_category").prop("disabled", true);
+        }
+    }
+
+     // funkcija za validaciju da li da se blokira ili odlblokira dugme
+     function ValShoeAdd() {
+        if (OkShoeAdd && OkShoeName && OkShoeDesc && OkShoePrice && OkShoeSize && OkShoeCat && OkShoeImage) {
+            $("#add_shoe").prop("disabled", false);
+        } else {
+            $("#add_shoe").prop("disabled", true);
+        }
+    }
+
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
+    function ValUpdateShoe() {
+        if (OkUpdateShoeCode && (OkUpdateShoeName || NewSnameEmpty) && (OkUpdateShoeDesc || NewDescEmpty) && (OkUpdateShoePrice || NewPriceEmpty) && (OkUpdateShoeSize || NewSizeEmpty) && (OkUpdateShoeCat || NewCatEmpty) && (OkUpdateShoeImage || NewImageEmpty)) {
+            $("#update_shoe").prop("disabled", false);
+        } else {
+            $("#update_shoe").prop("disabled", true);
+        }
+    }
+
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
+    function ValDeleteShoe() {
+        if (OkUpdateShoeCode) {
+            $("#delete_shoe").prop("disabled", false);
+        } else {
+            $("#delete_shoe").prop("disabled", true);
+        }
+    }
+
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
+    function ValDiscAdd() {
+        if (OkDiscAdd && OkStartDate && OkEndDate && OkShoeCode1 && OkShoeCode2 && OkDiscPrice) {
+            $("#add_disc").prop("disabled", false);
+        } else {
+            $("#add_disc").prop("disabled", true);
+        }
+    }
+
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
+    function ValDiscUpdate() {
+        if (OkUpdateDiscId && (OkUpdateDName || NewDnameEmpty) && (OkStartDateUpdate || NewStartDateEmpty) && (OkEndDateUpdate || NewEndDateEmpty) && (OkUpdateShoe1 || NewShoe1Empty) && (OkUpdateShoe2 || NewShoe2Empty) && (OkUpdateDiscPrice || NewDiscPriceEmpty)) {
+            $("#update_disc").prop("disabled", false);
+        } else {
+            $("#update_disc").prop("disabled", true);
+        }
+    }
+
+    // funkcija za validaciju da li da se blokira ili odlblokira dugme
+    function ValDiscDelete() {
+        if (OkUpdateDiscId) {
+            $("#delete_disc").prop("disabled", false);
+        } else {
+            $("#delete_disc").prop("disabled", true);
+        }
     }
 
 
@@ -154,18 +241,51 @@ $(document).ready(function() {
         $('#profile_password').val( $('#profile_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#profile_password").val().trim();
         CheckPass();
+        if(CheckPass()){
+            OkUpdatePass = true;
+        } else {
+            OkUpdatePass = false;
+        }
+        ValUpdate();
+        ValDelete();
     });
 
     $('#new_password').keyup(function() {
         $('#new_password').val( $('#new_password').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#new_password").val().trim();
         CheckPass();
+        if(CheckPass()) {
+            OkNewPass = true;
+            if (OkNewPass2 == false){
+                NewPassEmpty == false;
+                NewPassEmpty2 = false;
+            }
+        } else {
+                if (pass.length == 0){
+                    NewPassEmpty = true;
+                } else {
+                    NewPassEmpty = false;
+                }
+            OkNewPass = false;
+        }
+        ValUpdate();
     });
 
     $('#new_password2').keyup(function() {
         $('#new_password2').val( $('#new_password2').val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         pass = $("#new_password2").val().trim();
         CheckPass();
+        if(CheckPass()) {
+            OkNewPass2 = true;
+        } else {
+                if (pass.length == 0){
+                    NewPassEmpty2 = true;
+                } else {
+                    NewPassEmpty2 = false;
+                }
+            OkNewPass2 = false;
+        }
+        ValUpdate();
     });
 
     // provera duzine imena i prezimena
@@ -199,6 +319,17 @@ $(document).ready(function() {
         nameTrim = $('#update_fname').val().trim();
         nameText = fnameText;
         CheckName();
+        if(CheckName()) {
+            OkNewFname = true;
+        } else {
+                if (nameTrim.length == 0){
+                    NewFnameEmpty = true;
+                } else {
+                    NewFnameEmpty = false;
+                }
+            OkNewFname = false;
+        }
+        ValUpdate();  
     });
 
     $('#update_lname').keyup(function() {
@@ -206,6 +337,17 @@ $(document).ready(function() {
         nameTrim = $('#update_lname').val().trim();
         nameText = lnameText;
         CheckName();
+        if(CheckName()) {
+            OkNewLname = true;
+        } else {
+                if (nameTrim.length == 0){
+                    NewLnameEmpty = true;
+                } else {
+                    NewLnameEmpty = false;
+                }
+            OkNewLname = false;
+        }
+        ValUpdate();
     });
 
     // provera duzine koda
@@ -214,6 +356,12 @@ $(document).ready(function() {
         codeTrim = $('#code_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCode();
+        if (CheckCode()) {
+            OkShoeAdd = true;
+        } else {
+            OkShoeAdd = false;
+        }
+        ValShoeAdd();
     });
 
     $('#code_change').keyup(function() {
@@ -221,6 +369,13 @@ $(document).ready(function() {
         codeTrim = $('#code_change').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCode();
+        if(CheckCode()){
+            OkUpdateShoeCode = true;
+        } else {
+            OkUpdateShoeCode = false;
+        }
+        ValUpdateShoe();
+        ValDeleteShoe();
     });
 
     $('#shoe_1_adding').keyup(function() {
@@ -228,6 +383,12 @@ $(document).ready(function() {
         codeTrim = $('#shoe_1_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCode();
+        if (CheckCode()) {
+            OkShoeCode1 = true;
+        } else {
+            OkShoeCode1 = false;
+        }
+        ValDiscAdd();
     });
 
     $('#shoe_2_adding').keyup(function() {
@@ -235,6 +396,12 @@ $(document).ready(function() {
         codeTrim = $('#shoe_2_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCode();
+        if (CheckCode()) {
+            OkShoeCode2 = true;
+        } else {
+            OkShoeCode2 = false;
+        }
+        ValDiscAdd();
     });
 
     $('#shoe_1_new').keyup(function() {
@@ -242,6 +409,18 @@ $(document).ready(function() {
         codeTrim = $('#shoe_1_new').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCode();
+        if (CheckCode()) {
+            OkUpdateShoe1 = true;
+        } else {
+        codeTrim = $('#shoe_1_new').val().trim();
+            if (codeTrim.length == 0){
+                NewShoe1Empty = true;
+            } else {
+                NewShoe1Empty = false;
+            }
+            OkUpdateShoe1 = false;
+        }
+        ValDiscUpdate();
     });
 
     $('#shoe_2_new').keyup(function() {
@@ -249,6 +428,18 @@ $(document).ready(function() {
         codeTrim = $('#shoe_2_new').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCode();
+        if (CheckCode()) {
+            OkUpdateShoe2 = true;
+        } else {
+        codeTrim = $('#shoe_1_new').val().trim();
+            if (codeTrim.length == 0){
+                NewShoe2Empty = true;
+            } else {
+                NewShoe2Empty = false;
+            }
+            OkUpdateShoe2 = false;
+        }
+        ValDiscUpdate();
     });
 
     // provera imena cipele
@@ -258,6 +449,13 @@ $(document).ready(function() {
         snameText = snameText;
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckShoeName();
+        if (CheckShoeName()) {
+            OkShoeName = true;
+        } else {
+            OkShoeName = false;
+        }
+        ValShoeAdd();
+
     });
 
     $('#shoe_new').keyup(function() {
@@ -266,6 +464,17 @@ $(document).ready(function() {
         snameText = snameText;
         errorMessage = document.querySelector('#errorMessage');
         CheckShoeName();
+        if(CheckShoeName()) {
+            OkUpdateShoeName = true;
+        } else {
+                if (snameTrim.length == 0){
+                    NewSnameEmpty = true;
+                } else {
+                    NewSnameEmpty = false;
+                }
+                OkUpdateShoeName = false;
+        }
+        ValUpdateShoe();
     });
 
     // provera opisa
@@ -274,6 +483,12 @@ $(document).ready(function() {
         descTrim = $('#desc_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckShoeDesc();
+        if (CheckShoeDesc()) {
+            OkShoeDesc = true;
+        } else {
+            OkShoeDesc = false;
+        }
+        ValShoeAdd();
     });
 
     $('#desc_new').keyup(function() {
@@ -281,6 +496,17 @@ $(document).ready(function() {
         descTrim = $('#desc_new').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckShoeDesc();
+        if(CheckShoeDesc()) {
+            OkUpdateShoeDesc = true;
+        } else {
+                if (descTrim.length == 0){
+                    NewDescEmpty = true;
+                } else {
+                    NewDescEmpty = false;
+                }
+                OkUpdateShoeDesc = false;
+        }
+        ValUpdateShoe();
     });
 
     // provera kategorije
@@ -289,13 +515,12 @@ $(document).ready(function() {
         catTrim = $('#cat_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCategory();
-    });
-
-    $('#cat_new').keyup(function() {
-        cat = $('#cat_new');
-        catTrim = $('#cat_new').val().trim();
-        errorMessage = document.querySelector('#errorMessage');
-        CheckCategory();
+        if (CheckCategory()) {
+            OkAddCat = true;
+        } else {
+            OkAddCat = false;
+        }
+        ValAddCat();
     });
 
     $('#cat_present').keyup(function() {
@@ -303,6 +528,26 @@ $(document).ready(function() {
         catTrim = $('#cat_present').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCategory();
+        if (CheckCategory()) {
+            OkPresentCat = true;
+        } else {
+            OkPresentCat = false;
+        }
+        ValUpdateCat();
+        ValDeleteCat();
+    });
+
+    $('#cat_new').keyup(function() {
+        cat = $('#cat_new');
+        catTrim = $('#cat_new').val().trim();
+        errorMessage = document.querySelector('#errorMessage');
+        CheckCategory();
+        if (CheckCategory()) {
+            OkUpdateCat = true;
+        } else {
+            OkUpdateCat = false;
+        }
+        ValUpdateCat();
     });
 
     $('#cat_shoe_adding').keyup(function() {
@@ -310,6 +555,12 @@ $(document).ready(function() {
         catTrim = $('#cat_shoe_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCategory();
+        if (CheckCategory()) {
+            OkShoeCat = true;
+        } else {
+            OkShoeCat = false;
+        }
+        ValShoeAdd();
     });
 
     $('#cat_shoe_new').keyup(function() {
@@ -317,6 +568,17 @@ $(document).ready(function() {
         catTrim = $('#cat_shoe_new').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCategory();
+        if(CheckCategory()) {
+            OkUpdateShoeCat = true;
+        } else {
+                if (catTrim.length == 0){
+                    NewCatEmpty = true;
+                } else {
+                    NewCatEmpty = false;
+                }
+            OkUpdateShoeCat = false;
+        }
+        ValUpdateShoe();
     });
 
     // provera imena rasprodaje
@@ -326,6 +588,12 @@ $(document).ready(function() {
         snameText = discText;
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckShoeName();
+        if (CheckShoeName()) {
+            OkDiscAdd = true;
+        } else {
+            OkDiscAdd = false;
+        }
+        ValDiscAdd();
     });
 
     $('#disc_new').keyup(function() {
@@ -334,6 +602,17 @@ $(document).ready(function() {
         snameText = discText;
         errorMessage = document.querySelector('#errorMessage');
         CheckShoeName();
+        if (CheckShoeName()) {
+            OkUpdateDName = true;
+        } else {
+            if (snameTrim.length == 0){
+                NewDnameEmpty = true;
+            } else {
+                NewDnameEmpty = false;
+            }
+            OkUpdateDName = false;
+        }
+        ValDiscUpdate();
     });
 
     // provera cene
@@ -341,24 +620,58 @@ $(document).ready(function() {
         priceTrim = $('#price_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckPrice();
+        if (CheckPrice()) {
+            OkShoePrice = true;
+        } else {
+            OkShoePrice = false;
+        }
+        ValShoeAdd();
     });
 
     $('#price_new').keyup(function() {
         priceTrim = $('#price_new').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckPrice();
+        if (priceTrim.length !== 0){
+            NewPriceEmpty = true;
+            if(CheckPrice()) {
+                OkUpdateShoePrice = true;
+            } else {
+                OkUpdateShoePrice = false;
+            }
+        } else {
+            NewPriceEmpty = false;
+        }
+        ValUpdateShoe();
     });
 
     $('#disc_price_adding').keyup(function() {
         priceTrim = $('#disc_price_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckPrice();
+        if (CheckPrice()) {
+            OkDiscPrice = true;
+        } else {
+            OkDiscPrice = false;
+        }
+        ValDiscAdd();
     });
 
     $('#disc_price_new').keyup(function() {
         priceTrim = $('#disc_price_new').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckPrice();
+        if (priceTrim.length !== 0){
+            NewDiscPriceEmpty = true;
+            if(CheckPrice()) {
+                OkUpdateDiscPrice = true;
+            } else {
+                OkUpdateDiscPrice = false;
+            }
+        } else {
+            NewDiscPriceEmpty = false;
+        }
+        ValDiscUpdate();
     });
 
     // provera velicine cipele
@@ -366,18 +679,29 @@ $(document).ready(function() {
         sizeTrim = $('#size_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckSize();
-    });
-
-    $('#size_adding').keyup(function() {
-        sizeTrim = $('#size_adding').val().trim();
-        errorMessage = document.querySelector('#errorMessageAdd');
-        CheckSize();
+        if (CheckSize()) {
+            OkShoeSize = true;
+        } else {
+            OkShoeSize = false;
+        }
+        ValShoeAdd();
     });
 
     $('#size_new').keyup(function() {
         sizeTrim = $('#size_new').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckSize();
+        if (sizeTrim.length !== 0){
+            NewSizeEmpty = true;
+            if(CheckSize()) {
+                OkUpdateShoeSize = true;
+            } else {
+                OkUpdateShoeSize = false;
+            }
+        } else {
+            NewSizeEmpty = false;
+        }
+        ValUpdateShoe();
     });
 
     // provera id rasprodaje
@@ -386,57 +710,108 @@ $(document).ready(function() {
         sizeText = "Discount id can only contain numbers";
         errorMessage = document.querySelector('#errorMessage');
         CheckSize();
+        if (CheckSize()) {
+            OkUpdateDiscId = true;
+        } else {
+            OkUpdateDiscId = false;
+        }
+        ValDiscUpdate();
+        ValDiscDelete();
     });
 
     // provera slike
     $('#shoe_image').change(function() {
-
         image = $('#shoe_image');
         ext =  image.val().split('.').pop().toLowerCase();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckImage();
+        if (CheckImage()) {
+            OkShoeImage = true;
+        } else {
+            OkShoeImage = false;
+        }
+        ValShoeAdd();
     });
 
     $('#image_new').change(function() {
-
         image = $('#image_new');
         ext =  image.val().split('.').pop().toLowerCase();
         errorMessage = document.querySelector('#errorMessage');
         CheckImage();
+        if(CheckImage()) {
+            OkUpdateShoeImage = true;
+        } else {
+                if (image.get(0).files.length == 0){
+                    NewImageEmpty = true;
+                } else {
+                    NewImageEmpty = false;
+                }
+                OkUpdateShoeImage = false;
+        }
+        ValUpdateShoe();
     });
 
     // provera datuma
     $('#start_adding').change(function() {
-
         date = $('#start_adding').val();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckDate();
+        if (CheckDate()) {
+            OkStartDate = true;
+        } else {
+            OkStartDate = false;
+        }
+        ValDiscAdd();
     });
 
     $('#end_adding').change(function() {
-
         date = $('#end_adding').val();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckDate();
+        if (CheckDate()) {
+            OkEndDate = true;
+        } else {
+            OkEndDate = false;
+        }
+        ValDiscAdd();
     });
 
     $('#start_new').change(function() {
-
         date = $('#start_new').val();
         errorMessage = document.querySelector('#errorMessage');
         CheckDate();
+        if (CheckDate()) {
+            OkStartDateUpdate = true;
+        } else {
+            if (date.length !== 0){
+                NewStartDateEmpty = true;
+            } else {
+                NewStartDateEmpty = false;
+            }
+            OkStartDateUpdate = false;
+        }
+        ValDiscUpdate();
     });
 
     $('#end_new').change(function() {
-
         date = $('#end_new').val();
         errorMessage = document.querySelector('#errorMessage');
         CheckDate();
+        if (CheckDate()) {
+            OkEndDateUpdate = true;
+        } else {
+            if (date.length !== 0){
+                NewEndDateEmpty = true;
+            } else {
+                NewEndDateEmpty = false;
+            }
+            OkEndDateUpdate = false;
+        }
+        ValDiscUpdate();
     });
 
     // provera tipa
     $('#reg_type').change(function() {
-
         type = $('#reg_type').val();
         errorMessage = document.querySelector('#errorMessage');
         CheckType();
@@ -449,10 +824,15 @@ $(document).ready(function() {
     });
 
     $('#update_type').change(function() {
-
         type = $('#update_type').val();
         errorMessage = document.querySelector('#errorMessage');
         CheckType();
+        if (CheckType()) {
+            OkNewType = true;
+        } else {
+            OkNewType = false;
+        }
+        ValUpdate();
         
     });
 

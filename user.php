@@ -84,8 +84,8 @@
 
                     <div style="color:red" class="errorMessage" id="errorMessage"> </div>
 
-                    <input id="update_button" type="submit" name="update_button" value="Update">
-                    <input id="delete_button" type="submit" name="delete_button" value="Delete"><br>
+                    <input id="update_button" type="submit" name="update_button" value="Update" disabled>
+                    <input id="delete_button" type="submit" name="delete_button" value="Delete" disabled><br>
                     <?php if (in_array("You have updated your First Name!", $error_array)) echo "<span style='color:#14C800;'>You have updated your First Name!</span><br>"; ?>
                     <?php if (in_array("You have updated your Last Name!", $error_array)) echo "<span style='color:#14C800;'>You have updated your Last Name!</span><br>"; ?>
                     <?php if (in_array("You have updated your Last Name!", $error_array)) echo "<span style='color:#14C800;'>You have updated your Last Name!</span><br>"; ?>

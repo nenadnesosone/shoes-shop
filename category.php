@@ -34,7 +34,7 @@
                 <p>Add, Update or Delete Category!</p>
             </div>
             <div id="first">
-                <form action="category.php" method="POST" id="add_category">
+                <form action="category.php" method="POST" id="add_categorys">
                     <input id="cat_adding" type="text" name="cat_adding" placeholder="Add New Category Name" maxlength="50" value="<?php
                     if (isset($_SESSION['cat_adding'])) {
                      echo $_SESSION['cat_adding'];
@@ -45,10 +45,10 @@
 
                     <div style="color:red" class="errorMessageAdd" id="errorMessageAdd"> </div>
 
-                    <input id="add_category" type="submit" name="add_category" value="Add">
+                    <input id="add_category" type="submit" name="add_category" value="Add" disabled>
                     <br>
                     <?php if (in_array("You have added new category!", $error_array)) echo "<span style='color:#14C800;'>You have added new category!</span><br>"; ?>
-                    <a href="#" id="update" class="pdate">You want to update or delete category?</a>
+                    <a href="#" id="update" class="update">You want to update or delete category?</a>
 
                 </form>
             </div>
@@ -71,8 +71,8 @@
 
                     <div style="color:red" class="errorMessage" id="errorMessage"> </div>
                                    
-                    <input id="update_category" type="submit" name="update_category" value="Update">
-                    <input id="delete_category" type="submit" name="delete_category" value="Delete">
+                    <input id="update_category" type="submit" name="update_category" value="Update" disabled>
+                    <input id="delete_category" type="submit" name="delete_category" value="Delete" disabled>
                     <br>
                     <?php if (in_array("You have updated category!", $error_array)) echo "<span style='color:#14C800;'>You have updated category!</span><br>"; ?>
                     <?php if (in_array("You have deleted category!", $error_array)) echo "<span style='color:#14C800;'>You have deleted category!</span><br>"; ?>
