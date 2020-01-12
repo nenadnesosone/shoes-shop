@@ -1,29 +1,16 @@
 $(document).ready(function() {
     //
     let errorMessage = document.querySelector('#errorMessage');
-    let email;
-    let pass;
-    let name;
-    let nameTrim;
-    let nameText;
+    let [email, pass, pass1, pass2, name, nameTrim, code, codeTrim, sname, snameTrim, desc, cat, catTrim, priceTrim, type, ext, image, start, newStart, newEnd, disc] = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
     let fnameText = "Your first name must be between 2 and 25 characters!";
     let lnameText = "Your last name must be between 2 and 25 characters!";
-    let code;
-    let codeTrim;
-    let sname;
-    let snameTrim;
     let snameText = "Your shoe name must be between 2 and 50 characters!";
-    let desc;
-    let descTrim;
-    let cat;
-    let catTrim;
     let discText = "Discount name must be between 2 and 50 characters";
+    let startText = "Start discount date can't start before today date";
+    let endText = "End discount date can't be before start discount date";
     let numberRegex = /^[0-9]+$/;
-    let priceTrim;
     let sizeText = "Size can only contain numbers";
-    let image;
-    let ext;
-    let type;
+    let today = new Date().toJSON().split('T')[0];
     let [OkLogEmail, OkLogPass] = [false, false];
     let [OkRegFname, OkRegLname, OkRegEmail, OkRegEmail2, OkRegType, OkRegPass, OkRegPass2] = [false, false, false, false, false, false, false];
     let [OkUpdatePass, OkNewFname, OkNewLname, OkNewType, OkNewPass, OkNewPass2] = [false, false, false, true, false, false];
@@ -183,6 +170,7 @@ $(document).ready(function() {
         CheckEmail();
         if (CheckEmail()) {
             OkRegEmail = true;
+            email1 = email;
         } else {
             OkRegEmail = false;
         }
@@ -193,7 +181,15 @@ $(document).ready(function() {
         email = $("#reg_email2").val().trim();
         CheckEmail();
         if (CheckEmail()) {
-            OkRegEmail2 = true;
+            email2 = email;
+            if (email1 === email2){
+                OkRegEmail2 = true;
+            } else {
+                errorMessage.textContent = "Emails don't match";
+                OkRegEmail2 = false;
+            }
+            
+
         } else {
             OkRegEmail2 = false;
         }
@@ -218,6 +214,7 @@ $(document).ready(function() {
         pass = $("#reg_password").val().trim();
         CheckPass();
         if (CheckPass()) {
+            pass1 = pass;
             OkRegPass = true;
         } else {
             OkRegPass = false;
@@ -230,7 +227,14 @@ $(document).ready(function() {
         pass = $("#reg_password2").val().trim();
         CheckPass();
         if (CheckPass()) {
-            OkRegPass2 = true;
+            pass2 = pass;
+            if (pass1 === pass2) {
+                OkRegPass2 = true;
+            } else {
+                errorMessage.textContent = "Passwords don't match";
+                OkRegPass2 = false;
+            }
+           
         } else {
             OkRegPass2 = false;
         }
@@ -242,6 +246,7 @@ $(document).ready(function() {
         pass = $("#profile_password").val().trim();
         CheckPass();
         if(CheckPass()){
+       
             OkUpdatePass = true;
         } else {
             OkUpdatePass = false;
@@ -256,6 +261,7 @@ $(document).ready(function() {
         CheckPass();
         if(CheckPass()) {
             OkNewPass = true;
+            pass1 = pass;
             if (OkNewPass2 == false){
                 NewPassEmpty == false;
                 NewPassEmpty2 = false;
@@ -276,7 +282,13 @@ $(document).ready(function() {
         pass = $("#new_password2").val().trim();
         CheckPass();
         if(CheckPass()) {
-            OkNewPass2 = true;
+            pass2 = pass;
+            if (pass1 === pass2) {
+                OkNewPass2 = true;
+            } else {
+                errorMessage.textContent = "Passwords don't match";
+                OkNewPass2 = false;
+            }
         } else {
                 if (pass.length == 0){
                     NewPassEmpty2 = true;
@@ -353,6 +365,7 @@ $(document).ready(function() {
     // provera duzine koda
     $('#code_adding').keyup(function() {
         code = $('#code_adding');
+        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         codeTrim = $('#code_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCode();
@@ -366,6 +379,7 @@ $(document).ready(function() {
 
     $('#code_change').keyup(function() {
         code = $('#code_change');
+        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         codeTrim = $('#code_change').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCode();
@@ -380,6 +394,7 @@ $(document).ready(function() {
 
     $('#shoe_1_adding').keyup(function() {
         code = $('#shoe_1_adding');
+        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         codeTrim = $('#shoe_1_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCode();
@@ -393,6 +408,7 @@ $(document).ready(function() {
 
     $('#shoe_2_adding').keyup(function() {
         code = $('#shoe_2_adding');
+        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         codeTrim = $('#shoe_2_adding').val().trim();
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckCode();
@@ -406,6 +422,7 @@ $(document).ready(function() {
 
     $('#shoe_1_new').keyup(function() {
         code = $('#shoe_1_new');
+        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         codeTrim = $('#shoe_1_new').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCode();
@@ -425,6 +442,7 @@ $(document).ready(function() {
 
     $('#shoe_2_new').keyup(function() {
         code = $('#shoe_2_new');
+        code.val(code.val().replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
         codeTrim = $('#shoe_2_new').val().trim();
         errorMessage = document.querySelector('#errorMessage');
         CheckCode();
@@ -706,7 +724,8 @@ $(document).ready(function() {
 
     // provera id rasprodaje
     $('#disc_id_new').keyup(function() {
-        sizeTrim = $('#disc_id_new').val().trim();
+        disc = $('#disc_id_new');
+        sizeTrim = disc.val().trim();
         sizeText = "Discount id can only contain numbers";
         errorMessage = document.querySelector('#errorMessage');
         CheckSize();
@@ -757,7 +776,13 @@ $(document).ready(function() {
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckDate();
         if (CheckDate()) {
-            OkStartDate = true;
+            if (today > date) {
+                errorMessage.textContent = startText;
+                OkStartDate = false;
+            } else {
+                start = date;
+                OkStartDate = true;
+            }
         } else {
             OkStartDate = false;
         }
@@ -769,7 +794,13 @@ $(document).ready(function() {
         errorMessage = document.querySelector('#errorMessageAdd');
         CheckDate();
         if (CheckDate()) {
-            OkEndDate = true;
+            if (date < start){
+                errorMessage.textContent = endText;
+                OkEndDate = false;
+            } else {
+                OkEndDate = true;
+            }
+            
         } else {
             OkEndDate = false;
         }
@@ -781,7 +812,20 @@ $(document).ready(function() {
         errorMessage = document.querySelector('#errorMessage');
         CheckDate();
         if (CheckDate()) {
-            OkStartDateUpdate = true;
+            newStart = date;
+            if (today > newStart) {
+                errorMessage.textContent = startText;
+                OkStartDateUpdate = false;
+                NewStartDateEmpty = false;
+            } else if (newEnd !== undefined && newStart > newEnd){
+                errorMessage.textContent = endText;
+                OkStartDateUpdate = false;
+                NewStartDateEmpty = false;
+            } else {
+                OkStartDateUpdate = true;
+            }
+            
+            
         } else {
             if (date.length !== 0){
                 NewStartDateEmpty = true;
@@ -798,7 +842,18 @@ $(document).ready(function() {
         errorMessage = document.querySelector('#errorMessage');
         CheckDate();
         if (CheckDate()) {
-            OkEndDateUpdate = true;
+            newEnd = date;
+            if (newStart !== undefined && newEnd < newStart) {
+                errorMessage.textContent = endText;
+                OkEndDateUpdate = false;
+                NewEndDateEmpty = false;
+            } else if(newStart === undefined && today > newEnd) {
+                errorMessage.textContent = "End discount date can't be before today";
+                OkEndDateUpdate = false;
+                NewEndDateEmpty = false;
+            } else {
+                OkEndDateUpdate = true;
+            }
         } else {
             if (date.length !== 0){
                 NewEndDateEmpty = true;
@@ -836,145 +891,138 @@ $(document).ready(function() {
         
     });
 
-
-
-
-
-function CheckEmail() {
-
-    if (!email.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/) ) {
-       errorMessage.textContent = "Invalid email adress!";
-       return false; 
-    } else {
-        errorMessage.textContent = "";
-        return true;
+    /// funkcije za proveru 
+    function CheckEmail() {
+        if (!email.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/) ) {
+        errorMessage.textContent = "Invalid email adress!";
+        return false; 
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }
     }
-}
 
-function CheckPass() {
-
-    if (pass.length <5 || pass.length >30 ) {
-       errorMessage.textContent = "Your password must be between 5 and 30 characters!";
-       return false; 
-    } else {
-        errorMessage.textContent = "";
-        return true;
+    function CheckPass() {
+        if (pass.length <5 || pass.length >30 ) {
+        errorMessage.textContent = "Your password must be between 5 and 30 characters!";
+        return false; 
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }
     }
-}
 
-function CheckName() {
-
-    name.val(nameTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-    if (nameTrim.length > 25 || nameTrim.length < 2) {
-        errorMessage.textContent = nameText;
-        return false;
-    } else {
-        errorMessage.textContent = "";
-        return true;
-    }  
-}
-
-function CheckCode() {
-
-    code.val(codeTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-    if (codeTrim.length !== 10) {
-        errorMessage.textContent = "Code must have 10 characters";
-        return false;
-    } else {
-        errorMessage.textContent = "";
-        return true;
-    }   
-}
-
-function CheckShoeName() {
-
-    sname.val(snameTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-    if (snameTrim.length > 50 || snameTrim.length < 2) {
-        errorMessage.textContent = snameText;
-        return false;
-    } else {
-        errorMessage.textContent = "";
-        return true;
+    function CheckName() {
+        name.val(nameTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        if (nameTrim.length > 25 || nameTrim.length < 2) {
+            errorMessage.textContent = nameText;
+            return false;
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }  
     }
-}
 
-function CheckShoeDesc() {
-
-    desc.val(descTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-    if (descTrim.length > 200 || descTrim.length < 2) {
-        errorMessage.textContent = "Your shoe description must be between 2 and 200 characters!";
-        return false;
-    } else {
-        errorMessage.textContent = "";
-        return true;
-    }     
-}
-
-function CheckCategory() {
-
-    cat.val(catTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
-    if (catTrim.length > 50 || catTrim.length < 2) {
-        errorMessage.textContent = "Your category name must be between 2 and 50 characters!";
-        return false;
-    } else {
-        errorMessage.textContent = "";
-        return true;
+    function CheckCode() {
+        code.val(codeTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        if (codeTrim.length !== 10) {
+            errorMessage.textContent = "Code must have 10 characters";
+            return false;
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }   
     }
-}
 
-function CheckPrice() {
-
-    if (!priceTrim.match(numberRegex) || !Math.floor(priceTrim) === priceTrim){
-        errorMessage.textContent = "Price can only contain numbers";
-        return false;
-    } else {
-        errorMessage.textContent = "";
-        return true;
+    function CheckShoeName() {
+        sname.val(snameTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        if (snameTrim.length > 50 || snameTrim.length < 2) {
+            errorMessage.textContent = snameText;
+            return false;
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }
     }
-}
 
-function CheckSize() {
-
-    if (!sizeTrim.match(numberRegex) || !Math.floor(sizeTrim) === sizeTrim){
-        errorMessage.textContent = sizeText;
-        return false;
-    } else {
-        errorMessage.textContent = "";
-        return true;
+    function CheckShoeDesc() {
+        desc.val(descTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        if (descTrim.length > 200 || descTrim.length < 2) {
+            errorMessage.textContent = "Your shoe description must be between 2 and 200 characters!";
+            return false;
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }     
     }
-}
 
-function CheckImage() {
-
-    if (image.get(0).files.length !== 0 && (ext !== "png" && ext !== "jpeg" && ext !== "jpg")){
-        errorMessage.textContent = "Extention must be JPEG, PNG or JPG!";
-        return false;
-    } else {
-        errorMessage.textContent = "";
-        return true;
-    }  
-}
-
-function CheckDate() {
-    let parsedIsoDate = moment(date, ['YYYY-MM-DD'], true).format('YYYY-MM-DD');
-    if (parsedIsoDate !== date){
-        errorMessage.textContent = "Invalid date";
-        return false;
-    } else {
-        errorMessage.textContent = "";
-        return true;
+    function CheckCategory() {
+        cat.val(catTrim.replace(/[^a-zA-Z0-9]/g, function(){ return ''; }) );
+        if (catTrim.length > 50 || catTrim.length < 2) {
+            errorMessage.textContent = "Your category name must be between 2 and 50 characters!";
+            return false;
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }
     }
-}
 
-function CheckType() {
-    if (type !== "worker" && type !== "admin") {
-        errorMessage.textContent = "Please select authorization type";    
-        return false;   
+    function CheckPrice() {
+        if (!priceTrim.match(numberRegex) || !Math.floor(priceTrim) === priceTrim){
+            errorMessage.textContent = "Price can only contain numbers";
+            return false;
+        } else if (priceTrim < 1 || priceTrim > 10000) {
+            errorMessage.textContent = "Price must be between 1 and 100000";
+            return false;
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }
     }
-    else {
-        errorMessage.textContent = "";
-        return true;
+
+    function CheckSize() {
+        if (!sizeTrim.match(numberRegex) || !Math.floor(sizeTrim) === sizeTrim){
+            errorMessage.textContent = sizeText;
+            return false;
+        } else if (disc ===  undefined && (sizeTrim < 1 || sizeTrim > 99)) {
+            errorMessage.textContent = "Size must be between 1 and 99";;
+            return false;
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }
     }
-}
+
+    function CheckImage() {
+        if (image.get(0).files.length !== 0 && (ext !== "png" && ext !== "jpeg" && ext !== "jpg")){
+            errorMessage.textContent = "Extention must be JPEG, PNG or JPG!";
+            return false;
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }  
+    }
+
+    function CheckDate() {
+        let parsedIsoDate = moment(date, ['YYYY-MM-DD'], true).format('YYYY-MM-DD');
+        if (parsedIsoDate !== date){
+            errorMessage.textContent = "Invalid date";
+            return false;
+        } else {
+            errorMessage.textContent = "";
+            return true;
+        }
+    }
+
+    function CheckType() {
+        if (type !== "worker" && type !== "admin") {
+            errorMessage.textContent = "Please select authorization type";    
+            return false;   
+        }
+        else {
+            errorMessage.textContent = "";
+            return true;
+        }
+    }
 });
 

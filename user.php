@@ -78,7 +78,7 @@
                     <input id="new_password2" type="password" name="new_password2" placeholder="Confirm New Password">
                     <br>
 
-                    <?php if (in_array("Your passwords do not match", $error_array)) echo "<span style='color:#ff0000;'>Your passwords do not match</span><br>";
+                    <?php if (in_array("Passwords don't match", $error_array)) echo "<span style='color:#ff0000;'>Passwords don't match</span><br>";
                     else if (in_array("Your password can only contain english characters and numbers", $error_array)) echo  "<span style='color:#ff0000;'>Your password can only contain english characters and numbers</span><br>";
                     else if (in_array("Your password must be between 5 and 30 characters", $error_array)) echo "<span style='color:#ff0000;'>Your password must be between 5 and 30 characters</span><br>"; ?>
 

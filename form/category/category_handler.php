@@ -67,11 +67,9 @@
 
                     $newcatname = ucfirst(strtolower(UsersData::sanit($_POST['cat_new']))); ///uklanja HTML elemente, razmake i ostavlja samo prvo slovo veliko
 
-                    //provera duzine naziva kategorije, da li su nazivi isti i da li postoji u bazi
+                    //provera duzine naziva kategorije i da li postoji u bazi
                     if (strlen($newcatname)>50 || strlen($newcatname)<2) {
                         array_push($error_array, "Category name must be between 2 and 50 characters"); 
-                    }  else if ($catname === $newcatname) {
-                        array_push($error_array,"Present and new category name must be different");
                     } else if (!CategoryData::CheckCategory($catname)) {
                         array_push($error_array,"Category name doesn't exist in the database");
                         

@@ -70,7 +70,8 @@
                     else if (in_array("Emails don't match", $error_array)) echo  "<span style='color:#ff0000;'>Emails don't match</span><br>"; ?>
 
                     <select id="reg_type" name="reg_type" required>
-                        <option value="worker" selected>worker</option>
+                        <option value="" selected>-----</option>
+                        <option value="worker">worker</option>
                         <option value="admin">admin</option>
                     </select>
                     <br>
@@ -82,7 +83,7 @@
                     <input id="reg_password2" type="password" name="reg_password2" placeholder="Confirm Password" required>
                     <br>
                 
-                    <?php if (in_array("Your password do not match", $error_array)) echo "<span style='color:#ff0000;'>Your password do not match</span><br>";
+                    <?php if (in_array("Passwords don't match", $error_array)) echo "<span style='color:#ff0000;'>Passwords don't match</span><br>";
                     else if (in_array("Your password can only contain english characters and numbers", $error_array)) echo  "<span style='color:#ff0000;'>Your password can only contain english characters and numbers</span><br>";
                     else if (in_array("Your password must be between 5 and 30 characters", $error_array)) echo "<span style='color:#ff0000;'>Your password must be between 5 and 30 characters</span><br>"; ?>
     

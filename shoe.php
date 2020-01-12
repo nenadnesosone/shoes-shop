@@ -22,11 +22,22 @@
 </head>
 
 <body>
+
+    <?php
+        if (isset($_POST['update_shoe']) || isset($_POST['delete_shoe'])) {
+            echo '
+                <script>
+                $(document).ready(function() {
+                    $("#first").hide();
+                    $("#second").show();
+                });
+                </script>
+            ';
+        }
+    ?>
     
     <?php
-
         require_once 'partials/header.php';
-
     ?>
 
 
@@ -90,9 +101,7 @@
                     <input id="shoe_image" type="file" name="shoe_image" required>
                     <br><br>
 
-                    <?php if (in_array("Your image is too large!", $error_array)) echo  "<span style='color:#ff0000;'>Your image is too large!</span><br>";
-                        else if (in_array("Extention must be JPEG, PNG or JPG!", $error_array)) echo "<span style='color:#ff0000;'>Extention must be JPEG, PNG or JPG!</span><br>";
-                    ?>
+                    <?php if (in_array("Extention must be JPEG, PNG or JPG!", $error_array)) echo "<span style='color:#ff0000;'>Extention must be JPEG, PNG or JPG!</span><br>";?>
 
                     <div style="color:red" class="errorMessageAdd" id="errorMessageAdd"> </div>
 
@@ -156,9 +165,7 @@
                     <input id="image_new" type="file" name="image_new">
                     <br><br>
 
-                    <?php if (in_array("Your image is too large!", $error_array)) echo  "Your image is to large!<br>";
-                        else if (in_array("Extention must be JPEG, PNG or JPG!", $error_array)) echo "Extention must be JPEG, PNG or JPG!<br>";
-                    ?>
+                    <?php if (in_array("Extention must be JPEG, PNG or JPG!", $error_array)) echo "Extention must be JPEG, PNG or JPG!<br>";?>
                    
                     <div style="color:red" class="errorMessage" id="errorMessage"> </div>
                                    

@@ -106,7 +106,7 @@
                     $newpass2 = UsersData::sanit($_POST['new_password2']); //uklanja HTML elemente
 
                     if ($newpass != $newpass2) {
-                        array_push($error_array, "Your passwords do not match");
+                        array_push($error_array, "Passwords don't match");
                     }else if (preg_match('/[^A-Za-z0-9]/', $newpass)) {
                         //lozinka moze da sadrzi samo slova i brojeve
                         array_push($error_array,  "Your password can only contain english characters and numbers");

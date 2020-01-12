@@ -23,7 +23,20 @@
 
 </head>
 
-<body>
+<body>  
+    <?php
+        if (isset($_POST['update_disc']) || isset($_POST['delete_disc'])) {
+            echo '
+                <script>
+                $(document).ready(function() {
+                    $("#first").hide();
+                    $("#second").show();
+                });
+                </script>
+            ';
+        }
+    ?>
+
     
     <?php
         require_once 'partials/header.php';
@@ -62,7 +75,7 @@
                     } ?>" required>
                     <br>
                     <?php if (in_array("Invalid date", $error_array)) echo "<span style='color:#ff0000;'>Invalid date</span><br>"; ?>
-                    <?php if (in_array("End discount date can't start before start discount date", $error_array)) echo "<span style='color:#ff0000;'>End discount date can't start before start discount date</span><br>"; ?>
+                    <?php if (in_array("End discount date can't be before start discount date", $error_array)) echo "<span style='color:#ff0000;'>End discount date can't be before start discount date</span><br>"; ?>
 
                     <input id="shoe_1_adding" type="text" name="shoe_1_adding" placeholder="Add Shoe 1 Code" maxlength="10" value="<?php
                     if (isset($_SESSION['shoe_1_adding'])) {
@@ -72,8 +85,8 @@
                     <?php if (in_array("Code must have 10 characters", $error_array)) echo "<span style='color:#ff0000;'>Code must have 10 characters</span><br>"; ?>
                     <?php if (in_array("Code can only contain english characters and numbers", $error_array)) echo "<span style='color:#ff0000;'>Code can only contain english characters and numbers</span><br>"; ?>
                     <?php if (in_array("Code doesn't exists in the database", $error_array)) echo "<span style='color:#ff0000;'>Code doesn't exists in the database</span><br>"; ?>
-                    <?php if (in_array("Code of Shoe 1 and Shoe 2 must be different", $error_array)) echo "<span style='color:#ff0000;'>Code of Shoe 1 and Shoe 2 must be different</span><br>"; ?>
 
+                    <!--da mogu dva razlicita ili ista para da udju u rasprodaju-->
                     <input id="shoe_2_adding" type="text" name="shoe_2_adding" placeholder="Add Shoe 2 Code" maxlength="10" value="<?php
                     if (isset($_SESSION['shoe_2_adding'])) {
                      echo $_SESSION['shoe_2_adding'];
@@ -82,7 +95,6 @@
                     <?php if (in_array("Code must have 10 characters", $error_array)) echo "<span style='color:#ff0000;'>Code must have 10 characters</span><br>"; ?>
                     <?php if (in_array("Code can only contain english characters and numbers", $error_array)) echo "<span style='color:#ff0000;'>Code can only contain english characters and numbers</span><br>"; ?>
                     <?php if (in_array("Code doesn't exists in the database", $error_array)) echo "<span style='color:#ff0000;'>Code doesn't exists in the database</span><br>"; ?>
-                    <?php if (in_array("Code of Shoe 1 and Shoe 2 must be different", $error_array)) echo "<span style='color:#ff0000;'>Code of Shoe 1 and Shoe 2 must be different</span><br>"; ?>
                     
                     <input id="disc_price_adding" type="number" name="disc_price_adding" placeholder="Add Discount Price" min="1" max="100000" value="<?php
                     if (isset($_SESSION['disc_price_adding'])) {

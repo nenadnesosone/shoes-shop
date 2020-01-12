@@ -21,7 +21,20 @@
 </head>
 
 <body>
-    
+
+
+    <?php
+        if (isset($_POST['update_category']) || isset($_POST['delete_category'])) {
+            echo '
+                <script>
+                $(document).ready(function() {
+                    $("#first").hide();
+                    $("#second").show();
+                });
+                </script>
+            ';
+        }
+    ?>
     <?php
         require_once 'partials/header.php';
     ?>
@@ -67,7 +80,6 @@
                     <br>
                     <?php if (in_array("Category name doesn't exist in the database", $error_array)) echo "<span style='color:#ff0000;'>Category name doesn't exist in the database</span><br>"; ?>
                     <?php if (in_array("Category name must be between 2 and 50 characters", $error_array)) echo "<span style='color:#ff0000;'>Category name must be between 2 and 50 characters</span><br>"; ?>
-                    <?php if (in_array("Present and new category name must be different", $error_array)) echo "<span style='color:#ff0000;'>Present and new category name must be different</span><br>"; ?>
 
                     <div style="color:red" class="errorMessage" id="errorMessage"> </div>
                                    

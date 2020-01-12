@@ -112,10 +112,6 @@
                 //proveravamo da li je fajl prazan
                 if($file_size == 0) {
                     $uploadOK = 0;
-                // proveravamo da li je slika odgovarajuce velicine
-                }else if($file_size > 10240){
-                    array_push($error_array,"Your image is too large!");
-                    $uploadOK = 0;
                 // proveravamo da li je extenzija dobra
                 }else if(in_array($file_ext, $exts) === false){
                     array_push($error_array,"Extention must be JPEG, PNG or JPG!");
@@ -309,10 +305,6 @@
                     
                     //proveravamo da li je fajl prazan
                     if($file_size == 0) {
-                        $uploadOK = 0;
-                    // proveravamo da li je slika odgovarajuce velicine
-                    }else if($file_size > 10240){
-                        array_push($error_array,"Your image is too large!");
                         $uploadOK = 0;
                     // proveravamo da li je extenzija dobra
                     }else if(in_array($file_ext, $exts) === false){

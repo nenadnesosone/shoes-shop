@@ -62,7 +62,7 @@
             else if (!DiscountData::ValDate($edate, $format = 'Y-m-d') > 0) {
                 array_push($error_array, "Invalid date");
             }else if ($sdate > $edate){
-                array_push($error_array, "End discount date can't start before start discount date");
+                array_push($error_array, "End discount date can't be before start discount date");
             }
 
             //code moze da sadrzi samo slova i brojeve i mora da ima tacno 10 karaktera i da postoji u bazi
@@ -259,10 +259,6 @@
                         array_push($error_array,  "Code can only contain english characters and numbers");
                     } else if (!ShoesData::CheckCode($newshoe2)){
                         array_push($error_array,  "Code doesn't exists in the database");
-                    }
-                    // moraju biti razlicite cipele
-                    else if (ShoesData::GetOneShoe($newshoe2)['shoe_id'] === $shoe1){
-                        array_push($error_array,  "Code of Shoe 1 and Shoe 2 must be different");
                     } else {
             
                     $shoe2 = ShoesData::GetOneShoe($newshoe2)['shoe_id'];
