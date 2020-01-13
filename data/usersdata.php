@@ -67,6 +67,9 @@ class UsersData{
                 $udate = $row['updated_at'];
                 $cid = $row['created_by'];
                 $uid = $row['updated_by'];
+
+                $cid = UsersData::GetOneUser($cid)['first_name'];
+                $uid = UsersData::GetOneUser($uid)['first_name'];
    
                 // formatiranje datuma
                 $cdate = date("d/m/Y", strtotime($cdate));

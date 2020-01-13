@@ -12,13 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shoes Shop</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Kelly+Slab&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Forum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" >
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" ></script>
     <link rel="stylesheet" href="css/main.css">
 
 
@@ -29,56 +31,63 @@
     <?php
         require_once 'partials/header.php';
     ?>
-
-    <div class="container m-auto col-md-6" id="click">
-        <div class="row ">
-            <input id="cat_button" type="button" name="cat_button" value="Sort By Category" class="btn-primary">
-            <input id="name_button" type="button" name="name_button" value="Sort By Name" class="btn-primary">
-            <input id="price_button" type="button" name="price_button" value="Sort By Price" class="btn-primary">
-            <input id="all_button" type="button" name="all_button" value="All Shoes" class="btn-primary">
-            <input id="disc_button" type="button" name="disc_button" value="Discounts"class="btn-primary" >
-        </div>
-    </div>
-
-    <div class="container m-auto" id="category">
+<div class="container m-auto">
         <div class="row">
-                <?php
-                    ShoesData::SortShoesCategory();
-                ?>
+            <div class='table-responsive'>
+                    <table class="table table-primary table-bordered table-striped table-hover text-center dataTable" id="allShoes">
+                        <caption class='text-center'>All Shoes:</caption>
+                        <thead>
+                            <tr>
+                                <th>Shoe Id</th><th>Code</th><th>Shoe Name</th><th>Description</th><th>Price In Dinars</th><th>Size</th><th>Category</th><th>Image</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
+                            </tr>
+                        </thead>
+                    </table>
+            </div>
         </div>
-    </div>
+</div>
 
-    <div class="container m-auto" id="shoes_name">
-        <div class="row">
-                <?php
-                    ShoesData::SortShoesName();
-                ?>
-        </div>
-    </div>
 
-    <div class="container m-auto" id="shoes_price">
-        <div class="row">
-                <?php
-                    ShoesData::SortShoesPrice();
-                ?>
-        </div>
-    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajax({
+            url: 'http://localhost/shoes-shop/shoes',
+            contentType: 'json',
+            method: 'GET',
+            success: function(data) {
+                    $("#allShoes").dataTable({
+                        data: data,
+                        columns: [
+                            {'data': 'shoe_id'},
+                            {'data': 'code'},
+                            {'data': 'shoe_name'},
+                            {'data': 'description'},
+                            {'data': 'price',
+                                'render': function (data) {
+                                    return  + data + ',00';
+                                    }
+                            },
+                            {'data': 'size'},
+                            {'data': 'category_id'},
+                            {'data': 'image',
+                                'render': function (data) {
+                                    return '<img alt="no_image" src="' + data + '" "width="100" height="100" id="image"/>';
+                                    }
+                            },
+                            {'data': 'created_by'},
+                            {'data': 'created_at'},
+                            {'data': 'updated_by'},
+                            {'data': 'updated_at'}
+                        ]
+                       
 
-    <div class="container m-auto" id="all">
-        <div class="row">
-                <?php
-                    ShoesData::GetAllShoes();
-                ?>
-        </div>
-    </div>
+                    });
 
-    <div class="container m-auto" id="disc">
-        <div class="row">
-                <?php
-                    DiscountData::GetAllDiscounts();
-                ?>
-        </div>
-    </div>
+                }
+        })
+    });
+
+    </script>
+
 
     <script src="js/main.js" type="text/javascript"></script>
 

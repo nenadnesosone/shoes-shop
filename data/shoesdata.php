@@ -55,209 +55,21 @@ class ShoesData{
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {
             
-            uptable();
-            downtable();
-
+            $data = [];
             while ($row = mysqli_fetch_assoc($result)){
-                $shoeid = $row['shoe_id'];
-                $code = $row['code'];
-                $sname = $row['shoe_name'];
-                $desc = $row['description'];
-                $price = $row['price'];
-                $size = $row['size'];
-                $image = $row['image'];
-                $catid = $row['category_id'];
-                $cid = $row['created_by'];
-                $cdate = $row['created_at'];
-                $uid = $row['updated_by'];
-                $udate = $row['updated_at'];
-
-                $catname = CategoryData::GetCategory($catid)['category_name'];
-                $cname = UsersData::GetOneUser($cid)['first_name'];
-                $uname = UsersData::GetOneUser($uid)['first_name'];
-                $cdate = date("d/m/Y", strtotime($cdate));
-                if ($udate !== NULL){
-                    $udate = date("d/m/Y", strtotime($udate));
-                }
-
-                echo "<tr>
-                        <td>$shoeid</td><td>$code</td><td>$sname</td><td>$desc</td><td>$price,00</td><td>$size</td><td>$catname</td><td>
-                        <img alt='no_image' src='$image' width='100' height='100' />
-                        </td><td>$cname</td><td>$cdate</td><td>$uname</td><td>$udate</td>
-                    </tr>";
                 
-            }
-
-            echo "</table>
-            </div>";
-
-        } else {
-            echo "<p class='lead text-white'>We have sold out all shoes!</p>";
-        }
-    }
-
-    // funcija koja ce prikupljati podatke o svim cipelama iz baze sortirane po kategorijama
-    public static function SortShoesCategory()
-    {
-        //povezujemo se s bazom
-        $db = Database::getInstance()->getConnection();
-        ///odaberemo sve koji nisu obrisani, posto se obrisani nece prikazivani na frontendu
-        $query = "SELECT * FROM shoes WHERE deleted = 0 ORDER BY category_id asc";
-
-        $result = mysqli_query($db, $query);
-        
-        $num_rows = mysqli_num_rows($result);
-        if ($num_rows > 0) {
-            
-            uptable();
-            echo "Sorted By Category";
-            downtable();
-
-            while ($row = mysqli_fetch_assoc($result)){
-                $shoeid = $row['shoe_id'];
-                $code = $row['code'];
-                $sname = $row['shoe_name'];
-                $desc = $row['description'];
-                $price = $row['price'];
-                $size = $row['size'];
-                $image = $row['image'];
-                $catid = $row['category_id'];
-                $cid = $row['created_by'];
-                $cdate = $row['created_at'];
-                $uid = $row['updated_by'];
-                $udate = $row['updated_at'];
-
-                $catname = CategoryData::GetCategory($catid)['category_name'];
-                $cname = UsersData::GetOneUser($cid)['first_name'];
-                $uname = UsersData::GetOneUser($uid)['first_name'];
-                $cdate = date("d/m/Y", strtotime($cdate));
-                if ($udate !== NULL){
-                    $udate = date("d/m/Y", strtotime($udate));
+                $row['category_id'] = CategoryData::GetCategory($row['category_id'])['category_name'];
+                $row['created_by'] = UsersData::GetOneUser($row['created_by'])['first_name'];
+                $row['updated_by'] = UsersData::GetOneUser($row['updated_by'])['first_name'];
+                $row['created_at'] = date("d/m/Y", strtotime($row['created_at']));
+                if ($row['updated_at'] !== NULL) {
+                    $row['updated_at'] = date("d/m/Y", strtotime($row['updated_at']));
                 }
-
-                echo "<tr>
-                        <td>$shoeid</td><td>$code</td><td>$sname</td><td>$desc</td><td>$price,00</td><td>$size</td><td>$catname</td><td>
-                        <img alt='no_image' src='$image' width='100' height='100' />
-                        </td><td>$cname</td><td>$cdate</td><td>$uname</td><td>$udate</td>
-                    </tr>";
-                
+                $data[] = $row;
             }
-
-            echo "</table>
-            </div>";
-
+            return $data;
         } else {
-            echo "<p class='lead text-white'>We have sold out all shoes!</p>";
-        }
-    }
-
-    // funcija koja ce prikupljati podatke o svim cipelama iz baze sortirane po nazivu
-    public static function SortShoesName()
-    {
-        //povezujemo se s bazom
-        $db = Database::getInstance()->getConnection();
-        ///odaberemo sve koji nisu obrisani, posto se obrisani nece prikazivani na frontendu
-        $query = "SELECT * FROM shoes WHERE deleted = 0 ORDER BY shoe_name asc";
-
-        $result = mysqli_query($db, $query);
-        
-        $num_rows = mysqli_num_rows($result);
-        if ($num_rows > 0) {
-            
-            uptable();
-            echo "Sorted By Name";
-            downtable();
-
-            while ($row = mysqli_fetch_assoc($result)){
-                $shoeid = $row['shoe_id'];
-                $code = $row['code'];
-                $sname = $row['shoe_name'];
-                $desc = $row['description'];
-                $price = $row['price'];
-                $size = $row['size'];
-                $image = $row['image'];
-                $catid = $row['category_id'];
-                $cid = $row['created_by'];
-                $cdate = $row['created_at'];
-                $uid = $row['updated_by'];
-                $udate = $row['updated_at'];
-
-                $catname = CategoryData::GetCategory($catid)['category_name'];
-                $cname = UsersData::GetOneUser($cid)['first_name'];
-                $uname = UsersData::GetOneUser($uid)['first_name'];
-                $cdate = date("d/m/Y", strtotime($cdate));
-                if ($udate !== NULL){
-                    $udate = date("d/m/Y", strtotime($udate));
-                }
-
-                echo "<tr>
-                        <td>$shoeid</td><td>$code</td><td>$sname</td><td>$desc</td><td>$price,00</td><td>$size</td><td>$catname</td><td>
-                        <img alt='no_image' src='$image' width='100' height='100' />
-                        </td><td>$cname</td><td>$cdate</td><td>$uname</td><td>$udate</td>
-                    </tr>";
-                
-            }
-
-            echo "</table>
-            </div>";
-
-        } else {
-            echo "<p class='lead text-white'>We have sold out all shoes!</p>";
-        }
-    }
-
-    // funcija koja ce prikupljati podatke o svim cipelama iz baze sortirane po ceni
-    public static function SortShoesPrice()
-    {
-        //povezujemo se s bazom
-        $db = Database::getInstance()->getConnection();
-        ///odaberemo sve koji nisu obrisani, posto se obrisani nece prikazivani na frontendu
-        $query = "SELECT * FROM shoes WHERE deleted = 0 ORDER BY price asc";
-
-        $result = mysqli_query($db, $query);
-        
-        $num_rows = mysqli_num_rows($result);
-        if ($num_rows > 0) {
-            
-            uptable();
-            echo "Sorted by Price";
-            downtable();
-
-            while ($row = mysqli_fetch_assoc($result)){
-                $shoeid = $row['shoe_id'];
-                $code = $row['code'];
-                $sname = $row['shoe_name'];
-                $desc = $row['description'];
-                $price = $row['price'];
-                $size = $row['size'];
-                $image = $row['image'];
-                $catid = $row['category_id'];
-                $cid = $row['created_by'];
-                $cdate = $row['created_at'];
-                $uid = $row['updated_by'];
-                $udate = $row['updated_at'];
-
-                $catname = CategoryData::GetCategory($catid)['category_name'];
-                $cname = UsersData::GetOneUser($cid)['first_name'];
-                $uname = UsersData::GetOneUser($uid)['first_name'];
-                $cdate = date("d/m/Y", strtotime($cdate));
-                if ($udate !== NULL){
-                    $udate = date("d/m/Y", strtotime($udate));
-                }
-
-                echo "<tr>
-                        <td>$shoeid</td><td>$code</td><td>$sname</td><td>$desc</td><td>$price,00</td><td>$size</td><td>$catname</td><td>
-                        <img alt='no_image' src='$image' width='100' height='100' />
-                        </td><td>$cname</td><td>$cdate</td><td>$uname</td><td>$udate</td>
-                    </tr>";
-                
-            }
-
-            echo "</table>
-            </div>";
-
-        } else {
-            echo "<p class='lead text-white'>We have sold out all shoes!</p>";
+            return [];
         }
     }
 
@@ -397,23 +209,6 @@ class ShoesData{
         }
 
     }
-}
-
-
-// za prikazivanje tabele
-function uptable()
-{
-    echo "<div class='table-responsive'>
-            <table class='table table-primary table-bordered table-striped table-hover text-center'>
-                <caption class='text-center'>All Shoes ";
-}
-// za prikazivanje tabele
-function downtable()
-{
-    echo "                          :</caption>
-                <tr>
-                    <th>Shoe Id</th><th>Code</th><th>Shoe Name</th><th>Description</th><th>Price In Dinars</th><th>Size</th><th>Category</th><th>Image</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
-                </tr>";
 }
 
 

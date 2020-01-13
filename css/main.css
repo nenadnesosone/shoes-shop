@@ -69,9 +69,11 @@ input[type="button"] {
     border-radius: 3px;
     margin: 5px 15px 15px 0;
     padding: 5px 10px 5px 10px;
-    color: #EDEDED;
+    color: blueviolet;
     text-shadow: #5c5656 0.5px 0.5px 0;
     border: none;
     font-family: Kelly Slab, cursive;
     font-size: 1.2rem;
+
 }
+
