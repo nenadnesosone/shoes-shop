@@ -1,54 +1,33 @@
 $(document).ready(function() {
+    $.ajax({
+        url: 'http://localhost/shoes-shop/shoes',
+        contentType: 'json',
+        method: 'GET',
+        success: function(data) {
+                $("#allShoes").dataTable({
+                    data: data,
+                    columns: [
+                        {'data': 'code'},
+                        {'data': 'shoe_name'},
+                        {'data': 'description'},
+                        {'data': 'price',
+                            'render': function (data) {
+                                return  + data + ',00';
+                                }
+                        },
+                        {'data': 'size'},
+                        {'data': 'category_id'},
+                        {'data': 'image',
+                            'render': function (data) {
+                                return '<img alt="no_image" src="' + data + '" "width="100" height="100" id="image"/>';
+                                }
+                        }
+                       
+                    ]
+                   
 
-    // prikazuje sve cipele nesortirane
-    $("#category").hide();
-    $("#shoes_name").hide();
-    $("#shoes_price").hide();
-    $("#all").show();
-    $("#disc").hide();
+                });
 
-    // prikazuje sve cipele sortirane po kategoriji
-    $("#cat_button").click(function() {
-        $("#category").show();
-        $("#shoes_name").hide();
-        $("#shoes_price").hide();
-        $("#all").hide();
-        $("#disc").hide();
-    });
-
-    // prikazuje sve cipele sortirane po nazivu
-    $("#name_button").click(function() {
-        $("#category").hide();
-        $("#shoes_name").show();
-        $("#shoes_price").hide();
-        $("#all").hide();
-        $("#disc").hide();
-    });
-
-    // prikazuje sve cipele sortirane po ceni
-    $("#price_button").click(function() {
-        $("#category").hide();
-        $("#shoes_name").hide();
-        $("#shoes_price").show();
-        $("#all").hide();
-        $("#disc").hide();
-    });
-
-    // prikazuje sve cipele nesortirane
-    $("#all_button").click(function() {
-        $("#category").hide();
-        $("#shoes_name").hide();
-        $("#shoes_price").hide();
-        $("#all").show();
-        $("#disc").hide();
-    });
-
-    // prikazuje sve rasprodaje
-    $("#disc_button").click(function() {
-        $("#category").hide();
-        $("#shoes_name").hide();
-        $("#shoes_price").hide();
-        $("#all").hide();
-        $("#disc").show();
-    });
+            }
+    })
 });

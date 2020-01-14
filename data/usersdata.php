@@ -45,8 +45,8 @@ class UsersData{
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();
-        ///odaberemo sve koji nisu obrisani, posto se obrisani nece prikazivani na frontendu
-        $query = "SELECT * FROM users WHERE deleted = 0";
+        ///odaberemo sve
+        $query = "SELECT * FROM users";
 
         $result = mysqli_query($db, $query);
         $num_rows = mysqli_num_rows($result);
@@ -65,21 +65,27 @@ class UsersData{
                 $type = $row['type'];
                 $cdate = $row['created_at'];
                 $udate = $row['updated_at'];
+                $ddate = $row['deleted_at'];
                 $cid = $row['created_by'];
                 $uid = $row['updated_by'];
+                $did = $row['deleted_by'];
 
                 $cid = UsersData::GetOneUser($cid)['first_name'];
                 $uid = UsersData::GetOneUser($uid)['first_name'];
-   
+                $did = UsersData::GetOneUser($did)['first_name'];
+
                 // formatiranje datuma
                 $cdate = date("d/m/Y", strtotime($cdate));
                 if ($udate !== NULL){
                     $udate = date("d/m/Y", strtotime($udate));
                 }
+                if ($ddate !== NULL){
+                    $ddate = date("d/m/Y", strtotime($ddate));
+                }
 
                 echo "<tr>
                         <td>$usersid</td><td>$fname</td><td>$lname</td><td>$email</td><td>$pass</td><td>$type</td><td>$cid</td>
-                        <td>$cdate</td><td>$uid</td><td>$udate</td>
+                        <td>$cdate</td><td>$uid</td><td>$udate</td><td>$did</td><td>$ddate</td>
                     </tr>";
                 
             }
@@ -262,7 +268,7 @@ function downuser()
 {
     echo "                          :</caption>
                 <tr>
-                    <th>User Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Password Hash</th><th>Type</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
+                    <th>User Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Password Hash</th><th>Type</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th><th>Deleted By</th><th>Deleted At</th>
                 </tr>";
 }
 

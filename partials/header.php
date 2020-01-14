@@ -32,7 +32,7 @@
         } else {
                     echo
                     '<li class="nav-item">
-                    <a href="main.php" class="nav-link" >'. $_SESSION['type'] . ' '. $_SESSION['fname'] .' </a>
+                    <a href="main.php" class="nav-link" >'. $_SESSION['type'] . ' '. $_SESSION['fname'] . ' '. $_SESSION['lname'] .  '</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -41,13 +41,16 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="shoe.php">Shoe</a>
                             <a class="dropdown-item" href="category.php">Category</a>
-                            <a class="dropdown-item" href="discount.php">Discount</a>';
+                            <a class="dropdown-item" href="discount.php">Discount</a>
+                            <a class="dropdown-item" href="allshoes.php">Show all shoes</a>
+                            <a class="dropdown-item" href="alldiscounts.php">Show all discounts</a>
+                            <a class="dropdown-item" href="allcategory\'s.php">Show all category\'s</a>';
                             if(($_SESSION['type'] == 'admin')){
                                 echo   
-                            '<a class="dropdown-item" href="register.php">Add user</a>
-                            <a class="dropdown-item" href="allusers.php">Show all users</a>
-                            <div class="dropdown-divider"></div>
+                            '<a class="dropdown-item" href="allusers.php">Show all users</a>
+                            <a class="dropdown-item" href="register.php">Add user</a>
                             <a class="dropdown-item" href="user.php">Update/Delete user</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="signout.php">Sign Out</a>
                         </div>
                     </li>
@@ -57,8 +60,8 @@
     </nav>';
                     } else {
                         echo
-                        '<div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="user.php">Update/Delete user</a>
+                        '<a class="dropdown-item" href="user.php">Update/Delete user</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="signout.php">Sign Out</a>
                         </div>
                     </li>

@@ -17,7 +17,7 @@
                 $_SESSION['usersid'] = $row['users_id'];
                 $_SESSION['fname'] = $row['first_name'];
                 $_SESSION['type'] = $row['type'];
-
+                $_SESSION['lname'] = $row['last_name'];
                 header("Location: main.php");
                 
                 //$_SESSION['log_email'] = "";

@@ -47,8 +47,8 @@ class ShoesData{
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();
-        ///odaberemo sve koji nisu obrisani, posto se obrisani nece prikazivani na frontendu
-        $query = "SELECT * FROM shoes WHERE deleted = 0";
+        ///odaberemo sve
+        $query = "SELECT * FROM shoes";
 
         $result = mysqli_query($db, $query);
         
@@ -61,10 +61,16 @@ class ShoesData{
                 $row['category_id'] = CategoryData::GetCategory($row['category_id'])['category_name'];
                 $row['created_by'] = UsersData::GetOneUser($row['created_by'])['first_name'];
                 $row['updated_by'] = UsersData::GetOneUser($row['updated_by'])['first_name'];
+                $row['deleted_by'] = UsersData::GetOneUser($row['deleted_by'])['first_name'];
                 $row['created_at'] = date("d/m/Y", strtotime($row['created_at']));
+
                 if ($row['updated_at'] !== NULL) {
                     $row['updated_at'] = date("d/m/Y", strtotime($row['updated_at']));
                 }
+                if ($row['deleted_at'] !== NULL) {
+                    $row['deleted_at'] = date("d/m/Y", strtotime($row['deleted_at']));
+                }
+                
                 $data[] = $row;
             }
             return $data;

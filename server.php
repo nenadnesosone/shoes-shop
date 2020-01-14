@@ -55,22 +55,26 @@ if (!in_array($method, $supported_methods)) {
 
                     $response->status = 200;
                 } else {
-                    if ($url_parts_counter == 1 and $url_parts[1] == "discounts") {
+                    if ($url_parts_counter == 1 and $url_parts[1] == "category's") {
 
-                        $response->data = DiscountData::GetAllDiscounts();
+                        $response->data = CategoryData::GetAllCategorys();
                         $response->status = 200;
                     } else {
+                        if ($url_parts_counter == 1 and $url_parts[1] == "discounts") {
 
-                        if ($url_parts_counter == 1 and $url_parts[1] == "users") {
-
-                            $$response->data = UsersData::GetAllUsers();
+                            $response->data = DiscountData::GetAllDiscounts();
                             $response->status = 200;
-
                         } else {
-                                $response->status = 400;
-                                $response->data = NULL;
-                            }
-                        
+                            if ($url_parts_counter == 1 and $url_parts[1] == "users") {
+
+                                $$response->data = UsersData::GetAllUsers();
+                                $response->status = 200;
+
+                            } else {
+                                    $response->status = 400;
+                                    $response->data = NULL;
+                                }
+                        }
                     }
                 }
                 break;

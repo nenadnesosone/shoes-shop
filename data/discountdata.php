@@ -47,58 +47,41 @@ class DiscountData{
    {
        //povezujemo se s bazom
        $db = Database::getInstance()->getConnection();
-       ///odaberemo sve koji nisu obrisani, posto se obrisani nece prikazivani na frontendu
-       $query = "SELECT * FROM discount WHERE deleted = 0";
+       ///odaberemo sve 
+       $query = "SELECT * FROM discount";
 
        $result = mysqli_query($db, $query);
        $num_rows = mysqli_num_rows($result);
        if ($num_rows > 0) {
             
-        updisc();
-        downdisc();
+        $data = [];
+        while ($row = mysqli_fetch_assoc($result))
+        {
 
-        while ($row = mysqli_fetch_assoc($result)){
+            $row['start_date'] = date("d/m/Y", strtotime($row['start_date']));
+            $row['end_date'] = date("d/m/Y", strtotime($row['end_date']));
+            $row['shoe_1'] = ShoesData::GetShoe($row['shoe_1'])['shoe_name'];
+            $row['shoe_2'] = ShoesData::GetShoe($row['shoe_2'])['shoe_name'];
+            $cid = $row['created_by'] = UsersData::GetOneUser( $cid = $row['created_by'])['first_name'];
+            $uid = $row['updated_by'] = UsersData::GetOneUser($uid = $row['updated_by'])['first_name'];
+            $did = $row['deleted_by'] = UsersData::GetOneUser( $did = $row['deleted_by'])['first_name'];
 
-
-            $discid = $row['discount_id'];
-            $dname = $row['discount_name'];
-            $sdate = $row['start_date'];
-            $edate = $row['end_date'];
-            $shoe1 = $row['shoe_1'];
-            $shoe2 = $row['shoe_2'];
-            $dprice = $row['price'];
-            $cdate = $row['created_at'];
-            $udate = $row['updated_at'];
-            $cid = $row['created_by'];
-            $uid = $row['updated_by'];
-        
-            $sdate = date("d/m/Y", strtotime($sdate));
-            $edate = date("d/m/Y", strtotime($edate));
-            $sname1 = ShoesData::GetShoe($shoe1)['shoe_name'];
-            $sname2 = ShoesData::GetShoe($shoe2)['shoe_name'];
-            $simage1 = ShoesData::GetShoe($shoe1)['image'];
-            $simage2 = ShoesData::GetShoe($shoe2)['image'];
-            $cname = UsersData::GetOneUser($cid)['first_name'];
-            $uname = UsersData::GetOneUser($uid)['first_name'];
-            $cdate = date("d/m/Y", strtotime($cdate));
-            if ($udate !== NULL){
-                $udate = date("d/m/Y", strtotime($udate));
+            $row['created_at'] = date("d/m/Y", strtotime($row['created_at']));
+            if ($row['updated_at'] !== NULL){
+                $row['updated_at'] = date("d/m/Y", strtotime($row['updated_at']));
+            }
+            if ($row['deleted_at'] !== NULL){
+                $row['deleted_at'] = date("d/m/Y", strtotime($row['deleted_at']));
             }
 
-            echo "<tr>
-                    <td>$discid</td><td>$dname</td><td>$sdate</td><td>$edate</td>
-                    <td>$sname1</td><td><img alt='no_image' src='$simage1' width='100' height='100'/></td>
-                    <td>$sname2</td><td><img alt='no_image' src='$simage2' width='100' height='100'/></td>
-                    <td>$dprice,00</td><td>$cname</td><td>$cdate</td><td>$uname</td><td>$udate</td>
-                </tr>";
+            $data[] = $row;
             
         }
 
-        echo "</table>
-        </div>";
+        return $data;
 
     } else {
-        echo "<p class='lead text-white'>We have sold out all shoes on discount!</p>";
+        return [];
     }
    }
 
@@ -246,20 +229,5 @@ class DiscountData{
 
 }
 
-    // za prikazivanje tabele
-    function updisc()
-    {
-        echo "<div class='table-responsive'>
-                <table class='table table-primary table-bordered table-striped table-hover text-center'>
-                    <caption class='text-center'>All Discounts ";
-    }
-    // za prikazivanje tabele
-    function downdisc()
-    {
-        echo "                          :</caption>
-                    <tr>
-                        <th>Discount Id</th><th>Discount Name</th><th>Start Date Of Discount</th><th>End Date Of Discount</th><th>Discounted Shoe 1</th><th>Discounted Shoe 1 Image</th><th>Discounted Shoe 2</th><th>Discounted Shoe 2 Image</th><th>Price In Dinars</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
-                    </tr>";
-    }
 
 ?>
