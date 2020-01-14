@@ -33,7 +33,7 @@
     <div class="container m-auto">
         <div class="row">
             <div class='table-responsive'>
-                    <table class='table table-primary table-bordered table-striped table-hover text-center' id="allDiscounts">
+                    <table class='table table-primary table-bordered table-striped table-hover text-center dataTable' id="allDiscounts">
                         <caption class='text-center'>All Discounts:</caption>
                         <thead>
                             <tr>

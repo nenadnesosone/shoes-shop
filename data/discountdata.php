@@ -229,5 +229,20 @@ class DiscountData{
 
 }
 
+// za prikazivanje tabele
+function updisc()
+{
+    echo "<div class='table-responsive'>
+            <table class='table table-primary table-bordered table-striped table-hover text-center'>
+                <caption class='text-center'>All Discounts ";
+}
+// za prikazivanje tabele
+function downdisc()
+{
+    echo "                          :</caption>
+                <tr>
+                    <th>Discount Id</th><th>Discount Name</th><th>Start Date Of Discount</th><th>End Date Of Discount</th><th>Discounted Shoe 1</th><th>Discounted Shoe 1 Image</th><th>Discounted Shoe 2</th><th>Discounted Shoe 2 Image</th><th>Price In Dinars</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th>
+                </tr>";
+}
 
 ?>
