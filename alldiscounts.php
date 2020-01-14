@@ -1,6 +1,5 @@
 <?php
     require_once 'config/config.php';
-    require_once 'data/discountdata.php';
 ?>
 
 <!DOCTYPE html>

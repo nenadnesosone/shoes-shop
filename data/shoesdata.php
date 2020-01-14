@@ -193,28 +193,6 @@ class ShoesData{
             return false;
         }
     }
-
-    //provera da li je soft-deleted 
-    public static function CheckDeleted($code)
-    {
-        //povezujemo se s bazom
-        $db = Database::getInstance()->getConnection();
-
-        // ovaj deo koda je osetljiv na SQL Injection napade posto korisnik moze da ukuca code, ali smo ga prethodno ocistili
-
-        // odaberemo konkretan usersid
-        $query = "SELECT * FROM shoes WHERE code = '$code' AND deleted = 0";
-
-        $result = mysqli_query($db, $query);
-        $num_rows = mysqli_num_rows($result);
-        //ako ima vise redova od 0 postoji u bazi
-        if ($num_rows > 0) {
-            return true;
-        } else{
-            return false;
-        }
-
-    }
 }
 
 

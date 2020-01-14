@@ -182,28 +182,6 @@ class CategoryData{
     
     }
 
-    //provera da li je soft-deleted 
-    public static function CheckDeleted($catname)
-    {
-        //povezujemo se s bazom
-        $db = Database::getInstance()->getConnection();
-
-        // ovaj deo koda je osetljiv na SQL Injection napade posto korisnik moze da ukuca catname, ali smo ga prethodno ocistili
-
-        // odaberemo konkretan catname
-        $query = "SELECT * FROM category WHERE category_name = '$catname' AND deleted = 0";
-
-        $result = mysqli_query($db, $query);
-        $num_rows = mysqli_num_rows($result);
-        //ako ima vise redova od 0 postoji u bazi
-        if ($num_rows > 0) {
-            return true;
-        } else{
-            return false;
-        }
-
-    }
-
 }
 
 

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     //
     let errorMessage = document.querySelector('#errorMessage');
-    let [email, pass, passTrim, pass1, pass2, name, nameTrim, code, codeTrim, sname, snameTrim, desc, cat, catTrim, price, priceTrim, size, type, ext, image, start, newStart, newEnd, disc, parsedIsoDate] = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
+    let [email, pass, passTrim, pass1, pass2, name, nameTrim, code, codeTrim, sname, snameTrim, desc, cat, catTrim, price, priceTrim, size, type, ext, image, start, newStart, newEnd, disc, parsedIsoDate] = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
     let fnameText = "Your first name must be between 2 and 25 characters!";
     let lnameText = "Your last name must be between 2 and 25 characters!";
     let snameText = "Your shoe name must be between 2 and 50 characters!";
@@ -472,7 +472,7 @@ $(document).ready(function() {
 
     $('#shoe_new').keyup(function() {
         sname = $('#shoe_new');
-        snameTrim = $sname.val().trim();
+        snameTrim = sname.val().trim();
         snameText = snameText;
         errorMessage = document.querySelector('#errorMessage');
         CheckShoeName();
