@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>All Category's</title>
+    <title>All Categories</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -33,8 +33,8 @@
     <div class="container m-auto">
         <div class="row">
         <div class='table-responsive'>
-                <table class='table table-primary table-bordered table-striped table-hover text-center' id="allCategory">
-                    <caption class='text-center'>All Category's:</caption>
+                <table class='table table-primary table-bordered table-striped table-hover text-center' id="allCategories">
+                    <caption class='text-center'>All Categories:</caption>
                     <thead>
                         <tr>
                             <th>Category Id</th><th>Category Name</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th><th>Deleted By</th><th>Deleted At</th>
@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <script src="js/allcategory's.js" type="text/javascript"></script>
+    <script src="js/allcategories.js" type="text/javascript"></script>
     <?php
         require_once 'partials/footer.php';
     ?>

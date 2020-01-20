@@ -44,7 +44,7 @@
                             <a class="dropdown-item" href="discount.php">Discount</a>
                             <a class="dropdown-item" href="allshoes.php">Show all shoes</a>
                             <a class="dropdown-item" href="alldiscounts.php">Show all discounts</a>
-                            <a class="dropdown-item" href="allcategory\'s.php">Show all category\'s</a>';
+                            <a class="dropdown-item" href="allcategories.php">Show all categories</a>';
                             if(($_SESSION['type'] == 'admin')){
                                 echo   
                             '<a class="dropdown-item" href="allusers.php">Show all users</a>

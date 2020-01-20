@@ -31,7 +31,7 @@ class CategoryData{
     }
 
     // funcija koja ce prikupljati podatke o svim kategorijama iz baze
-    public static function GetAllCategorys()
+    public static function GetAllCategories()
     {
         //povezujemo se s bazom
         $db = Database::getInstance()->getConnection();

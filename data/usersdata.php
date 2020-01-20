@@ -52,7 +52,12 @@ class UsersData{
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {
             
-            userTable();
+            echo "<div class='table-responsive'>
+            <table class='table table-primary table-bordered table-striped table-hover text-center'>
+                <caption class='text-center'>All Users:</caption>
+                <tr>
+                    <th>User Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Password Hash</th><th>Type</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th><th>Deleted By</th><th>Deleted At</th>
+                </tr>";
 
             while ($row = mysqli_fetch_assoc($result)){
 
@@ -255,15 +260,5 @@ class UsersData{
     }
 }
 
-// za prikazivanje tabele
-function userTable()
-{
-    echo "<div class='table-responsive'>
-            <table class='table table-primary table-bordered table-striped table-hover text-center'>
-                <caption class='text-center'>All Users:</caption>
-                <tr>
-                    <th>User Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Password Hash</th><th>Type</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th><th>Deleted By</th><th>Deleted At</th>
-                </tr>";
-}
 
 ?>

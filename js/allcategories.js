@@ -1,10 +1,10 @@
 $(document).ready(function() {
     $.ajax({
-        url: 'http://localhost/shoes-shop/category\'s',
+        url: 'http://localhost/shoes-shop/categories',
         contentType: 'json',
         method: 'GET',
         success: function(data) {
-                $("#allCategory").dataTable({
+                $("#allCategories").dataTable({
                     data: data,
                     columns: [
                         {'data': 'category_id'},

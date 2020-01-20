@@ -55,9 +55,9 @@ if (!in_array($method, $supported_methods)) {
 
                     $response->status = 200;
                 } else {
-                    if ($url_parts_counter == 1 and $url_parts[1] == "category's") {
+                    if ($url_parts_counter == 1 and $url_parts[1] == "categories") {
 
-                        $response->data = CategoryData::GetAllCategorys();
+                        $response->data = CategoryData::GetAllCategories();
                         $response->status = 200;
                     } else {
                         if ($url_parts_counter == 1 and $url_parts[1] == "discounts") {
@@ -67,7 +67,7 @@ if (!in_array($method, $supported_methods)) {
                         } else {
                             if ($url_parts_counter == 1 and $url_parts[1] == "users") {
 
-                                $$response->data = UsersData::GetAllUsers();
+                                $response->data = UsersData::GetAllUsers();
                                 $response->status = 200;
 
                             } else {

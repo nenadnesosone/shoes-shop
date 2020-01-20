@@ -226,9 +226,5 @@ class DiscountData{
 
 }
 
-// za prikazivanje tabele
-
-    
-
 
 ?>
