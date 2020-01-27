@@ -1,14 +1,18 @@
 $(document).ready(function() {
     $.ajax({
-        url: 'http://localhost/shoes-shop/categories',
+        url: 'http://localhost/shoes-shop/users',
         contentType: 'json',
         method: 'GET',
         success: function(data) {
-                $("#allCategories").dataTable({
+                $("#allUsers").dataTable({
                     data: data,
                     columns: [
-                        {data: 'category_id'},
-                        {data: 'category_name'},
+                        {data: 'users_id'},
+                        {data: 'first_name'},
+                        {data: 'last_name'},
+                        {data: 'email'},
+                        {data: 'password'},
+                        {data: 'type'},
                         {data: 'created_by'},
                         {data: 'created_at'},
                         {data: 'updated_by'},
@@ -16,8 +20,6 @@ $(document).ready(function() {
                         {data: 'deleted_by'},
                         {data: 'deleted_at'}
                     ]
-                   
-
                 });
 
             }

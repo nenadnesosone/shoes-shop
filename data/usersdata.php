@@ -3,7 +3,6 @@
 // klasa uz ciju pomoc cemo pristupati korisnickim podacima
 class UsersData{
 
-
     // svojstva objekta
     public $usersid;
     public $fname;
@@ -18,7 +17,6 @@ class UsersData{
     public $uid;
     public $did;
     public $deleted;
-
 
     // funkcija konstruktor
     public function __construct($usersid, $fname, $lname, $email, $pass, $type, $cdate,$udate, $ddate, $cid, $uid, $did, $deleted)
@@ -36,71 +34,41 @@ class UsersData{
         $this->uid = $uid;
         $this->did =$did;
         $this->deleted = $deleted;
-
-
     }
 
-    // funcija koja ce prikupljati podatke o svim korisnicima iz baze
-    public static function GetAllUsers()
-    {
-        //povezujemo se s bazom
-        $db = Database::getInstance()->getConnection();
-        ///odaberemo sve
-        $query = "SELECT * FROM users";
+   // funcija koja ce prikupljati podatke o svim korisnicima iz baze
+   public static function GetAllUsers()
+   {
+       //povezujemo se s bazom
+       $db = Database::getInstance()->getConnection();
+       ///odaberemo sve
+       $query = "SELECT * FROM users";
 
-        $result = mysqli_query($db, $query);
-        $num_rows = mysqli_num_rows($result);
-        if ($num_rows > 0) {
-            
-            echo "<div class='table-responsive'>
-            <table class='table table-primary table-bordered table-striped table-hover text-center'>
-                <caption class='text-center'>All Users:</caption>
-                <tr>
-                    <th>User Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Password Hash</th><th>Type</th><th>Created By</th><th>Created At</th><th>Updated By</th><th>Updated At</th><th>Deleted By</th><th>Deleted At</th>
-                </tr>";
+       $result = mysqli_query($db, $query);
+       $num_rows = mysqli_num_rows($result);
+       if ($num_rows > 0) {
+           $data = [];
+           while ($row = mysqli_fetch_assoc($result)){
 
-            while ($row = mysqli_fetch_assoc($result)){
+                $row['created_by'] = UsersData::GetOneUser($row['created_by'])['first_name'];
+                $row['updated_by'] = UsersData::GetOneUser($row['updated_by'])['first_name'];
+                $row['deleted_by'] = UsersData::GetOneUser($row['deleted_by'])['first_name'];
 
-                $usersid = $row['users_id'];
-                $fname = $row['first_name'];
-                $lname = $row['last_name'];
-                $email = $row['email'];
-                $pass = $row['password'];
-                $type = $row['type'];
-                $cdate = $row['created_at'];
-                $udate = $row['updated_at'];
-                $ddate = $row['deleted_at'];
-                $cid = $row['created_by'];
-                $uid = $row['updated_by'];
-                $did = $row['deleted_by'];
-
-                $cid = UsersData::GetOneUser($cid)['first_name'];
-                $uid = UsersData::GetOneUser($uid)['first_name'];
-                $did = UsersData::GetOneUser($did)['first_name'];
-
-                // formatiranje datuma
-                $cdate = date("d/m/Y", strtotime($cdate));
-                if ($udate !== NULL){
-                    $udate = date("d/m/Y", strtotime($udate));
+                $row['created_at'] = date("d/m/Y", strtotime($row['created_at']));
+                if ($row['updated_at'] !== NULL) {
+                    $row['updated_at'] = date("d/m/Y", strtotime($row['updated_at']));
                 }
-                if ($ddate !== NULL){
-                    $ddate = date("d/m/Y", strtotime($ddate));
+                if ($row['deleted_at'] !== NULL) {
+                    $row['deleted_at'] = date("d/m/Y", strtotime($row['deleted_at']));
                 }
 
-                echo "<tr>
-                        <td>$usersid</td><td>$fname</td><td>$lname</td><td>$email</td><td>$pass</td><td>$type</td><td>$cid</td>
-                        <td>$cdate</td><td>$uid</td><td>$udate</td><td>$did</td><td>$ddate</td>
-                    </tr>";
-                
-            }
-
-            echo "</table>
-            </div>";
-
-        } else {
-            echo "<p class='lead text-white'>There Are No Users!</p>";
-        }
-    }
+               $data[] = $row; 
+           }
+           return $data;
+       } else {
+           return [];
+       }
+   }
 
     // funcija koja ce prikupljati podatke o jednom korisniku iz baze
     public static function GetOneUser($usersid)
